@@ -1,33 +1,27 @@
-# Hey it's a project
+# Magnets
 
-## Why for
+## Goal
 
 I want to give an example of regular SwiftUI architecture right alongside other architectures for the same application, so people can use it as a guide to migrating from one architecture to the next, see the costs, and decide which path will benefit them most in the long term.
 
-## OK then how
+## Approach
 
-First build a thing like this, to show a codebase with long term support that gets opted into all the best stuff from here on out.
+First I'll build an app with SwiftUI providing presentation and Combine providing data through BindableObjects, to show a codebase with long term first-party support that is likely to benefit the most from further platform improvements. This is a great architecture for a brand new app, but it will require iOS 13 at a minimum so isn't necessarily a great fit for existing apps right away.
 
-- Regular App 2.0: SwiftUI BindableObjects Combine
+Then, to show an implementation that balances iOS 12 support with similarity to Apple's new architecture, I'll backport views to UIKit, BindableObjects to MVVM-style view models, and Combine Publishers to RxSwift Observables. Depending on your app's present day starting point, this might be a good architecture to adopt until you can drop iOS 12 support. A diff between these two implementations should clarify what you have to do to migrate to SwiftUI and Combine at that time.
 
-And then backport it to this, to show how we can do something similar now.
+Finally, since some of us preferred to stick with regular Apple MVC, I'll backport to our UIKit / MVC baseline first-party architecture, "massive" view controllers and all. Again, diffing this implementation with either of the other two should show what it takes to migrate between them, and I hope that helps you make the best long term architecture decision for your case.
 
-- Community Goodness Sampler Platter: UIKit MVVM Rx
+## What's the app?
 
-And then backport it to this, to show differences needed to upgrade from one architecture to the next or all the way to SwiftUI.
-
-- Regular App 1.0 AKA Orange Sonic: UIKit MVC
-
-## What is it though
-
-We're going to need an app that can show meaningful implementation differences between these three architectures. So we need to cover:
+We're going to need an app that can show meaningful implementation differences, including strengths and weaknesses, between these three architectures. So we need to cover:
 
 - Multiple screens
 - Table views
 - Hierarchical navigation
 - Modal presentation and dismissal
-- Something UIKit can do that SwiftUI can't do
-- Something SwiftUI can do that UIKit can't do
+- Something view related you have to reach outside SwiftUI to accomplish
+- Something SwiftUI can do that UIKit can't do as easily
 - At least two backing data services
 - NSNotifications
 - Complex data flow
@@ -38,27 +32,24 @@ We're going to need an app that can show meaningful implementation differences b
 - Accessibility elements aggregating text and actions
 - Contextual menus
 
-I'm not sure what to put in there, so in any case, I need a theme to come up with something. How about magnets? Magnets are cool. How do they work? That's excellent. Let's revisit the checklist:
+I'm not sure what to put in there, so in any case, I need a theme to come up with something. [Here I looked around my living room and kitchen and noticed refrigerator magnets.] How about magnets? Magnets are cool. How do they work? Let's expand:
 
-- Multiple screens
-- Table views
-- Hierarchical navigation
+- Multiple screens, table views, hierarchical navigation
     - Magnetic materials
     - List and detail
     - Detail: material properties
-    - Action: favoriting
-- Modal presentation and dismissal
-- Something UIKit can do that SwiftUI can't do
+    - Common action: favoriting
+    - List: Show all or favorites
+- Modal presentation and dismissal, something view related you have to reach outside SwiftUI to accomplish
     - Play with magnets in SceneKit
     - Include magnets and wooden walls
     - Use fused device motion to contribute force
     - Use a button to turn on and off electromagnets
-    - Touch to pull an object
     - Present it modally
-    - Dismiss with swipe from top or Close
-- Something SwiftUI can do that UIKit can't do
+    - Dismiss with swipe from top or close button
+- Something SwiftUI can do that UIKit can't do as easily
     - A button with the image on top of the text
-    - Lines of force as paths
+    - Lines of force as paths without involving Core Animation
     - Radar chart on detail screen
 - At least two backing data services
     - CMMotionManager for raw 3-axis magnetometer data in microteslas
@@ -66,20 +57,26 @@ I'm not sure what to put in there, so in any case, I need a theme to come up wit
     - Definition of materials in a format on disk
     - Favorites backed by user defaults
 - NSNotifications
-    - Use application state changes to pause and unpause the scene
+    - Expose these through Publishers / Observables to show "combined" asynchronous pattern
+    - Use application state changes to pause and unpause the play scene
 - Complex data flow
+    - Data services as injected dependencies
     - Favorite from anywhere and see it everywhere
 - Deep links
-    - Maybe I can supply a few from the readme
+    - Maybe I can supply a few from the readme?
     - Route to each screen
-- Dark mode
-- Dynamic Type
+- Dark mode, Dynamic Type
+    - Table stakes
+    - Do it everywhere and let's see what it takes
 - Complete VoiceOver support
-    - OK how do I do this with a 3D magnet playground?
+    - OK, how do I do this with a 3D magnet playground?
     - I can fix the board to the screen and flatten it
     - I can use haptics on object collisions
+    - I can maybe use light haptics when objects separate
     - I can use dragging sounds on object motion and collision
     - I can use device motion rather than direct interaction
+    - I can use 3D sound with stereo speakers in landscape orientation
+    - That will be a challenge. Let's see if I learn something.
 - Accessibility elements aggregating text and actions
     - Wrap the materials' text and favorite buttons in an element
 - Contextual menus
