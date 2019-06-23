@@ -12,7 +12,7 @@ struct PrimitiveView : View {
     let primitive: Primitive
     
     var body: some View {
-        PrimitiveSceneView(geometryType: primitive.geometryType)
+        PrimitiveSceneView(geometryType: primitive.geometryType, allowsCameraControl: true)
             .navigationBarTitle(Text(primitive.name))
     }
 }

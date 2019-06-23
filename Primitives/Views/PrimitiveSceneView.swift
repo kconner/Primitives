@@ -16,6 +16,8 @@ struct PrimitiveSceneView : UIViewRepresentable {
     static let lightNodeName = "light"
 
     let geometryType: GeometryType
+    let allowsCameraControl: Bool
+    
     @ObjectBinding var proximityStateService = ProximityStateService()
     
     func makeUIView(context: UIViewRepresentableContext<PrimitiveSceneView>) -> SCNView {
@@ -27,7 +29,8 @@ struct PrimitiveSceneView : UIViewRepresentable {
         }
         
         sceneView.scene = scene
-        sceneView.allowsCameraControl = true
+        sceneView.allowsCameraControl = allowsCameraControl
+        scene.isPaused = !allowsCameraControl
         
         return sceneView
     }
@@ -93,7 +96,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
 #if DEBUG
 struct PrimitiveSceneView_Previews : PreviewProvider {
     static var previews: some View {
-        PrimitiveSceneView(geometryType: .box)
+        PrimitiveSceneView(geometryType: .box, allowsCameraControl: true)
     }
 }
 #endif

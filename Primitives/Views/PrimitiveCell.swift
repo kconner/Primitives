@@ -16,6 +16,9 @@ struct PrimitiveCell : View {
             destination: PrimitiveView(primitive: primitive)
         ) {
             HStack {
+                PrimitiveSceneView(geometryType: primitive.geometryType, allowsCameraControl: false)
+                    .frame(width: 50, height: 70)
+                
                 Text(primitive.name)
                 
                 Spacer()

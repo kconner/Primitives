@@ -19,6 +19,7 @@ struct LoadingCell : View {
 struct LoadingCell_Previews : PreviewProvider {
     static var previews: some View {
         LoadingCell()
+            .previewLayout(.sizeThatFits)
     }
 }
 #endif
