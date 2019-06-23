@@ -22,6 +22,8 @@
 		2CBEBE4222BFBE9000C2B3B7 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE4122BFBE9000C2B3B7 /* Catalog.swift */; };
 		2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE4322BFBF2900C2B3B7 /* PreviewModels.swift */; };
 		2CC0218E22BFC23B00A10A98 /* GeometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0218D22BFC23B00A10A98 /* GeometryType.swift */; };
+		2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */; };
+		2CC0219622BFCAF400A10A98 /* primitive.scn in Resources */ = {isa = PBXBuildFile; fileRef = 2CC0219522BFCAF400A10A98 /* primitive.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		2CBEBE4122BFBE9000C2B3B7 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
 		2CBEBE4322BFBF2900C2B3B7 /* PreviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModels.swift; sourceTree = "<group>"; };
 		2CC0218D22BFC23B00A10A98 /* GeometryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryType.swift; sourceTree = "<group>"; };
+		2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveSceneView.swift; sourceTree = "<group>"; };
+		2CC0219522BFCAF400A10A98 /* primitive.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = primitive.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,9 +157,10 @@
 			children = (
 				2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */,
 				2CBEBE0422BFB70000C2B3B7 /* SceneDelegate.swift */,
-				2CBEBE0822BFB70200C2B3B7 /* Assets.xcassets */,
-				2CBEBE0D22BFB70200C2B3B7 /* LaunchScreen.storyboard */,
 				2CBEBE1022BFB70200C2B3B7 /* Info.plist */,
+				2CBEBE0D22BFB70200C2B3B7 /* LaunchScreen.storyboard */,
+				2CBEBE0822BFB70200C2B3B7 /* Assets.xcassets */,
+				2CC0219522BFCAF400A10A98 /* primitive.scn */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				2CBEBE3222BFB7F700C2B3B7 /* PrimitiveList.swift */,
 				2CBEBE3A22BFB85A00C2B3B7 /* PrimitiveCell.swift */,
 				2CBEBE3422BFB7FF00C2B3B7 /* PrimitiveView.swift */,
+				2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC0219622BFCAF400A10A98 /* primitive.scn in Resources */,
 				2CBEBE0F22BFB70200C2B3B7 /* LaunchScreen.storyboard in Resources */,
 				2CBEBE0C22BFB70200C2B3B7 /* Preview Assets.xcassets in Resources */,
 				2CBEBE0922BFB70200C2B3B7 /* Assets.xcassets in Resources */,
@@ -316,6 +323,7 @@
 				2CBEBE0322BFB70000C2B3B7 /* AppDelegate.swift in Sources */,
 				2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */,
 				2CBEBE4222BFBE9000C2B3B7 /* Catalog.swift in Sources */,
+				2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CBEBE3B22BFB85A00C2B3B7 /* PrimitiveCell.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
