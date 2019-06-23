@@ -20,11 +20,15 @@ struct PrimitiveSceneView : UIViewRepresentable {
     
     @ObjectBinding var proximityStateService = ProximityStateService()
     
+    // MARK: - UIViewRepresentable
+    
     func makeUIView(context: UIViewRepresentableContext<PrimitiveSceneView>) -> SCNView {
         let sceneView = SCNView()
         
-        guard let scene = SCNScene(named: "primitive.scn") else {
-            assertionFailure("Expected a scene")
+        guard let scene = SCNScene(named: "primitive.scn"),
+            let primitiveNode = scene.rootNode.childNode(withName: Self.primitiveNodeName, recursively: false) else
+        {
+            assertionFailure("Expected a scene with a primitive node")
             return sceneView
         }
         
@@ -32,32 +36,29 @@ struct PrimitiveSceneView : UIViewRepresentable {
         sceneView.allowsCameraControl = allowsCameraControl
         scene.isPaused = !allowsCameraControl
         
+        Self.updateGeometry(in: primitiveNode, to: geometryType)
+        
         return sceneView
     }
     
     func updateUIView(_ sceneView: SCNView, context: UIViewRepresentableContext<PrimitiveSceneView>) {
         guard let scene = sceneView.scene,
-            let primitiveNode = scene.rootNode.childNode(withName: Self.primitiveNodeName, recursively: false),
             let lightNode = scene.rootNode.childNode(withName: Self.lightNodeName, recursively: true) else
         {
-            assertionFailure("Expected a scene with a primitive node and a light node")
+            assertionFailure("Expected a scene with a light node")
             return
         }
 
         Self.updateBackgroundColor(in: scene, for: sceneView.traitCollection)
-        Self.updateGeometry(in: primitiveNode, to: geometryType)
-        Self.updateLight(in: lightNode, forProximityState: proximityStateService.currentValue)
+        Self.updateLight(in: lightNode, forProximityState: proximityStateService.proximityState)
     }
     
-    private static func updateBackgroundColor(in scene: SCNScene, for traitCollection: UITraitCollection) {
-        let backgroundColor = UIColor.systemBackground.resolvedColor(with: traitCollection)
-        scene.background.contents = backgroundColor
-    }
-
+    // MARK: - Helpers
+    
     private static func updateGeometry(in primitiveNode: SCNNode, to geometryType: GeometryType) {
         let oldGeometry = primitiveNode.geometry
         let newGeometry = geometry(for: geometryType)
-
+        
         // Preserve the material as defined in the scene
         newGeometry.materials = oldGeometry?.materials ?? []
         
@@ -87,6 +88,11 @@ struct PrimitiveSceneView : UIViewRepresentable {
         }
     }
     
+    private static func updateBackgroundColor(in scene: SCNScene, for traitCollection: UITraitCollection) {
+        let backgroundColor = UIColor.systemBackground.resolvedColor(with: traitCollection)
+        scene.background.contents = backgroundColor
+    }
+
     private static func updateLight(in lightNode: SCNNode, forProximityState proximityState: Bool) {
         lightNode.isHidden = proximityState
     }

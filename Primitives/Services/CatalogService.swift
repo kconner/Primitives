@@ -31,6 +31,16 @@ final class CatalogService : BindableObject {
         }
     }
     
+    func refresh() {
+        guard !catalog.isLoading else {
+            return
+        }
+        
+        loadCatalog()
+    }
+    
+    // MARK: - Helpers
+    
     private func loadCatalog() {
         catalog = .loading
         
@@ -42,7 +52,7 @@ final class CatalogService : BindableObject {
             do {
                 let data = try Data(contentsOf: url)
                 let catalog = try JSONDecoder().decode(Catalog.self, from: data)
-
+                
                 DispatchQueue.main.async {
                     self?.catalog = .loaded(catalog)
                 }
@@ -52,14 +62,6 @@ final class CatalogService : BindableObject {
                 }
             }
         }
-    }
-    
-    func refresh() {
-        guard !catalog.isLoading else {
-            return
-        }
-        
-        loadCatalog()
     }
     
 }

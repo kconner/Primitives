@@ -14,7 +14,7 @@ final class ProximityStateService : BindableObject {
     let didChange = NotificationCenter.default.publisher(for: UIDevice.proximityStateDidChangeNotification)
         .map { _ in }
     
-    var currentValue: Bool {
+    var proximityState: Bool {
         UIDevice.current.proximityState
     }
     
