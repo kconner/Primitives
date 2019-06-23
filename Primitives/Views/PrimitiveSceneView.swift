@@ -13,50 +13,79 @@ struct PrimitiveSceneView : UIViewRepresentable {
     
     static let primitiveNodeName = "primitive"
     static let primitiveMaterialName = "primitive"
+    static let lightNodeName = "light"
 
     var geometryType: GeometryType
+    var proximityState: Bool
     
     func makeUIView(context: UIViewRepresentableContext<PrimitiveSceneView>) -> SCNView {
-        let uiView = SCNView()
+        let sceneView = SCNView()
         
-        uiView.scene = SCNScene(named: "primitive.scn")
-        uiView.allowsCameraControl = true
+        guard let scene = SCNScene(named: "primitive.scn") else {
+            assertionFailure("Expected a scene")
+            return sceneView
+        }
         
-        return uiView
+        sceneView.scene = scene
+        sceneView.allowsCameraControl = true
+        
+        return sceneView
     }
     
-    func updateUIView(_ uiView: SCNView, context: UIViewRepresentableContext<PrimitiveSceneView>) {
-        guard let scene = uiView.scene,
-            let primitiveNode = scene.rootNode.childNode(withName: PrimitiveSceneView.primitiveNodeName, recursively: false) else
+    func updateUIView(_ sceneView: SCNView, context: UIViewRepresentableContext<PrimitiveSceneView>) {
+        guard let scene = sceneView.scene,
+            let primitiveNode = scene.rootNode.childNode(withName: Self.primitiveNodeName, recursively: false),
+            let lightNode = scene.rootNode.childNode(withName: Self.lightNodeName, recursively: true) else
         {
-            assertionFailure("Expected a scene with a primitive node.")
+            assertionFailure("Expected a scene with a primitive node and a light node")
             return
         }
-        
-        let material = primitiveNode.geometry?.material(named: PrimitiveSceneView.primitiveMaterialName)
 
-        switch geometryType {
-        case .plane:
-            primitiveNode.geometry = SCNPlane()
-        case .box:
-            primitiveNode.geometry = SCNBox()
-        case .sphere:
-            primitiveNode.geometry = SCNSphere()
-        case .pyramid:
-            primitiveNode.geometry = SCNPyramid()
-        case .cone:
-            primitiveNode.geometry = SCNCone()
-        case .cylinder:
-            primitiveNode.geometry = SCNCylinder()
-        case .capsule:
-            primitiveNode.geometry = SCNCapsule()
-        case .tube:
-            primitiveNode.geometry = SCNTube()
-        case .torus:
-            primitiveNode.geometry = SCNTorus()
-        }
+        Self.updateBackgroundColor(in: scene, for: sceneView.traitCollection)
+        Self.updateGeometry(in: primitiveNode, to: geometryType)
+        Self.updateLight(in: lightNode, forProximityState: proximityState)
+    }
+    
+    private static func updateBackgroundColor(in scene: SCNScene, for traitCollection: UITraitCollection) {
+        let backgroundColor = UIColor.systemBackground.resolvedColor(with: traitCollection)
+        scene.background.contents = backgroundColor
+    }
+
+    private static func updateGeometry(in primitiveNode: SCNNode, to geometryType: GeometryType) {
+        let oldGeometry = primitiveNode.geometry
+        let newGeometry = geometry(for: geometryType)
+
+        // Preserve the material as defined in the scene
+        newGeometry.materials = oldGeometry?.materials ?? []
         
-        primitiveNode.geometry?.firstMaterial = material
+        primitiveNode.geometry = newGeometry
+    }
+    
+    private static func geometry(for type: GeometryType) -> SCNGeometry {
+        switch type {
+        case .plane:
+            return SCNPlane()
+        case .box:
+            return SCNBox()
+        case .sphere:
+            return SCNSphere()
+        case .pyramid:
+            return SCNPyramid()
+        case .cone:
+            return SCNCone()
+        case .cylinder:
+            return SCNCylinder()
+        case .capsule:
+            return SCNCapsule()
+        case .tube:
+            return SCNTube()
+        case .torus:
+            return SCNTorus()
+        }
+    }
+    
+    private static func updateLight(in lightNode: SCNNode, forProximityState proximityState: Bool) {
+        lightNode.isHidden = proximityState
     }
 
 }
@@ -64,7 +93,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
 #if DEBUG
 struct PrimitiveSceneView_Previews : PreviewProvider {
     static var previews: some View {
-        PrimitiveSceneView(geometryType: .box)
+        PrimitiveSceneView(geometryType: .box, proximityState: false)
     }
 }
 #endif
