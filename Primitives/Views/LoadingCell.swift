@@ -16,7 +16,6 @@ struct LoadingCell : View {
             Text("Loading…")
                 .font(.headline)
                 .color(.secondary)
-                .frame(height: 70)
             
             Spacer()
         }
