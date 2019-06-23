@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  Primitives
 //
 //  Created by Kevin Conner on 6/23/19.
@@ -8,16 +8,18 @@
 
 import SwiftUI
 
-struct ContentView : View {
+struct MainView : View {
     var body: some View {
-        Text("Hello World")
+        NavigationView {
+            PrimitiveList()
+        }
     }
 }
 
 #if DEBUG
-struct ContentView_Previews : PreviewProvider {
+struct MainView_Previews : PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }
 #endif
