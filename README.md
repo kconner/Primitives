@@ -66,7 +66,7 @@ Let's expand:
     - Do it everywhere and let's see what it takes
     - Contribute to lighting parameters in scene
 - Complete VoiceOver support
-    - Let's 
+    - Let's see what we can do to make this useful in an app with so much in 3D
 - Accessibility elements aggregating text and actions
     - Wrap the catalog items' text and favorite buttons in an element
 - Contextual menus
