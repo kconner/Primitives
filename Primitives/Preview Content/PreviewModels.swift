@@ -10,10 +10,10 @@ import Foundation
 
 #if DEBUG
 struct PreviewModels {
-    static let sphere = Primitive(name: "Sphere")
-    static let cube = Primitive(name: "Cube")
+    static let sphere = Primitive(name: "Sphere", geometryType: .sphere)
+    static let box = Primitive(name: "Box", geometryType: .box)
     
-    static let primitives = [sphere, cube]
+    static let primitives = [sphere, box]
     
     static let catalog = Catalog(primitives: primitives)
 }

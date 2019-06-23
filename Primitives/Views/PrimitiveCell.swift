@@ -36,7 +36,7 @@ struct PrimitiveCell_Previews : PreviewProvider {
             
             NavigationView {
                 List {
-                    PrimitiveCell(primitive: PreviewModels.cube)
+                    PrimitiveCell(primitive: PreviewModels.box)
                 }
                 .navigationBarTitle(Text("Mock List"))
             }

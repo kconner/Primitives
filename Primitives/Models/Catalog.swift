@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Catalog {
+struct Catalog : Codable {
     var primitives: [Primitive]
 }

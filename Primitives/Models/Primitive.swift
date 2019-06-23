@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct Primitive {
-    var name = "Primitive"
+struct Primitive : Codable {
+    var name: String
+    var geometryType: GeometryType
 }
