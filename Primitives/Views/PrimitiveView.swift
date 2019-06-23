@@ -9,11 +9,24 @@
 import SwiftUI
 
 struct PrimitiveView : View {
+    @ObjectBinding var favoritesService: FavoritesService
+    
     let primitive: Primitive
     
     var body: some View {
         PrimitiveSceneView(geometryType: primitive.geometryType, allowsCameraControl: true)
             .navigationBarTitle(Text(primitive.name))
+            .navigationBarItems(
+                trailing: Button(
+                    action: {
+                        self.favoritesService.favorites.formSymmetricDifference([self.primitive])
+                    }, label: {
+                        // TODO: Why doesn't this appear?
+                        // Image(systemName: favoritesService.favorites.contains(primitive) ? "star.fill" : "star")
+                        Text(favoritesService.favorites.contains(primitive) ? "faved" : "fave")
+                    }
+                )
+            )
     }
 }
 
@@ -21,7 +34,7 @@ struct PrimitiveView : View {
 struct PrimitiveView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PrimitiveView(primitive: PreviewModels.sphere)
+            PrimitiveView(favoritesService: .init(), primitive: PreviewModels.sphere)
         }
     }
 }

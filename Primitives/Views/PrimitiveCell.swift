@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct PrimitiveCell : View {
+    @ObjectBinding var favoritesService: FavoritesService
+
     let primitive: Primitive
     
     var body: some View {
         NavigationButton(
-            destination: PrimitiveView(primitive: primitive)
+            destination: PrimitiveView(favoritesService: favoritesService, primitive: primitive)
         ) {
             HStack {
                 PrimitiveSceneView(geometryType: primitive.geometryType, allowsCameraControl: false)
@@ -23,8 +25,12 @@ struct PrimitiveCell : View {
                 
                 Spacer()
                 
-                Image(systemName: "star.fill")
-                    .foregroundColor(.secondary)
+                if favoritesService.favorites.contains(primitive) {
+                    // TODO: Why doesn't this appear?
+                    // Image(systemName: "star.fill")
+                    Text("faved")
+                        .foregroundColor(.secondary)
+                }
             }
         }
     }
@@ -34,12 +40,12 @@ struct PrimitiveCell : View {
 struct PrimitiveCell_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            PrimitiveCell(primitive: PreviewModels.sphere)
+            PrimitiveCell(favoritesService: .init(), primitive: PreviewModels.sphere)
                 .previewLayout(.sizeThatFits)
             
             NavigationView {
                 List {
-                    PrimitiveCell(primitive: PreviewModels.box)
+                    PrimitiveCell(favoritesService: .init(), primitive: PreviewModels.box)
                 }
                 .navigationBarTitle(Text("Mock List"))
             }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C950D5822C01512002E77A7 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C950D5722C01512002E77A7 /* FavoritesService.swift */; };
 		2CBEBE0322BFB70000C2B3B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */; };
 		2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0422BFB70000C2B3B7 /* SceneDelegate.swift */; };
 		2CBEBE0922BFB70200C2B3B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0822BFB70200C2B3B7 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C950D5722C01512002E77A7 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		2CBEBDFF22BFB70000C2B3B7 /* Primitives.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Primitives.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CBEBE0422BFB70000C2B3B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				2CC5C60522BFFA7500D55027 /* Load.swift */,
 				2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */,
 				2CC0219C22BFF2DD00A10A98 /* CatalogService.swift */,
+				2C950D5722C01512002E77A7 /* FavoritesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */,
 				2CBEBE4222BFBE9000C2B3B7 /* Catalog.swift in Sources */,
 				2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */,
+				2C950D5822C01512002E77A7 /* FavoritesService.swift in Sources */,
 				2CC0219922BFE83D00A10A98 /* ProximityStateService.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,

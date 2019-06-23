@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PrimitiveList : View {
     @ObjectBinding var catalogService: CatalogService
+    var favoritesService: FavoritesService
     
     var body: some View {
         let primitives = catalogService.catalog.map { $0.primitives }
@@ -20,7 +21,7 @@ struct PrimitiveList : View {
             }
             
             ForEach((primitives.valueIfLoaded ?? []).identified(by: \.name)) { primitive in
-                PrimitiveCell(primitive: primitive)
+                PrimitiveCell(favoritesService: self.favoritesService, primitive: primitive)
             }
         }
         .navigationBarTitle(Text("Primitives"))
@@ -33,7 +34,6 @@ struct PrimitiveList : View {
                 }
             )
             .disabled(primitives.isLoading)
-            
         )
     }
 }
@@ -42,7 +42,10 @@ struct PrimitiveList : View {
 struct PrimitiveList_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PrimitiveList(catalogService: PreviewModels.catalogService)
+            PrimitiveList(
+                catalogService: PreviewModels.catalogService,
+                favoritesService: .init()
+            )
         }
     }
 }

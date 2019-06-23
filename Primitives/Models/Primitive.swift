@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Primitive : Codable {
+struct Primitive : Codable, Equatable, Hashable {
     var name: String
     var geometryType: GeometryType
 }
