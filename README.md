@@ -1,4 +1,4 @@
-# Magnets
+# Primitives
 
 ## Goal
 
@@ -32,54 +32,43 @@ We're going to need an app that can show meaningful implementation differences, 
 - Accessibility elements aggregating text and actions
 - Contextual menus
 
-I'm not sure what to put in there, so in any case, I need a theme to come up with something. [Here I looked around my living room and kitchen and noticed refrigerator magnets.] How about magnets? Magnets are cool. How do they work? Let's expand:
+Let's expand:
 
 - Multiple screens, table views, hierarchical navigation
-    - Magnetic materials
+    - A catalog of items: SceneKit primitive shapes
     - List and detail
-    - Detail: material properties
-    - Common action: favoriting
+    - Detail: item properties
+    - Common action: favoriting, sharing
     - List: Show all or favorites
-- Modal presentation and dismissal, something view related you have to reach outside SwiftUI to accomplish
-    - Play with magnets in SceneKit
-    - Include magnets and wooden walls
-    - Use fused device motion to contribute force
-    - Use a button to turn on and off electromagnets
-    - Present it modally
+- Modal presentation and dismissal
+    - Material preview with each object
     - Dismiss with swipe from top or close button
+- Something view related you have to reach outside SwiftUI to accomplish
+    - Use SceneKit on item detail screens
+    - Spotlight from above
+    - Ambient light determined by light / dark mode
 - Something SwiftUI can do that UIKit can't do as easily
+    - Animations within a screen
     - A button with the image on top of the text
-    - Lines of force as paths without involving Core Animation
-    - Radar chart on detail screen
-- At least two backing data services
-    - CMMotionManager for raw 3-axis magnetometer data in microteslas
-    - CMMotionManager for fused device motion
-    - Definition of materials in a format on disk
+- At least two backing data services, NSNotifications, complex data flow
+    - Definition of item catalog in a format on disk
     - Favorites backed by user defaults
-- NSNotifications
-    - Expose these through Publishers / Observables to show "combined" asynchronous pattern
-    - Use application state changes to pause and unpause the play scene
-- Complex data flow
-    - Data services as injected dependencies
     - Favorite from anywhere and see it everywhere
+    - Use application state changes to pause and unpause the play scene
+    - Use proximity sensor state changes to dim the spotlight
+    - Data services as injected dependencies
+    - Expose these through Publishers / Observables to show "combined" asynchronous pattern
 - Deep links
     - Maybe I can supply a few from the readme?
     - Route to each screen
 - Dark mode, Dynamic Type
     - Table stakes
     - Do it everywhere and let's see what it takes
+    - Contribute to lighting parameters in scene
 - Complete VoiceOver support
-    - OK, how do I do this with a 3D magnet playground?
-    - I can fix the board to the screen and flatten it
-    - I can use haptics on object collisions
-    - I can maybe use light haptics when objects separate
-    - I can use dragging sounds on object motion and collision
-    - I can use device motion rather than direct interaction
-    - I can use 3D sound with stereo speakers in landscape orientation
-    - That will be a challenge. Let's see if I learn something.
+    - Let's 
 - Accessibility elements aggregating text and actions
-    - Wrap the materials' text and favorite buttons in an element
+    - Wrap the catalog items' text and favorite buttons in an element
 - Contextual menus
-    - Long press a magnetic material list item to favorite or unfavorite
-    - Long press the play scene to reset it
+    - Long press a catalog item to favorite/unfavorite or preview with materials
 
