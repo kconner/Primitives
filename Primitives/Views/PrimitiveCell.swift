@@ -22,7 +22,8 @@ struct PrimitiveCell : View {
                     .frame(width: 50, height: 70)
                 
                 Text(primitive.name)
-                
+                    .font(.headline)
+
                 Spacer()
                 
                 if favoritesService.favorites.contains(primitive) {

@@ -10,8 +10,16 @@ import SwiftUI
 
 struct LoadingCell : View {
     var body: some View {
-        Text("Loading…")
-            .color(.secondary)
+        HStack {
+            Spacer()
+            
+            Text("Loading…")
+                .font(.headline)
+                .color(.secondary)
+                .frame(height: 70)
+            
+            Spacer()
+        }
     }
 }
 
