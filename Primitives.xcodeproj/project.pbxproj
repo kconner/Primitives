@@ -24,6 +24,7 @@
 		2CC0218E22BFC23B00A10A98 /* GeometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0218D22BFC23B00A10A98 /* GeometryType.swift */; };
 		2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */; };
 		2CC0219622BFCAF400A10A98 /* primitive.scn in Resources */ = {isa = PBXBuildFile; fileRef = 2CC0219522BFCAF400A10A98 /* primitive.scn */; };
+		2CC0219922BFE83D00A10A98 /* ProximityStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		2CC0218D22BFC23B00A10A98 /* GeometryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryType.swift; sourceTree = "<group>"; };
 		2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveSceneView.swift; sourceTree = "<group>"; };
 		2CC0219522BFCAF400A10A98 /* primitive.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = primitive.scn; sourceTree = "<group>"; };
+		2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityStateService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				2CBEBE3C22BFB8BC00C2B3B7 /* App */,
+				2CC0219722BFE81100A10A98 /* Services */,
 				2CBEBE3E22BFBE4500C2B3B7 /* Models */,
 				2CBEBE3D22BFB8D700C2B3B7 /* Views */,
 				2CBEBE0A22BFB70200C2B3B7 /* Preview Content */,
@@ -185,6 +188,14 @@
 				2CC0218D22BFC23B00A10A98 /* GeometryType.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2CC0219722BFE81100A10A98 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +335,7 @@
 				2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */,
 				2CBEBE4222BFBE9000C2B3B7 /* Catalog.swift in Sources */,
 				2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */,
+				2CC0219922BFE83D00A10A98 /* ProximityStateService.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CBEBE3B22BFB85A00C2B3B7 /* PrimitiveCell.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,

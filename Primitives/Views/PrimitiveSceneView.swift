@@ -16,7 +16,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
     static let lightNodeName = "light"
 
     var geometryType: GeometryType
-    var proximityState: Bool
+    @ObjectBinding var proximityStateService = ProximityStateService()
     
     func makeUIView(context: UIViewRepresentableContext<PrimitiveSceneView>) -> SCNView {
         let sceneView = SCNView()
@@ -43,7 +43,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
 
         Self.updateBackgroundColor(in: scene, for: sceneView.traitCollection)
         Self.updateGeometry(in: primitiveNode, to: geometryType)
-        Self.updateLight(in: lightNode, forProximityState: proximityState)
+        Self.updateLight(in: lightNode, forProximityState: proximityStateService.currentValue)
     }
     
     private static func updateBackgroundColor(in scene: SCNScene, for traitCollection: UITraitCollection) {
@@ -93,7 +93,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
 #if DEBUG
 struct PrimitiveSceneView_Previews : PreviewProvider {
     static var previews: some View {
-        PrimitiveSceneView(geometryType: .box, proximityState: false)
+        PrimitiveSceneView(geometryType: .box)
     }
 }
 #endif
