@@ -9,10 +9,13 @@
 import SwiftUI
 
 struct PrimitiveList : View {
+    var primitives: [Primitive]
+    
     var body: some View {
         List {
-            PrimitiveCell()
-            PrimitiveCell()
+            ForEach(primitives.identified(by: \.name)) { primitive in
+                PrimitiveCell(primitive: primitive)
+            }
         }
         .navigationBarTitle(Text("Primitives"))
     }
@@ -22,7 +25,7 @@ struct PrimitiveList : View {
 struct PrimitiveList_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PrimitiveList()
+            PrimitiveList(primitives: PreviewModels.primitives)
         }
     }
 }

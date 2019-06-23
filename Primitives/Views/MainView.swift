@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct MainView : View {
+    var catalog: Catalog
+    
     var body: some View {
         NavigationView {
-            PrimitiveList()
+            PrimitiveList(primitives: catalog.primitives)
         }
     }
 }
@@ -19,7 +21,7 @@ struct MainView : View {
 #if DEBUG
 struct MainView_Previews : PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(catalog: PreviewModels.catalog)
     }
 }
 #endif

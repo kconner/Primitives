@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct PrimitiveView : View {
+    var primitive: Primitive
+    
     var body: some View {
-        Text("Primitive")
-            .navigationBarTitle(Text("Primitive"))
+        Text(primitive.name)
+            .navigationBarTitle(Text(primitive.name))
     }
 }
 
@@ -19,7 +21,7 @@ struct PrimitiveView : View {
 struct PrimitiveView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PrimitiveView()
+            PrimitiveView(primitive: PreviewModels.sphere)
         }
     }
 }

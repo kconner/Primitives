@@ -9,12 +9,14 @@
 import SwiftUI
 
 struct PrimitiveCell : View {
+    var primitive: Primitive
+    
     var body: some View {
         NavigationButton(
-            destination: PrimitiveView()
+            destination: PrimitiveView(primitive: primitive)
         ) {
             HStack {
-                Text("Primitive")
+                Text(primitive.name)
                 
                 Spacer()
                 
@@ -29,12 +31,12 @@ struct PrimitiveCell : View {
 struct PrimitiveCell_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            PrimitiveCell()
+            PrimitiveCell(primitive: PreviewModels.sphere)
                 .previewLayout(.sizeThatFits)
             
             NavigationView {
                 List {
-                    PrimitiveCell()
+                    PrimitiveCell(primitive: PreviewModels.cube)
                 }
                 .navigationBarTitle(Text("Mock List"))
             }
