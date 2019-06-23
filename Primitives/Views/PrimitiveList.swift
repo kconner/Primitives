@@ -9,18 +9,21 @@
 import SwiftUI
 
 struct PrimitiveList : View {
+    
     @ObjectBinding var catalogService: CatalogService
     var favoritesService: FavoritesService
     
+    @State private var filterMode = PrimitiveListFilter.Mode.all
+    
     var body: some View {
-        let primitives = catalogService.catalog.map { $0.primitives }
-        
-        return List {
+        List {
+            PrimitiveListFilter(mode: $filterMode)
+            
             if primitives.isLoading {
                 LoadingCell()
             }
-            
-            ForEach((primitives.valueIfLoaded ?? []).identified(by: \.name)) { primitive in
+
+            ForEach(filteredPrimitives.identified(by: \.name)) { primitive in
                 PrimitiveCell(favoritesService: self.favoritesService, primitive: primitive)
             }
         }
@@ -36,6 +39,26 @@ struct PrimitiveList : View {
             .disabled(primitives.isLoading)
         )
     }
+    
+    // MARK: - Helpers
+
+    private var primitives: Load<[Primitive]> {
+        catalogService.catalog.map { $0.primitives }
+    }
+
+    private var filteredPrimitives: [Primitive] {
+        let allPrimitives = primitives.valueIfLoaded ?? []
+        
+        switch filterMode {
+        case .all:
+            return allPrimitives
+        case .favorites:
+            return allPrimitives.filter { primitive in
+                favoritesService.favorites.contains(primitive)
+            }
+        }
+    }
+
 }
 
 #if DEBUG
