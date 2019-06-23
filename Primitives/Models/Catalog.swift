@@ -9,5 +9,5 @@
 import Foundation
 
 struct Catalog : Codable {
-    var primitives: [Primitive]
+    var primitives: [Primitive] = []
 }

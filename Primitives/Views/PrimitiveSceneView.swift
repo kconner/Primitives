@@ -15,7 +15,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
     static let primitiveMaterialName = "primitive"
     static let lightNodeName = "light"
 
-    var geometryType: GeometryType
+    let geometryType: GeometryType
     @ObjectBinding var proximityStateService = ProximityStateService()
     
     func makeUIView(context: UIViewRepresentableContext<PrimitiveSceneView>) -> SCNView {

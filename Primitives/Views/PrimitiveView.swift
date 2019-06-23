@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PrimitiveView : View {
-    var primitive: Primitive
+    let primitive: Primitive
     
     var body: some View {
         PrimitiveSceneView(geometryType: primitive.geometryType)

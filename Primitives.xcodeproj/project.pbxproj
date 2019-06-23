@@ -25,6 +25,10 @@
 		2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */; };
 		2CC0219622BFCAF400A10A98 /* primitive.scn in Resources */ = {isa = PBXBuildFile; fileRef = 2CC0219522BFCAF400A10A98 /* primitive.scn */; };
 		2CC0219922BFE83D00A10A98 /* ProximityStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */; };
+		2CC0219B22BFF19000A10A98 /* catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CC0219A22BFF19000A10A98 /* catalog.json */; };
+		2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219C22BFF2DD00A10A98 /* CatalogService.swift */; };
+		2CC5C60622BFFA7500D55027 /* Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5C60522BFFA7500D55027 /* Load.swift */; };
+		2CC5C60822BFFE3700D55027 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5C60722BFFE3700D55027 /* LoadingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveSceneView.swift; sourceTree = "<group>"; };
 		2CC0219522BFCAF400A10A98 /* primitive.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = primitive.scn; sourceTree = "<group>"; };
 		2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityStateService.swift; sourceTree = "<group>"; };
+		2CC0219A22BFF19000A10A98 /* catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = catalog.json; sourceTree = "<group>"; };
+		2CC0219C22BFF2DD00A10A98 /* CatalogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogService.swift; sourceTree = "<group>"; };
+		2CC5C60522BFFA7500D55027 /* Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Load.swift; sourceTree = "<group>"; };
+		2CC5C60722BFFE3700D55027 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +172,7 @@
 				2CBEBE0D22BFB70200C2B3B7 /* LaunchScreen.storyboard */,
 				2CBEBE0822BFB70200C2B3B7 /* Assets.xcassets */,
 				2CC0219522BFCAF400A10A98 /* primitive.scn */,
+				2CC0219A22BFF19000A10A98 /* catalog.json */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -173,6 +182,7 @@
 			children = (
 				2CBEBE3622BFB82A00C2B3B7 /* MainView.swift */,
 				2CBEBE3222BFB7F700C2B3B7 /* PrimitiveList.swift */,
+				2CC5C60722BFFE3700D55027 /* LoadingCell.swift */,
 				2CBEBE3A22BFB85A00C2B3B7 /* PrimitiveCell.swift */,
 				2CBEBE3422BFB7FF00C2B3B7 /* PrimitiveView.swift */,
 				2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */,
@@ -193,7 +203,9 @@
 		2CC0219722BFE81100A10A98 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2CC5C60522BFFA7500D55027 /* Load.swift */,
 				2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */,
+				2CC0219C22BFF2DD00A10A98 /* CatalogService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -305,6 +317,7 @@
 				2CC0219622BFCAF400A10A98 /* primitive.scn in Resources */,
 				2CBEBE0F22BFB70200C2B3B7 /* LaunchScreen.storyboard in Resources */,
 				2CBEBE0C22BFB70200C2B3B7 /* Preview Assets.xcassets in Resources */,
+				2CC0219B22BFF19000A10A98 /* catalog.json in Resources */,
 				2CBEBE0922BFB70200C2B3B7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +350,9 @@
 				2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */,
 				2CC0219922BFE83D00A10A98 /* ProximityStateService.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
+				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,
+				2CC5C60622BFFA7500D55027 /* Load.swift in Sources */,
+				2CC5C60822BFFE3700D55027 /* LoadingCell.swift in Sources */,
 				2CBEBE3B22BFB85A00C2B3B7 /* PrimitiveCell.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
 				2CBEBE3722BFB82A00C2B3B7 /* MainView.swift in Sources */,

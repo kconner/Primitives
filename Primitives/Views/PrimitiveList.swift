@@ -9,15 +9,32 @@
 import SwiftUI
 
 struct PrimitiveList : View {
-    var primitives: [Primitive]
+    @ObjectBinding var catalogService: CatalogService
     
     var body: some View {
-        List {
-            ForEach(primitives.identified(by: \.name)) { primitive in
+        let primitives = catalogService.catalog.map { $0.primitives }
+        
+        return List {
+            if primitives.isLoading {
+                LoadingCell()
+            }
+            
+            ForEach((primitives.valueIfLoaded ?? []).identified(by: \.name)) { primitive in
                 PrimitiveCell(primitive: primitive)
             }
         }
         .navigationBarTitle(Text("Primitives"))
+        .navigationBarItems(leading:
+            Button(
+                action: {
+                    self.catalogService.refresh()
+                }, label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+            )
+            .disabled(primitives.isLoading)
+            
+        )
     }
 }
 
@@ -25,7 +42,7 @@ struct PrimitiveList : View {
 struct PrimitiveList_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PrimitiveList(primitives: PreviewModels.primitives)
+            PrimitiveList(catalogService: PreviewModels.catalogService)
         }
     }
 }

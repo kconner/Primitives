@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PrimitiveCell : View {
-    var primitive: Primitive
+    let primitive: Primitive
     
     var body: some View {
         NavigationButton(
