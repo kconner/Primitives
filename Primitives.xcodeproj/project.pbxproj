@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C19A7EA22C07983000A4DB7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A7E922C07983000A4DB7 /* SettingsView.swift */; };
+		2C19A7EC22C07BFA000A4DB7 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A7EB22C07BFA000A4DB7 /* SettingsButton.swift */; };
 		2C950D5822C01512002E77A7 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C950D5722C01512002E77A7 /* FavoritesService.swift */; };
 		2CBEBE0322BFB70000C2B3B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */; };
 		2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0422BFB70000C2B3B7 /* SceneDelegate.swift */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C19A7E922C07983000A4DB7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2C19A7EB22C07BFA000A4DB7 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		2C950D5722C01512002E77A7 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		2CBEBDFF22BFB70000C2B3B7 /* Primitives.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Primitives.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,10 +193,12 @@
 				2CBEBE3622BFB82A00C2B3B7 /* MainView.swift */,
 				2CBEBE3222BFB7F700C2B3B7 /* PrimitiveList.swift */,
 				2CC4722B22C035F3009EED65 /* PrimitiveListFilter.swift */,
+				2C19A7EB22C07BFA000A4DB7 /* SettingsButton.swift */,
 				2CC5C60722BFFE3700D55027 /* MessageCell.swift */,
 				2CBEBE3A22BFB85A00C2B3B7 /* PrimitiveCell.swift */,
 				2CBEBE3422BFB7FF00C2B3B7 /* PrimitiveView.swift */,
 				2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */,
+				2C19A7E922C07983000A4DB7 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,12 +370,14 @@
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,
 				2CC5C60622BFFA7500D55027 /* Load.swift in Sources */,
+				2C19A7EC22C07BFA000A4DB7 /* SettingsButton.swift in Sources */,
 				2CC5C60822BFFE3700D55027 /* MessageCell.swift in Sources */,
 				2CBEBE3B22BFB85A00C2B3B7 /* PrimitiveCell.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
 				2CBEBE3722BFB82A00C2B3B7 /* MainView.swift in Sources */,
 				2CBEBE3522BFB7FF00C2B3B7 /* PrimitiveView.swift in Sources */,
 				2CC0218E22BFC23B00A10A98 /* GeometryType.swift in Sources */,
+				2C19A7EA22C07983000A4DB7 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

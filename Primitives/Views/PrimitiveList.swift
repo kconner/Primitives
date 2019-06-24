@@ -14,6 +14,7 @@ struct PrimitiveList : View {
     @ObjectBinding var favorites: FavoritesService
     
     @State private var filterMode = PrimitiveListFilter.Mode.all
+    @State private var isPresentingSettings = false
     
     var body: some View {
         List {
@@ -24,7 +25,11 @@ struct PrimitiveList : View {
             }
 
             ForEach(filteredPrimitives.identified(by: \.name)) { primitive in
-                PrimitiveCell(favorites: self.favorites, primitive: primitive)
+                PrimitiveCell(
+                    favorites: self.favorites,
+                    isPresentingSettings: self.$isPresentingSettings,
+                    primitive: primitive
+                )
             }
             
             if !catalog.value.isLoading {
@@ -32,16 +37,11 @@ struct PrimitiveList : View {
             }
         }
         .navigationBarTitle(Text("Primitives"))
-        .navigationBarItems(leading:
-            Button(
-                action: {
-                    self.catalog.reload()
-                }, label: {
-                    Image(systemName: "arrow.clockwise")
-                }
-            )
-            .disabled(catalog.value.isLoading)
+        .navigationBarItems(
+            leading: refreshButton,
+            trailing: SettingsButton(isPresentingSettings: $isPresentingSettings)
         )
+        .presentation(isPresentingSettings ? settingsModal : nil)
     }
     
     // MARK: - Helpers
@@ -71,6 +71,27 @@ struct PrimitiveList : View {
         }
         
         return MessageCell(message: Text("\(count) \(unit)"))
+    }
+
+    private var refreshButton: some View {
+        Button(
+            action: {
+                self.catalog.reload()
+            }, label: {
+                Image(systemName: "arrow.clockwise")
+            }
+        )
+        .disabled(catalog.value.isLoading)
+    }
+    
+    private var settingsModal: Modal {
+        Modal(
+            NavigationView {
+                SettingsView(isPresentingSettings: $isPresentingSettings)
+            }
+        ) {
+            self.isPresentingSettings = false
+        }
     }
 
 }

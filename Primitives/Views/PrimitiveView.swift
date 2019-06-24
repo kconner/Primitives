@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PrimitiveView : View {
     @ObjectBinding var favorites: FavoritesService
+    @Binding var isPresentingSettings: Bool
     
     let primitive: Primitive
     
@@ -22,7 +23,7 @@ struct PrimitiveView : View {
                     },
                     label: {
                         VStack {
-                            // TODO: Why doesn't this appear?
+                            // TODO: Why does this appear in the live canvas but not the simulator?
                             Image(systemName: favorites[primitive] ? "star.fill" : "star")
                             Text(favorites[primitive] ? "faved" : "fave")
                         }
@@ -32,6 +33,16 @@ struct PrimitiveView : View {
                 alignment: .bottom
             )
             .navigationBarTitle(Text(primitive.name))
+            .navigationBarItems(
+                trailing: Button(
+                    action: {
+                        self.isPresentingSettings = true
+                    },
+                    label: {
+                        Image(systemName: "gear")
+                    }
+                )
+            )
     }
 }
 
@@ -39,7 +50,11 @@ struct PrimitiveView : View {
 struct PrimitiveView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PrimitiveView(favorites: .init(), primitive: PreviewModels.sphere)
+            PrimitiveView(
+                favorites: .init(),
+                isPresentingSettings: .constant(false),
+                primitive: PreviewModels.sphere
+            )
         }
     }
 }

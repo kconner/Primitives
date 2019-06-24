@@ -10,12 +10,17 @@ import SwiftUI
 
 struct PrimitiveCell : View {
     @ObjectBinding var favorites: FavoritesService
+    @Binding var isPresentingSettings: Bool
 
     let primitive: Primitive
     
     var body: some View {
         NavigationButton(
-            destination: PrimitiveView(favorites: favorites, primitive: primitive)
+            destination: PrimitiveView(
+                favorites: favorites,
+                isPresentingSettings: $isPresentingSettings,
+                primitive: primitive
+            )
         ) {
             HStack {
                 Text(primitive.name)
@@ -24,8 +29,9 @@ struct PrimitiveCell : View {
                 Spacer()
                 
                 if favorites[primitive] {
-                    // TODO: Why doesn't this appear?
-                    // Image(systemName: "star.fill")
+                    // TODO: Why does this appear in the live canvas but not the simulator?
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.secondary)
                     Text("faved")
                         .foregroundColor(.secondary)
                 }
@@ -38,12 +44,20 @@ struct PrimitiveCell : View {
 struct PrimitiveCell_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            PrimitiveCell(favorites: .init(), primitive: PreviewModels.sphere)
-                .previewLayout(.sizeThatFits)
+            PrimitiveCell(
+                favorites: .init(),
+                isPresentingSettings: .constant(false),
+                primitive: PreviewModels.sphere
+            )
+            .previewLayout(.sizeThatFits)
             
             NavigationView {
                 List {
-                    PrimitiveCell(favorites: .init(), primitive: PreviewModels.box)
+                    PrimitiveCell(
+                        favorites: .init(),
+                        isPresentingSettings: .constant(false),
+                        primitive: PreviewModels.box
+                    )
                 }
                 .navigationBarTitle(Text("Mock List"))
             }
