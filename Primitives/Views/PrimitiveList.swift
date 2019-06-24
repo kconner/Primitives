@@ -19,7 +19,7 @@ struct PrimitiveList : View {
         List {
             PrimitiveListFilter(mode: $filterMode)
             
-            if primitives.isLoading {
+            if catalogService.catalog.isLoading {
                 LoadingCell()
             }
 
@@ -36,24 +36,20 @@ struct PrimitiveList : View {
                     Image(systemName: "arrow.clockwise")
                 }
             )
-            .disabled(primitives.isLoading)
+            .disabled(catalogService.catalog.isLoading)
         )
     }
     
     // MARK: - Helpers
 
-    private var primitives: Load<[Primitive]> {
-        catalogService.catalog.map { $0.primitives }
-    }
-
     private var filteredPrimitives: [Primitive] {
-        let allPrimitives = primitives.valueIfLoaded ?? []
+        let primitives = catalogService.catalog.valueIfLoaded?.primitives ?? []
         
         switch filterMode {
         case .all:
-            return allPrimitives
+            return primitives
         case .favorites:
-            return allPrimitives.filter { primitive in
+            return primitives.filter { primitive in
                 favoritesService.favorites.contains(primitive)
             }
         }

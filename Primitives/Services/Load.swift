@@ -31,25 +31,5 @@ enum Load<Value> {
             return nil
         }
     }
-    
-    var errorIfFailed: Error? {
-        switch self {
-        case .failed(let error):
-            return error
-        case .loading, .loaded:
-            return nil
-        }
-    }
-    
-    func map<U>(_ transform: (Value) -> U) -> Load<U> {
-        switch self {
-        case .loading:
-            return .loading
-        case .loaded(let value):
-            return .loaded(transform(value))
-        case .failed(let error):
-            return .failed(error)
-        }
-    }
 
 }
