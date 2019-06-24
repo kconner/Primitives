@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct MainView : View {
-    let catalogService: CatalogService
-    let favorites: Favorites
+    let catalog: CatalogService
+    let favorites: FavoritesService
     
     var body: some View {
         NavigationView {
-            PrimitiveList(catalogService: catalogService, favorites: favorites)
+            PrimitiveList(catalog: catalog, favorites: favorites)
         }
     }
 }
@@ -22,7 +22,7 @@ struct MainView : View {
 #if DEBUG
 struct MainView_Previews : PreviewProvider {
     static var previews: some View {
-        MainView(catalogService: PreviewModels.catalogService, favorites: .init())
+        MainView(catalog: PreviewModels.catalogService, favorites: .init())
     }
 }
 #endif

@@ -10,8 +10,8 @@ import SwiftUI
 
 struct PrimitiveList : View {
     
-    @ObjectBinding var catalogService: CatalogService
-    var favorites: Favorites
+    @ObjectBinding var catalog: CatalogService
+    @ObjectBinding var favorites: FavoritesService
     
     @State private var filterMode = PrimitiveListFilter.Mode.all
     
@@ -19,7 +19,7 @@ struct PrimitiveList : View {
         List {
             PrimitiveListFilter(mode: $filterMode)
             
-            if catalogService.catalog.isLoading {
+            if catalog.value.isLoading {
                 LoadingCell()
             }
 
@@ -31,19 +31,19 @@ struct PrimitiveList : View {
         .navigationBarItems(leading:
             Button(
                 action: {
-                    self.catalogService.refresh()
+                    self.catalog.reload()
                 }, label: {
                     Image(systemName: "arrow.clockwise")
                 }
             )
-            .disabled(catalogService.catalog.isLoading)
+            .disabled(catalog.value.isLoading)
         )
     }
     
     // MARK: - Helpers
 
     private var filteredPrimitives: [Primitive] {
-        let primitives = catalogService.catalog.valueIfLoaded?.primitives ?? []
+        let primitives = catalog.value.valueIfLoaded?.primitives ?? []
         
         switch filterMode {
         case .all:
@@ -62,7 +62,7 @@ struct PrimitiveList_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
             PrimitiveList(
-                catalogService: PreviewModels.catalogService,
+                catalog: PreviewModels.catalogService,
                 favorites: .init()
             )
         }

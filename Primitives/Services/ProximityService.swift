@@ -1,5 +1,5 @@
 //
-//  ProximityStateService.swift
+//  ProximityService.swift
 //  Primitives
 //
 //  Created by Kevin Conner on 6/23/19.
@@ -9,12 +9,12 @@
 import SwiftUI
 import Combine
 
-final class ProximityStateService : BindableObject {
+final class ProximityService : BindableObject {
 
     let didChange = NotificationCenter.default.publisher(for: UIDevice.proximityStateDidChangeNotification)
         .map { _ in }
     
-    var proximityState: Bool {
+    var state: Bool {
         UIDevice.current.proximityState
     }
     

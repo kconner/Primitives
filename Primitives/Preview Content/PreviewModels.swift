@@ -24,6 +24,6 @@ struct PreviewModels {
     
     static let catalog = Catalog(primitives: primitives)
     
-    static let catalogService = CatalogService(catalog: .loaded(catalog))
+    static let catalogService = CatalogService(value: .loaded(catalog))
 }
 #endif

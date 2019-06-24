@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C950D5822C01512002E77A7 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C950D5722C01512002E77A7 /* Favorites.swift */; };
+		2C950D5822C01512002E77A7 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C950D5722C01512002E77A7 /* FavoritesService.swift */; };
 		2CBEBE0322BFB70000C2B3B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */; };
 		2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0422BFB70000C2B3B7 /* SceneDelegate.swift */; };
 		2CBEBE0922BFB70200C2B3B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0822BFB70200C2B3B7 /* Assets.xcassets */; };
@@ -25,10 +25,11 @@
 		2CC0218E22BFC23B00A10A98 /* GeometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0218D22BFC23B00A10A98 /* GeometryType.swift */; };
 		2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */; };
 		2CC0219622BFCAF400A10A98 /* primitive.scn in Resources */ = {isa = PBXBuildFile; fileRef = 2CC0219522BFCAF400A10A98 /* primitive.scn */; };
-		2CC0219922BFE83D00A10A98 /* ProximityStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */; };
+		2CC0219922BFE83D00A10A98 /* ProximityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219822BFE83D00A10A98 /* ProximityService.swift */; };
 		2CC0219B22BFF19000A10A98 /* catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CC0219A22BFF19000A10A98 /* catalog.json */; };
 		2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0219C22BFF2DD00A10A98 /* CatalogService.swift */; };
 		2CC4722C22C035F3009EED65 /* PrimitiveListFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4722B22C035F3009EED65 /* PrimitiveListFilter.swift */; };
+		2CC4722E22C06215009EED65 /* LoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4722D22C06215009EED65 /* LoadService.swift */; };
 		2CC5C60622BFFA7500D55027 /* Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5C60522BFFA7500D55027 /* Load.swift */; };
 		2CC5C60822BFFE3700D55027 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5C60722BFFE3700D55027 /* LoadingCell.swift */; };
 /* End PBXBuildFile section */
@@ -51,7 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C950D5722C01512002E77A7 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		2C950D5722C01512002E77A7 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		2CBEBDFF22BFB70000C2B3B7 /* Primitives.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Primitives.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CBEBE0422BFB70000C2B3B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,10 +76,11 @@
 		2CC0218D22BFC23B00A10A98 /* GeometryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryType.swift; sourceTree = "<group>"; };
 		2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveSceneView.swift; sourceTree = "<group>"; };
 		2CC0219522BFCAF400A10A98 /* primitive.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = primitive.scn; sourceTree = "<group>"; };
-		2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityStateService.swift; sourceTree = "<group>"; };
+		2CC0219822BFE83D00A10A98 /* ProximityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityService.swift; sourceTree = "<group>"; };
 		2CC0219A22BFF19000A10A98 /* catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = catalog.json; sourceTree = "<group>"; };
 		2CC0219C22BFF2DD00A10A98 /* CatalogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogService.swift; sourceTree = "<group>"; };
 		2CC4722B22C035F3009EED65 /* PrimitiveListFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListFilter.swift; sourceTree = "<group>"; };
+		2CC4722D22C06215009EED65 /* LoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadService.swift; sourceTree = "<group>"; };
 		2CC5C60522BFFA7500D55027 /* Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Load.swift; sourceTree = "<group>"; };
 		2CC5C60722BFFE3700D55027 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,9 +211,10 @@
 			isa = PBXGroup;
 			children = (
 				2CC5C60522BFFA7500D55027 /* Load.swift */,
-				2CC0219822BFE83D00A10A98 /* ProximityStateService.swift */,
+				2CC4722D22C06215009EED65 /* LoadService.swift */,
 				2CC0219C22BFF2DD00A10A98 /* CatalogService.swift */,
-				2C950D5722C01512002E77A7 /* Favorites.swift */,
+				2C950D5722C01512002E77A7 /* FavoritesService.swift */,
+				2CC0219822BFE83D00A10A98 /* ProximityService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -350,13 +353,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBEBE3322BFB7F700C2B3B7 /* PrimitiveList.swift in Sources */,
+				2CC4722E22C06215009EED65 /* LoadService.swift in Sources */,
 				2CBEBE0322BFB70000C2B3B7 /* AppDelegate.swift in Sources */,
 				2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */,
 				2CBEBE4222BFBE9000C2B3B7 /* Catalog.swift in Sources */,
 				2CC0219422BFC72400A10A98 /* PrimitiveSceneView.swift in Sources */,
 				2CC4722C22C035F3009EED65 /* PrimitiveListFilter.swift in Sources */,
-				2C950D5822C01512002E77A7 /* Favorites.swift in Sources */,
-				2CC0219922BFE83D00A10A98 /* ProximityStateService.swift in Sources */,
+				2C950D5822C01512002E77A7 /* FavoritesService.swift in Sources */,
+				2CC0219922BFE83D00A10A98 /* ProximityService.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,
 				2CC5C60622BFFA7500D55027 /* Load.swift in Sources */,

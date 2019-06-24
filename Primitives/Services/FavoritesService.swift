@@ -1,5 +1,5 @@
 //
-//  Favorites.swift
+//  FavoritesService.swift
 //  Primitives
 //
 //  Created by Kevin Conner on 6/23/19.
@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-final class Favorites : BindableObject {
+final class FavoritesService : BindableObject {
     
     let didChange = PassthroughSubject<Void, Never>()
     

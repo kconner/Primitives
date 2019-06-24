@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PrimitiveCell : View {
-    @ObjectBinding var favorites: Favorites
+    @ObjectBinding var favorites: FavoritesService
 
     let primitive: Primitive
     

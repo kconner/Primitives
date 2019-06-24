@@ -17,7 +17,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
 
     let geometryType: GeometryType
     
-    @ObjectBinding var proximityStateService = ProximityStateService()
+    @ObjectBinding var proximity = ProximityService()
     
     // MARK: - UIViewRepresentable
     
@@ -48,7 +48,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
         }
 
         Self.updateBackgroundColor(in: scene, for: sceneView.traitCollection)
-        Self.updateLight(in: lightNode, forProximityState: proximityStateService.proximityState)
+        Self.updateLight(in: lightNode, forProximityState: proximity.state)
     }
     
     // MARK: - Helpers
