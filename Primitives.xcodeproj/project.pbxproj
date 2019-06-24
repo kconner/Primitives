@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C19A7EA22C07983000A4DB7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A7E922C07983000A4DB7 /* SettingsView.swift */; };
 		2C19A7EC22C07BFA000A4DB7 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A7EB22C07BFA000A4DB7 /* SettingsButton.swift */; };
+		2C19A7EE22C08589000A4DB7 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A7ED22C08589000A4DB7 /* FavoriteButton.swift */; };
 		2C950D5822C01512002E77A7 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C950D5722C01512002E77A7 /* FavoritesService.swift */; };
 		2CBEBE0322BFB70000C2B3B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */; };
 		2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEBE0422BFB70000C2B3B7 /* SceneDelegate.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		2C19A7E922C07983000A4DB7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2C19A7EB22C07BFA000A4DB7 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
+		2C19A7ED22C08589000A4DB7 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		2C950D5722C01512002E77A7 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		2CBEBDFF22BFB70000C2B3B7 /* Primitives.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Primitives.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBEBE0222BFB70000C2B3B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				2CBEBE3A22BFB85A00C2B3B7 /* PrimitiveCell.swift */,
 				2CBEBE3422BFB7FF00C2B3B7 /* PrimitiveView.swift */,
 				2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */,
+				2C19A7ED22C08589000A4DB7 /* FavoriteButton.swift */,
 				2C19A7E922C07983000A4DB7 /* SettingsView.swift */,
 			);
 			path = Views;
@@ -376,6 +379,7 @@
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
 				2CBEBE3722BFB82A00C2B3B7 /* MainView.swift in Sources */,
 				2CBEBE3522BFB7FF00C2B3B7 /* PrimitiveView.swift in Sources */,
+				2C19A7EE22C08589000A4DB7 /* FavoriteButton.swift in Sources */,
 				2CC0218E22BFC23B00A10A98 /* GeometryType.swift in Sources */,
 				2C19A7EA22C07983000A4DB7 /* SettingsView.swift in Sources */,
 			);

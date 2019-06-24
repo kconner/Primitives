@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct PrimitiveView : View {
+
     @ObjectBinding var favorites: FavoritesService
     @Binding var isPresentingSettings: Bool
     
@@ -17,33 +18,15 @@ struct PrimitiveView : View {
     var body: some View {
         PrimitiveSceneView(geometryType: primitive.geometryType)
             .overlay(
-                Button(
-                    action: {
-                        self.favorites.toggle(self.primitive)
-                    },
-                    label: {
-                        VStack {
-                            // TODO: Why does this appear in the live canvas but not the simulator?
-                            Image(systemName: favorites[primitive] ? "star.fill" : "star")
-                            Text(favorites[primitive] ? "faved" : "fave")
-                        }
-                        .padding()
-                    }
-                ),
+                FavoriteButton(favorites: favorites, primitive: primitive),
                 alignment: .bottom
             )
             .navigationBarTitle(Text(primitive.name))
             .navigationBarItems(
-                trailing: Button(
-                    action: {
-                        self.isPresentingSettings = true
-                    },
-                    label: {
-                        Image(systemName: "gear")
-                    }
-                )
+                trailing: SettingsButton(isPresentingSettings: $isPresentingSettings)
             )
     }
+
 }
 
 #if DEBUG
