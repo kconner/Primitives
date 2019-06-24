@@ -35,6 +35,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
         sceneView.allowsCameraControl = true
         
         Self.updateGeometry(in: primitiveNode, to: geometryType)
+        Self.addRotationAnimation(to: primitiveNode)
         
         return sceneView
     }
@@ -84,6 +85,15 @@ struct PrimitiveSceneView : UIViewRepresentable {
         case .torus:
             return SCNTorus()
         }
+    }
+    
+    private static func addRotationAnimation(to primitiveNode: SCNNode) {
+        let rotationAnimation = CABasicAnimation(keyPath: "rotation")
+        rotationAnimation.fromValue = NSValue(scnVector4: SCNVector4(x: 0, y: 1, z: 0.1, w: 0))
+        rotationAnimation.toValue = NSValue(scnVector4: SCNVector4(x: 0, y: 1, z: 0.1, w: 2 * .pi))
+        rotationAnimation.duration = 10
+        rotationAnimation.repeatCount = .greatestFiniteMagnitude
+        primitiveNode.addAnimation(rotationAnimation, forKey: nil)
     }
     
     private static func updateBackgroundColor(in scene: SCNScene, for traitCollection: UITraitCollection) {
