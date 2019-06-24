@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct PrimitiveCell : View {
-    @ObjectBinding var favoritesService: FavoritesService
+    @ObjectBinding var favorites: Favorites
 
     let primitive: Primitive
     
     var body: some View {
         NavigationButton(
-            destination: PrimitiveView(favoritesService: favoritesService, primitive: primitive)
+            destination: PrimitiveView(favorites: favorites, primitive: primitive)
         ) {
             HStack {
                 Text(primitive.name)
@@ -23,7 +23,7 @@ struct PrimitiveCell : View {
 
                 Spacer()
                 
-                if favoritesService.favorites.contains(primitive) {
+                if favorites[primitive] {
                     // TODO: Why doesn't this appear?
                     // Image(systemName: "star.fill")
                     Text("faved")
@@ -38,12 +38,12 @@ struct PrimitiveCell : View {
 struct PrimitiveCell_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            PrimitiveCell(favoritesService: .init(), primitive: PreviewModels.sphere)
+            PrimitiveCell(favorites: .init(), primitive: PreviewModels.sphere)
                 .previewLayout(.sizeThatFits)
             
             NavigationView {
                 List {
-                    PrimitiveCell(favoritesService: .init(), primitive: PreviewModels.box)
+                    PrimitiveCell(favorites: .init(), primitive: PreviewModels.box)
                 }
                 .navigationBarTitle(Text("Mock List"))
             }

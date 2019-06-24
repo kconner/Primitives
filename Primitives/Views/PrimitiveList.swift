@@ -11,7 +11,7 @@ import SwiftUI
 struct PrimitiveList : View {
     
     @ObjectBinding var catalogService: CatalogService
-    var favoritesService: FavoritesService
+    var favorites: Favorites
     
     @State private var filterMode = PrimitiveListFilter.Mode.all
     
@@ -24,7 +24,7 @@ struct PrimitiveList : View {
             }
 
             ForEach(filteredPrimitives.identified(by: \.name)) { primitive in
-                PrimitiveCell(favoritesService: self.favoritesService, primitive: primitive)
+                PrimitiveCell(favorites: self.favorites, primitive: primitive)
             }
         }
         .navigationBarTitle(Text("Primitives"))
@@ -50,7 +50,7 @@ struct PrimitiveList : View {
             return primitives
         case .favorites:
             return primitives.filter { primitive in
-                favoritesService.favorites.contains(primitive)
+                favorites[primitive]
             }
         }
     }
@@ -63,7 +63,7 @@ struct PrimitiveList_Previews : PreviewProvider {
         NavigationView {
             PrimitiveList(
                 catalogService: PreviewModels.catalogService,
-                favoritesService: .init()
+                favorites: .init()
             )
         }
     }
