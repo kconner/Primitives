@@ -15,18 +15,23 @@ struct PrimitiveView : View {
     
     var body: some View {
         PrimitiveSceneView(geometryType: primitive.geometryType)
-            .navigationBarTitle(Text(primitive.name))
-            .navigationBarItems(
-                trailing: Button(
+            .overlay(
+                Button(
                     action: {
                         self.favorites.toggle(self.primitive)
-                    }, label: {
-                        // TODO: Why doesn't this appear?
-                        // Image(systemName: favoritesService.favorites.contains(primitive) ? "star.fill" : "star")
-                        Text(favorites[primitive] ? "faved" : "fave")
+                    },
+                    label: {
+                        VStack {
+                            // TODO: Why doesn't this appear?
+                            Image(systemName: favorites[primitive] ? "star.fill" : "star")
+                            Text(favorites[primitive] ? "faved" : "fave")
+                        }
+                        .padding()
                     }
-                )
+                ),
+                alignment: .bottom
             )
+            .navigationBarTitle(Text(primitive.name))
     }
 }
 
