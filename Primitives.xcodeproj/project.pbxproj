@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C192B1722C183A50015E188 /* GridPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C192B1622C183A50015E188 /* GridPicker.swift */; };
+		2C192B1922C18D4D0015E188 /* MaterialOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C192B1822C18D4D0015E188 /* MaterialOptionView.swift */; };
 		2C19A7EA22C07983000A4DB7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A7E922C07983000A4DB7 /* SettingsView.swift */; };
 		2C19A7EC22C07BFA000A4DB7 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A7EB22C07BFA000A4DB7 /* SettingsButton.swift */; };
 		2C19A7EE22C08589000A4DB7 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A7ED22C08589000A4DB7 /* FavoriteButton.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C192B1622C183A50015E188 /* GridPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPicker.swift; sourceTree = "<group>"; };
+		2C192B1822C18D4D0015E188 /* MaterialOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialOptionView.swift; sourceTree = "<group>"; };
 		2C19A7E922C07983000A4DB7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2C19A7EB22C07BFA000A4DB7 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		2C19A7ED22C08589000A4DB7 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 				2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */,
 				2C19A7ED22C08589000A4DB7 /* FavoriteButton.swift */,
 				2C19A7E922C07983000A4DB7 /* SettingsView.swift */,
+				2C192B1622C183A50015E188 /* GridPicker.swift */,
+				2C192B1822C18D4D0015E188 /* MaterialOptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,8 +381,10 @@
 				2CC5C60622BFFA7500D55027 /* Load.swift in Sources */,
 				2C19A7EC22C07BFA000A4DB7 /* SettingsButton.swift in Sources */,
 				2CC5C60822BFFE3700D55027 /* MessageCell.swift in Sources */,
+				2C192B1722C183A50015E188 /* GridPicker.swift in Sources */,
 				2CBEBE3B22BFB85A00C2B3B7 /* PrimitiveCell.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
+				2C192B1922C18D4D0015E188 /* MaterialOptionView.swift in Sources */,
 				2CBEBE3722BFB82A00C2B3B7 /* MainView.swift in Sources */,
 				2CBEBE3522BFB7FF00C2B3B7 /* PrimitiveView.swift in Sources */,
 				2C19A7EE22C08589000A4DB7 /* FavoriteButton.swift in Sources */,

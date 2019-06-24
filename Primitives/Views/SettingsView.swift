@@ -9,22 +9,40 @@
 import SwiftUI
 
 struct SettingsView : View {
+    
     @Binding var isPresentingSettings: Bool
-
+    
+    @State private var selectedMaterialOptionTag = 0
+    
     var body: some View {
-        Text("Settings")
-            .navigationBarTitle(Text("Settings"), displayMode: .inline)
-            .navigationBarItems(
-                trailing: Button(
-                    action: {
-                        self.isPresentingSettings = false
-                    },
-                    label: {
-                        Text("Done")
-                    }
+        VStack(alignment: .leading) {
+            Text("Material")
+                .font(.headline)
+            
+            GridPicker(selection: $selectedMaterialOptionTag, options: Array(0..<MaterialOption.allCases.count)) { tag in
+                MaterialOptionView(
+                    option: MaterialOption.allCases[tag],
+                    isSelected: tag == self.selectedMaterialOptionTag
                 )
+            }
+            
+            Spacer()
+        }
+        .padding()
+        .navigationBarTitle(Text("Settings"), displayMode: .automatic)
+        .navigationBarItems(
+            trailing: Button(
+                action: {
+                    self.isPresentingSettings = false
+                },
+                label: {
+                    Text("Done")
+                }
             )
+        )
     }
+
+
 }
 
 #if DEBUG
