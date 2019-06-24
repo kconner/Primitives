@@ -20,11 +20,15 @@ struct PrimitiveList : View {
             PrimitiveListFilter(mode: $filterMode)
             
             if catalog.value.isLoading {
-                LoadingCell()
+                MessageCell(message: Text("Loading…"))
             }
 
             ForEach(filteredPrimitives.identified(by: \.name)) { primitive in
                 PrimitiveCell(favorites: self.favorites, primitive: primitive)
+            }
+            
+            if !catalog.value.isLoading {
+                countCell
             }
         }
         .navigationBarTitle(Text("Primitives"))
@@ -53,6 +57,20 @@ struct PrimitiveList : View {
                 favorites[primitive]
             }
         }
+    }
+    
+    private var countCell: MessageCell {
+        let count = filteredPrimitives.count
+        
+        let unit: String
+        switch filterMode {
+        case .all:
+            unit = count == 1 ? "Primitive" : "Primitives"
+        case .favorites:
+            unit = count == 1 ? "Favorite" : "Favorites"
+        }
+        
+        return MessageCell(message: Text("\(count) \(unit)"))
     }
 
 }

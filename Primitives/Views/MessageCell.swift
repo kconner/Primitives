@@ -1,5 +1,5 @@
 //
-//  LoadingCell.swift
+//  MessageCell.swift
 //  Primitives
 //
 //  Created by Kevin Conner on 6/23/19.
@@ -8,13 +8,14 @@
 
 import SwiftUI
 
-struct LoadingCell : View {
+struct MessageCell : View {
+    var message: Text
+    
     var body: some View {
         HStack {
             Spacer()
             
-            Text("Loading…")
-                .font(.headline)
+            message
                 .color(.secondary)
             
             Spacer()
@@ -25,7 +26,7 @@ struct LoadingCell : View {
 #if DEBUG
 struct LoadingCell_Previews : PreviewProvider {
     static var previews: some View {
-        LoadingCell()
+        MessageCell(message: Text("Loading…"))
             .previewLayout(.sizeThatFits)
     }
 }

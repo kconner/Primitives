@@ -31,7 +31,7 @@
 		2CC4722C22C035F3009EED65 /* PrimitiveListFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4722B22C035F3009EED65 /* PrimitiveListFilter.swift */; };
 		2CC4722E22C06215009EED65 /* LoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4722D22C06215009EED65 /* LoadService.swift */; };
 		2CC5C60622BFFA7500D55027 /* Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5C60522BFFA7500D55027 /* Load.swift */; };
-		2CC5C60822BFFE3700D55027 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5C60722BFFE3700D55027 /* LoadingCell.swift */; };
+		2CC5C60822BFFE3700D55027 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5C60722BFFE3700D55027 /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +82,7 @@
 		2CC4722B22C035F3009EED65 /* PrimitiveListFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListFilter.swift; sourceTree = "<group>"; };
 		2CC4722D22C06215009EED65 /* LoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadService.swift; sourceTree = "<group>"; };
 		2CC5C60522BFFA7500D55027 /* Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Load.swift; sourceTree = "<group>"; };
-		2CC5C60722BFFE3700D55027 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
+		2CC5C60722BFFE3700D55027 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +189,7 @@
 				2CBEBE3622BFB82A00C2B3B7 /* MainView.swift */,
 				2CBEBE3222BFB7F700C2B3B7 /* PrimitiveList.swift */,
 				2CC4722B22C035F3009EED65 /* PrimitiveListFilter.swift */,
-				2CC5C60722BFFE3700D55027 /* LoadingCell.swift */,
+				2CC5C60722BFFE3700D55027 /* MessageCell.swift */,
 				2CBEBE3A22BFB85A00C2B3B7 /* PrimitiveCell.swift */,
 				2CBEBE3422BFB7FF00C2B3B7 /* PrimitiveView.swift */,
 				2CC0219322BFC72400A10A98 /* PrimitiveSceneView.swift */,
@@ -364,7 +364,7 @@
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,
 				2CC5C60622BFFA7500D55027 /* Load.swift in Sources */,
-				2CC5C60822BFFE3700D55027 /* LoadingCell.swift in Sources */,
+				2CC5C60822BFFE3700D55027 /* MessageCell.swift in Sources */,
 				2CBEBE3B22BFB85A00C2B3B7 /* PrimitiveCell.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
 				2CBEBE3722BFB82A00C2B3B7 /* MainView.swift in Sources */,
