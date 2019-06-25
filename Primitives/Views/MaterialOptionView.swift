@@ -18,6 +18,8 @@ struct MaterialOptionView : View {
     var body: some View {
         VStack {
             circle
+                .scaleEffect(isSelected ? 1.0 : 0.9)
+                .animation(.spring())
             caption
         }
     }

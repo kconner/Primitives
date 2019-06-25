@@ -52,9 +52,7 @@ struct GridPicker<Cell> : View
     private func button(for tag: GridPickerTag) -> some View {
         Button(
             action: {
-                withAnimation(.spring()) {
-                    self.selection = tag
-                }
+                self.selection = tag
             }, label: {
                 self.makeCell(tag).tag(tag)
             }
