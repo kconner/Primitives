@@ -30,18 +30,21 @@ struct SettingsView : View {
         }
         .padding()
         .navigationBarTitle(Text("Settings"), displayMode: .automatic)
-        .navigationBarItems(
-            trailing: Button(
-                action: {
-                    self.isPresentingSettings = false
-                },
-                label: {
-                    Text("Done")
-                }
-            )
+        .navigationBarItems(trailing: doneButton)
+    }
+    
+    // MARK: - Helpers
+
+    private var doneButton: some View {
+        Button(
+            action: {
+                self.isPresentingSettings = false
+            },
+            label: {
+                Text("Done")
+            }
         )
     }
-
 
 }
 

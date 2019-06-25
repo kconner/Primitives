@@ -26,18 +26,10 @@ struct GridPicker<Cell> : View
     
     var body: some View {
         VStack(spacing: 16) {
-            ForEach(Self.rows(for: options, by: 2)) { section in
+            ForEach(Self.rows(for: options, by: 2)) { row in
                 HStack(spacing: 24) {
-                    ForEach(section.options) { tag in
-                        Button(
-                            action: {
-                                withAnimation(.spring()) {
-                                    self.selection = tag
-                                }
-                            }, label: {
-                                self.makeCell(tag).tag(tag)
-                            }
-                        )
+                    ForEach(row.options) { tag in
+                        self.button(for: tag)
                     }
                 }
             }
@@ -55,6 +47,18 @@ struct GridPicker<Cell> : View
                 options: Array(options[index ..< min(index + count, options.endIndex)])
             )
         }
+    }
+    
+    private func button(for tag: GridPickerTag) -> some View {
+        Button(
+            action: {
+                withAnimation(.spring()) {
+                    self.selection = tag
+                }
+            }, label: {
+                self.makeCell(tag).tag(tag)
+            }
+        )
     }
     
 }

@@ -8,47 +8,6 @@
 
 import SwiftUI
 
-enum MaterialOption : CaseIterable {
-    
-    case black
-    case white
-    case magenta
-    case cyan
-    
-    var name: String {
-        switch self {
-        case .black:
-            return "Black"
-        case .white:
-            return "White"
-        case .magenta:
-            return "Magenta"
-        case .cyan:
-            return "Cyan"
-        }
-    }
-    
-    var gradient: Gradient {
-        switch self {
-        case .black:
-            return .init(colors: [.black, .init(white: 0.3)])
-        case .white:
-            return .init(colors: [.white, .init(white: 0.7)])
-        case .magenta:
-            return .init(colors: [
-                Color(hue: 0.833, saturation: 1.0, brightness: 1.0),
-                Color(hue: 0.833, saturation: 1.0, brightness: 0.7)
-            ])
-        case .cyan:
-            return .init(colors: [
-                Color(hue: 0.5, saturation: 1.0, brightness: 1.0),
-                Color(hue: 0.5, saturation: 1.0, brightness: 0.7)
-            ])
-        }
-    }
-    
-}
-
 struct MaterialOptionView : View {
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
@@ -58,36 +17,45 @@ struct MaterialOptionView : View {
     
     var body: some View {
         VStack {
-            ZStack {
-                if isSelected {
-                    Circle()
-                        .stroke(Color.blue, lineWidth: 4)
-                        .blur(radius: 3)
-                }
-                
-                Rectangle()
-                    .fill(
-                        LinearGradient(
-                            gradient: option.gradient,
-                            startPoint: colorScheme == .light ? .top : .bottom,
-                            endPoint: colorScheme == .light ? .bottom : .top
-                        )
-                    )
-                    .clipShape(Circle())
-                    .shadow(
-                        color: .init(white: colorScheme == .light ? 0.5 : 0.25),
-                        radius: colorScheme == .light ? 3 : 2,
-                        x: 0,
-                        y: 3
-                    )
-                    .padding(2)
-            }
-            .aspectRatio(contentMode: .fill)
-            
-            Text(option.name)
-                .color(.secondary)
-                .font(.callout)
+            circle
+            caption
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private var circle: some View {
+        ZStack {
+            if isSelected {
+                Circle()
+                    .stroke(Color.blue, lineWidth: 4)
+                    .blur(radius: 3)
+            }
+            
+            Rectangle()
+                .fill(
+                    LinearGradient(
+                        gradient: option.gradient,
+                        startPoint: colorScheme == .light ? .top : .bottom,
+                        endPoint: colorScheme == .light ? .bottom : .top
+                    )
+                )
+                .clipShape(Circle())
+                .shadow(
+                    color: .init(white: colorScheme == .light ? 0.5 : 0.25),
+                    radius: colorScheme == .light ? 3 : 2,
+                    x: 0,
+                    y: 3
+                )
+                .padding(2)
+        }
+        .aspectRatio(contentMode: .fill)
+    }
+    
+    private var caption: some View {
+        Text(option.name)
+            .color(.secondary)
+            .font(.callout)
     }
     
 }
@@ -103,3 +71,26 @@ struct MaterialOptionView_Previews : PreviewProvider {
     }
 }
 #endif
+
+private extension MaterialOption {
+    
+    var gradient: Gradient {
+        switch self {
+        case .black:
+            return .init(colors: [.black, .init(white: 0.3)])
+        case .white:
+            return .init(colors: [.white, .init(white: 0.7)])
+        case .magenta:
+            return .init(colors: [
+                Color(hue: 0.833, saturation: 1.0, brightness: 1.0),
+                Color(hue: 0.833, saturation: 1.0, brightness: 0.7)
+                ])
+        case .cyan:
+            return .init(colors: [
+                Color(hue: 0.5, saturation: 1.0, brightness: 1.0),
+                Color(hue: 0.5, saturation: 1.0, brightness: 0.7)
+                ])
+        }
+    }
+    
+}
