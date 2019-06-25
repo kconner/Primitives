@@ -15,10 +15,12 @@ struct PrimitiveSceneView : UIViewRepresentable {
     static let primitiveMaterialName = "primitive"
     static let lightNodeName = "light"
 
+    @Binding var material: Material
+    
     let geometryType: GeometryType
     
-    @ObjectBinding var proximity = ProximityService()
-    
+    @ObjectBinding private var proximity = ProximityService()
+
     // MARK: - UIViewRepresentable
     
     func makeUIView(context: UIViewRepresentableContext<PrimitiveSceneView>) -> SCNView {
@@ -42,13 +44,15 @@ struct PrimitiveSceneView : UIViewRepresentable {
     
     func updateUIView(_ sceneView: SCNView, context: UIViewRepresentableContext<PrimitiveSceneView>) {
         guard let scene = sceneView.scene,
+            let primitiveNode = scene.rootNode.childNode(withName: Self.primitiveNodeName, recursively: false),
             let lightNode = scene.rootNode.childNode(withName: Self.lightNodeName, recursively: true) else
         {
-            assertionFailure("Expected a scene with a light node")
+            assertionFailure("Expected a scene with a primitive node and a light node")
             return
         }
 
         Self.updateBackgroundColor(in: scene, for: sceneView.traitCollection)
+        Self.updateMaterial(in: primitiveNode, with: material)
         Self.updateLight(in: lightNode, forProximityState: proximity.state)
     }
     
@@ -100,6 +104,10 @@ struct PrimitiveSceneView : UIViewRepresentable {
         let backgroundColor = UIColor.systemBackground.resolvedColor(with: traitCollection)
         scene.background.contents = backgroundColor
     }
+    
+    private static func updateMaterial(in primitiveNode: SCNNode, with material: Material) {
+        primitiveNode.geometry?.materials.first?.diffuse.contents = material.color
+    }
 
     private static func updateLight(in lightNode: SCNNode, forProximityState proximityState: Bool) {
         lightNode.isHidden = proximityState
@@ -110,7 +118,27 @@ struct PrimitiveSceneView : UIViewRepresentable {
 #if DEBUG
 struct PrimitiveSceneView_Previews : PreviewProvider {
     static var previews: some View {
-        PrimitiveSceneView(geometryType: .box)
+        PrimitiveSceneView(
+            material: .constant(.black),
+            geometryType: .box
+        )
     }
 }
 #endif
+
+private extension Material {
+    
+    var color: UIColor {
+        switch self {
+        case .black:
+            return .black
+        case .white:
+            return .white
+        case .magenta:
+            return .init(hue: 0.833, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+        case .cyan:
+            return .init(hue: 0.5, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+        }
+    }
+    
+}

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SettingsButton : View {
     @Binding var isPresentingSettings: Bool
-    
+
     var body: some View {
         Button(
             action: {

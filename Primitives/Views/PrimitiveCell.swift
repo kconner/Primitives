@@ -9,8 +9,11 @@
 import SwiftUI
 
 struct PrimitiveCell : View {
+    
     @ObjectBinding var favorites: FavoritesService
+    
     @Binding var isPresentingSettings: Bool
+    @Binding var material: Material
 
     let primitive: Primitive
     
@@ -19,6 +22,7 @@ struct PrimitiveCell : View {
             destination: PrimitiveView(
                 favorites: favorites,
                 isPresentingSettings: $isPresentingSettings,
+                material: $material,
                 primitive: primitive
             )
         ) {
@@ -38,6 +42,7 @@ struct PrimitiveCell : View {
             }
         }
     }
+    
 }
 
 #if DEBUG
@@ -47,6 +52,7 @@ struct PrimitiveCell_Previews : PreviewProvider {
             PrimitiveCell(
                 favorites: .init(),
                 isPresentingSettings: .constant(false),
+                material: .constant(.black),
                 primitive: PreviewModels.sphere
             )
             .previewLayout(.sizeThatFits)
@@ -56,6 +62,7 @@ struct PrimitiveCell_Previews : PreviewProvider {
                     PrimitiveCell(
                         favorites: .init(),
                         isPresentingSettings: .constant(false),
+                        material: .constant(.black),
                         primitive: PreviewModels.box
                     )
                 }

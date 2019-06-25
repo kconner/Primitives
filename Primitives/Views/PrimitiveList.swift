@@ -13,8 +13,10 @@ struct PrimitiveList : View {
     @ObjectBinding var catalog: CatalogService
     @ObjectBinding var favorites: FavoritesService
     
-    @State private var filterMode = PrimitiveListFilter.Mode.all
     @State private var isPresentingSettings = false
+    @State private var material = Material.black
+
+    @State private var filterMode = PrimitiveListFilter.Mode.all
     
     var body: some View {
         List {
@@ -28,6 +30,7 @@ struct PrimitiveList : View {
                 PrimitiveCell(
                     favorites: self.favorites,
                     isPresentingSettings: self.$isPresentingSettings,
+                    material: self.$material,
                     primitive: primitive
                 )
             }
@@ -87,7 +90,10 @@ struct PrimitiveList : View {
     private var settingsModal: Modal {
         Modal(
             NavigationView {
-                SettingsView(isPresentingSettings: $isPresentingSettings)
+                SettingsView(
+                    isPresentingSettings: $isPresentingSettings,
+                    material: $material
+                )
             }
         ) {
             self.isPresentingSettings = false

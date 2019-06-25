@@ -11,9 +11,8 @@ import SwiftUI
 struct SettingsView : View {
     
     @Binding var isPresentingSettings: Bool
-    
-    @State private var material = Material.black
-    
+    @Binding var material: Material
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Material")
@@ -69,7 +68,10 @@ struct SettingsView : View {
 struct SettingsView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SettingsView(isPresentingSettings: .constant(true))
+            SettingsView(
+                isPresentingSettings: .constant(true),
+                material: .constant(.black)
+            )
         }
     }
 }

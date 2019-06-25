@@ -11,20 +11,25 @@ import SwiftUI
 struct PrimitiveView : View {
 
     @ObjectBinding var favorites: FavoritesService
+
     @Binding var isPresentingSettings: Bool
+    @Binding var material: Material
     
     let primitive: Primitive
     
     var body: some View {
-        PrimitiveSceneView(geometryType: primitive.geometryType)
-            .overlay(
-                FavoriteButton(favorites: favorites, primitive: primitive),
-                alignment: .bottom
-            )
-            .navigationBarTitle(Text(primitive.name))
-            .navigationBarItems(
-                trailing: SettingsButton(isPresentingSettings: $isPresentingSettings)
-            )
+        PrimitiveSceneView(
+            material: $material,
+            geometryType: primitive.geometryType
+        )
+        .overlay(
+            FavoriteButton(favorites: favorites, primitive: primitive),
+            alignment: .bottom
+        )
+        .navigationBarTitle(Text(primitive.name))
+        .navigationBarItems(
+            trailing: SettingsButton(isPresentingSettings: $isPresentingSettings)
+        )
     }
 
 }
@@ -36,6 +41,7 @@ struct PrimitiveView_Previews : PreviewProvider {
             PrimitiveView(
                 favorites: .init(),
                 isPresentingSettings: .constant(false),
+                material: .constant(.black),
                 primitive: PreviewModels.sphere
             )
         }
