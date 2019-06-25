@@ -11,9 +11,9 @@ import SwiftUI
 struct PrimitiveCell : View {
     
     @ObjectBinding var favorites: FavoritesService
+    @ObjectBinding var settings: SettingsService
     
     @Binding var isPresentingSettings: Bool
-    @Binding var material: Material
 
     let primitive: Primitive
     
@@ -21,8 +21,8 @@ struct PrimitiveCell : View {
         NavigationButton(
             destination: PrimitiveView(
                 favorites: favorites,
+                settings: settings,
                 isPresentingSettings: $isPresentingSettings,
-                material: $material,
                 primitive: primitive
             )
         ) {
@@ -51,8 +51,8 @@ struct PrimitiveCell_Previews : PreviewProvider {
         Group {
             PrimitiveCell(
                 favorites: .init(),
+                settings: .init(),
                 isPresentingSettings: .constant(false),
-                material: .constant(.black),
                 primitive: PreviewModels.sphere
             )
             .previewLayout(.sizeThatFits)
@@ -61,8 +61,8 @@ struct PrimitiveCell_Previews : PreviewProvider {
                 List {
                     PrimitiveCell(
                         favorites: .init(),
+                        settings: .init(),
                         isPresentingSettings: .constant(false),
-                        material: .constant(.black),
                         primitive: PreviewModels.box
                     )
                 }

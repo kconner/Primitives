@@ -12,9 +12,9 @@ struct PrimitiveList : View {
     
     @ObjectBinding var catalog: CatalogService
     @ObjectBinding var favorites: FavoritesService
+    @ObjectBinding var settings: SettingsService
     
     @State private var isPresentingSettings = false
-    @State private var material = Material.black
 
     @State private var filterMode = PrimitiveListFilter.Mode.all
     
@@ -29,8 +29,8 @@ struct PrimitiveList : View {
             ForEach(filteredPrimitives.identified(by: \.name)) { primitive in
                 PrimitiveCell(
                     favorites: self.favorites,
+                    settings: self.settings,
                     isPresentingSettings: self.$isPresentingSettings,
-                    material: self.$material,
                     primitive: primitive
                 )
             }
@@ -91,8 +91,8 @@ struct PrimitiveList : View {
         Modal(
             NavigationView {
                 SettingsView(
-                    isPresentingSettings: $isPresentingSettings,
-                    material: $material
+                    settings: settings,
+                    isPresentingSettings: $isPresentingSettings
                 )
             }
         ) {
@@ -108,7 +108,8 @@ struct PrimitiveList_Previews : PreviewProvider {
         NavigationView {
             PrimitiveList(
                 catalog: PreviewModels.catalogService,
-                favorites: .init()
+                favorites: .init(),
+                settings: .init()
             )
         }
     }

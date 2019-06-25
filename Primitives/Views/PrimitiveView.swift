@@ -11,15 +11,15 @@ import SwiftUI
 struct PrimitiveView : View {
 
     @ObjectBinding var favorites: FavoritesService
+    @ObjectBinding var settings: SettingsService
 
     @Binding var isPresentingSettings: Bool
-    @Binding var material: Material
     
     let primitive: Primitive
     
     var body: some View {
         PrimitiveSceneView(
-            material: $material,
+            material: $settings.material,
             geometryType: primitive.geometryType
         )
         .overlay(
@@ -40,8 +40,8 @@ struct PrimitiveView_Previews : PreviewProvider {
         NavigationView {
             PrimitiveView(
                 favorites: .init(),
+                settings: .init(),
                 isPresentingSettings: .constant(false),
-                material: .constant(.black),
                 primitive: PreviewModels.sphere
             )
         }

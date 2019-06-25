@@ -10,8 +10,9 @@ import SwiftUI
 
 struct SettingsView : View {
     
+    @ObjectBinding var settings: SettingsService
+    
     @Binding var isPresentingSettings: Bool
-    @Binding var material: Material
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -37,9 +38,9 @@ struct SettingsView : View {
     private var selectedMaterialTag: Binding<GridPickerTag> {
         Binding(
             getValue: {
-                Material.allCases.firstIndex(of: self.material) ?? 0
+                Material.allCases.firstIndex(of: self.settings.material) ?? 0
             }, setValue: { tag in
-                self.material = Material.allCases[tag]
+                self.settings.material = Material.allCases[tag]
             }
         )
     }
@@ -47,7 +48,7 @@ struct SettingsView : View {
     private func materialView(for material: Material) -> MaterialView {
         MaterialView(
             material: material,
-            isSelected: material == self.material
+            isSelected: material == self.settings.material
         )
     }
 
@@ -69,8 +70,8 @@ struct SettingsView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
             SettingsView(
-                isPresentingSettings: .constant(true),
-                material: .constant(.black)
+                settings: .init(),
+                isPresentingSettings: .constant(true)
             )
         }
     }

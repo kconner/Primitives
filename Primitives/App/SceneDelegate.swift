@@ -25,7 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = UIHostingController(
                 rootView: MainView(
                     catalog: .init(),
-                    favorites: .init()
+                    favorites: .init(),
+                    settings: .init()
                 )
             )
             
