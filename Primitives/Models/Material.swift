@@ -1,5 +1,5 @@
 //
-//  MaterialOption.swift
+//  Material.swift
 //  Primitives
 //
 //  Created by Kevin Conner on 6/24/19.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-enum MaterialOption : CaseIterable {
+enum Material : CaseIterable {
     
     case black
     case white

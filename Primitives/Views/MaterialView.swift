@@ -1,5 +1,5 @@
 //
-//  MaterialOptionView.swift
+//  MaterialView.swift
 //  Primitives
 //
 //  Created by Kevin Conner on 6/24/19.
@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct MaterialOptionView : View {
+struct MaterialView : View {
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
-    var option: MaterialOption
+    var material: Material
     var isSelected: Bool
     
     var body: some View {
@@ -37,7 +37,7 @@ struct MaterialOptionView : View {
             Rectangle()
                 .fill(
                     LinearGradient(
-                        gradient: option.gradient,
+                        gradient: material.gradient,
                         startPoint: colorScheme == .light ? .top : .bottom,
                         endPoint: colorScheme == .light ? .bottom : .top
                     )
@@ -55,7 +55,7 @@ struct MaterialOptionView : View {
     }
     
     private var caption: some View {
-        Text(option.name)
+        Text(material.name)
             .color(.secondary)
             .font(.callout)
     }
@@ -63,18 +63,18 @@ struct MaterialOptionView : View {
 }
 
 #if DEBUG
-struct MaterialOptionView_Previews : PreviewProvider {
+struct MaterialView_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            MaterialOptionView(option: .black, isSelected: false)
-            MaterialOptionView(option: .cyan, isSelected: true)
+            MaterialView(material: .black, isSelected: false)
+            MaterialView(material: .cyan, isSelected: true)
         }
         .previewLayout(.sizeThatFits)
     }
 }
 #endif
 
-private extension MaterialOption {
+private extension Material {
     
     var gradient: Gradient {
         switch self {

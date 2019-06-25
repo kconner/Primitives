@@ -12,18 +12,18 @@ struct SettingsView : View {
     
     @Binding var isPresentingSettings: Bool
     
-    @State private var selectedMaterialOptionTag = 0
+    @State private var material = Material.black
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Material")
                 .font(.headline)
             
-            GridPicker(selection: $selectedMaterialOptionTag, options: Array(0..<MaterialOption.allCases.count)) { tag in
-                MaterialOptionView(
-                    option: MaterialOption.allCases[tag],
-                    isSelected: tag == self.selectedMaterialOptionTag
-                )
+            GridPicker(
+                selection: selectedMaterialTag,
+                options: Array(0 ..< Material.allCases.count)
+            ) { tag in
+                self.materialView(for: Material.allCases[tag])
             }
             
             Spacer()
@@ -34,6 +34,23 @@ struct SettingsView : View {
     }
     
     // MARK: - Helpers
+    
+    private var selectedMaterialTag: Binding<GridPickerTag> {
+        Binding(
+            getValue: {
+                Material.allCases.firstIndex(of: self.material) ?? 0
+            }, setValue: { tag in
+                self.material = Material.allCases[tag]
+            }
+        )
+    }
+    
+    private func materialView(for material: Material) -> MaterialView {
+        MaterialView(
+            material: material,
+            isSelected: material == self.material
+        )
+    }
 
     private var doneButton: some View {
         Button(
