@@ -14,8 +14,6 @@ struct PrimitiveList : View {
     @ObjectBinding var favorites: FavoritesService
     @ObjectBinding var settings: SettingsService
     
-    @State private var isPresentingSettings = false
-
     @State private var filterMode = PrimitiveListFilter.Mode.all
     
     var body: some View {
@@ -30,7 +28,6 @@ struct PrimitiveList : View {
                 PrimitiveCell(
                     favorites: self.favorites,
                     settings: self.settings,
-                    isPresentingSettings: self.$isPresentingSettings,
                     primitive: primitive
                 )
             }
@@ -42,9 +39,9 @@ struct PrimitiveList : View {
         .navigationBarTitle(Text("Primitives"))
         .navigationBarItems(
             leading: refreshButton,
-            trailing: SettingsButton(isPresentingSettings: $isPresentingSettings)
+            trailing: SettingsButton(isPresentingSettings: $settings.isPresentingSettings)
         )
-        .presentation(isPresentingSettings ? settingsModal : nil)
+        .presentation(settings.isPresentingSettings ? settingsModal : nil)
     }
     
     // MARK: - Helpers
@@ -91,12 +88,11 @@ struct PrimitiveList : View {
         Modal(
             NavigationView {
                 SettingsView(
-                    settings: settings,
-                    isPresentingSettings: $isPresentingSettings
+                    settings: settings
                 )
             }
         ) {
-            self.isPresentingSettings = false
+            self.settings.isPresentingSettings = false
         }
     }
 

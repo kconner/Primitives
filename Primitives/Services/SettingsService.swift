@@ -19,4 +19,10 @@ final class SettingsService : BindableObject {
         }
     }
     
+    var isPresentingSettings = false {
+        didSet {
+            didChange.send()
+        }
+    }
+    
 }

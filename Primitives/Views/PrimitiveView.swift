@@ -12,8 +12,6 @@ struct PrimitiveView : View {
 
     @ObjectBinding var favorites: FavoritesService
     @ObjectBinding var settings: SettingsService
-
-    @Binding var isPresentingSettings: Bool
     
     let primitive: Primitive
     
@@ -28,7 +26,7 @@ struct PrimitiveView : View {
         )
         .navigationBarTitle(Text(primitive.name))
         .navigationBarItems(
-            trailing: SettingsButton(isPresentingSettings: $isPresentingSettings)
+            trailing: SettingsButton(isPresentingSettings: $settings.isPresentingSettings)
         )
     }
 
@@ -41,7 +39,6 @@ struct PrimitiveView_Previews : PreviewProvider {
             PrimitiveView(
                 favorites: .init(),
                 settings: .init(),
-                isPresentingSettings: .constant(false),
                 primitive: PreviewModels.sphere
             )
         }

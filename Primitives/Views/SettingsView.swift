@@ -12,8 +12,6 @@ struct SettingsView : View {
     
     @ObjectBinding var settings: SettingsService
     
-    @Binding var isPresentingSettings: Bool
-
     var body: some View {
         VStack(alignment: .leading) {
             Text("Material")
@@ -55,7 +53,7 @@ struct SettingsView : View {
     private var doneButton: some View {
         Button(
             action: {
-                self.isPresentingSettings = false
+                self.settings.isPresentingSettings = false
             },
             label: {
                 Text("Done")
@@ -70,8 +68,7 @@ struct SettingsView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
             SettingsView(
-                settings: .init(),
-                isPresentingSettings: .constant(true)
+                settings: .init()
             )
         }
     }

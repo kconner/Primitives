@@ -13,8 +13,6 @@ struct PrimitiveCell : View {
     @ObjectBinding var favorites: FavoritesService
     @ObjectBinding var settings: SettingsService
     
-    @Binding var isPresentingSettings: Bool
-
     let primitive: Primitive
     
     var body: some View {
@@ -22,7 +20,6 @@ struct PrimitiveCell : View {
             destination: PrimitiveView(
                 favorites: favorites,
                 settings: settings,
-                isPresentingSettings: $isPresentingSettings,
                 primitive: primitive
             )
         ) {
@@ -52,7 +49,6 @@ struct PrimitiveCell_Previews : PreviewProvider {
             PrimitiveCell(
                 favorites: .init(),
                 settings: .init(),
-                isPresentingSettings: .constant(false),
                 primitive: PreviewModels.sphere
             )
             .previewLayout(.sizeThatFits)
@@ -62,7 +58,6 @@ struct PrimitiveCell_Previews : PreviewProvider {
                     PrimitiveCell(
                         favorites: .init(),
                         settings: .init(),
-                        isPresentingSettings: .constant(false),
                         primitive: PreviewModels.box
                     )
                 }
