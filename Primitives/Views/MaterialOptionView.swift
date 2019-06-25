@@ -12,8 +12,8 @@ enum MaterialOption : CaseIterable {
     
     case black
     case white
-    case cyan
     case magenta
+    case cyan
     
     var name: String {
         switch self {
@@ -21,10 +21,10 @@ enum MaterialOption : CaseIterable {
             return "Black"
         case .white:
             return "White"
-        case .cyan:
-            return "Cyan"
         case .magenta:
             return "Magenta"
+        case .cyan:
+            return "Cyan"
         }
     }
     
@@ -34,15 +34,15 @@ enum MaterialOption : CaseIterable {
             return .init(colors: [.black, .init(white: 0.3)])
         case .white:
             return .init(colors: [.white, .init(white: 0.7)])
-        case .cyan:
-            return .init(colors: [
-                Color(hue: 0.5, saturation: 1.0, brightness: 1.0),
-                Color(hue: 0.5, saturation: 1.0, brightness: 0.7)
-            ])
         case .magenta:
             return .init(colors: [
                 Color(hue: 0.833, saturation: 1.0, brightness: 1.0),
                 Color(hue: 0.833, saturation: 1.0, brightness: 0.7)
+            ])
+        case .cyan:
+            return .init(colors: [
+                Color(hue: 0.5, saturation: 1.0, brightness: 1.0),
+                Color(hue: 0.5, saturation: 1.0, brightness: 0.7)
             ])
         }
     }
@@ -51,6 +51,8 @@ enum MaterialOption : CaseIterable {
 
 struct MaterialOptionView : View {
     
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    
     var option: MaterialOption
     var isSelected: Bool
     
@@ -58,16 +60,26 @@ struct MaterialOptionView : View {
         VStack {
             ZStack {
                 if isSelected {
-                    RoundedRectangle(cornerRadius: 24)
-                        .stroke(Color.blue, lineWidth: 3)
-                        .blur(radius: 2)
+                    Circle()
+                        .stroke(Color.blue, lineWidth: 4)
+                        .blur(radius: 3)
                 }
                 
                 Rectangle()
-                    .fill(LinearGradient(gradient: option.gradient, startPoint: .top, endPoint: .bottom))
-                    .clipShape(RoundedRectangle(cornerRadius: 22))
-                    .shadow(color: .secondary
-                        , radius: 3, x: 0, y: 3)
+                    .fill(
+                        LinearGradient(
+                            gradient: option.gradient,
+                            startPoint: colorScheme == .light ? .top : .bottom,
+                            endPoint: colorScheme == .light ? .bottom : .top
+                        )
+                    )
+                    .clipShape(Circle())
+                    .shadow(
+                        color: .init(white: colorScheme == .light ? 0.5 : 0.25),
+                        radius: colorScheme == .light ? 3 : 2,
+                        x: 0,
+                        y: 3
+                    )
                     .padding(2)
             }
             .aspectRatio(contentMode: .fill)

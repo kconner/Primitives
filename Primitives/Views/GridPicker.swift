@@ -31,7 +31,7 @@ struct GridPicker<Cell> : View
                     ForEach(section.options) { tag in
                         Button(
                             action: {
-                                withAnimation(.basic(duration: 0.2, curve: .easeIn)) {
+                                withAnimation(.spring()) {
                                     self.selection = tag
                                 }
                             }, label: {
