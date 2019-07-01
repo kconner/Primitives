@@ -15,11 +15,9 @@ struct PrimitiveSceneView : UIViewRepresentable {
     static let primitiveMaterialName = "primitive"
     static let lightNodeName = "light"
 
-    @Binding var material: Material
-    
+    let proximity: ProximityService
     let geometryType: GeometryType
-    
-    @ObjectBinding private var proximity = ProximityService()
+    @Binding var material: Material
 
     // MARK: - UIViewRepresentable
     
@@ -119,8 +117,9 @@ struct PrimitiveSceneView : UIViewRepresentable {
 struct PrimitiveSceneView_Previews : PreviewProvider {
     static var previews: some View {
         PrimitiveSceneView(
-            material: .constant(.black),
-            geometryType: .box
+            proximity: ProximityService(),
+            geometryType: .box,
+            material: .constant(.black)
         )
     }
 }
@@ -131,9 +130,9 @@ private extension Material {
     var color: UIColor {
         switch self {
         case .black:
-            return .black
+            return .init(white: 0.25, alpha: 1.0)
         case .white:
-            return .white
+            return .init(white: 0.9, alpha: 1.0)
         case .magenta:
             return .init(hue: 0.833, saturation: 1.0, brightness: 1.0, alpha: 1.0)
         case .cyan:

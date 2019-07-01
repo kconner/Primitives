@@ -12,13 +12,15 @@ struct PrimitiveView : View {
 
     @ObjectBinding var favorites: FavoritesService
     @ObjectBinding var settings: SettingsService
+    @ObjectBinding private var proximity = ProximityService()
     
     let primitive: Primitive
     
     var body: some View {
         PrimitiveSceneView(
-            material: $settings.material,
-            geometryType: primitive.geometryType
+            proximity: proximity,
+            geometryType: primitive.geometryType,
+            material: $settings.material
         )
         .overlay(
             FavoriteButton(favorites: favorites, primitive: primitive),
