@@ -564,6 +564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "Primitives/Preview\\ Content";
+				DEVELOPMENT_TEAM = VAK384QBBN;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Primitives/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -583,6 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "Primitives/Preview\\ Content";
+				DEVELOPMENT_TEAM = VAK384QBBN;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Primitives/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
