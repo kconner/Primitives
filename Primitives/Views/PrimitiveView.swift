@@ -20,7 +20,7 @@ struct PrimitiveView : View {
         PrimitiveSceneView(
             proximity: proximity,
             geometryType: primitive.geometryType,
-            material: $settings.material
+            material: settings.material
         )
         .overlay(
             FavoriteButton(favorites: favorites, primitive: primitive),

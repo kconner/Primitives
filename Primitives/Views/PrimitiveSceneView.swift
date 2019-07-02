@@ -17,7 +17,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
 
     let proximity: ProximityService
     let geometryType: GeometryType
-    @Binding var material: Material
+    let material: Material
 
     // MARK: - UIViewRepresentable
     
@@ -119,7 +119,7 @@ struct PrimitiveSceneView_Previews : PreviewProvider {
         PrimitiveSceneView(
             proximity: ProximityService(),
             geometryType: .box,
-            material: .constant(.black)
+            material: .black
         )
     }
 }
