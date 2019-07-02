@@ -27,7 +27,7 @@ struct SettingsView : View {
             Spacer()
         }
         .padding()
-        .navigationBarTitle(Text("Settings"), displayMode: .automatic)
+        .navigationBarTitle(Text("Settings"), displayMode: .inline)
         .navigationBarItems(trailing: doneButton)
     }
     
@@ -57,6 +57,7 @@ struct SettingsView : View {
             },
             label: {
                 Text("Done")
+                    .bold()
             }
         )
     }
