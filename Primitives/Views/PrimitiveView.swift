@@ -30,6 +30,13 @@ struct PrimitiveView : View {
         .navigationBarItems(
             trailing: SettingsButton(isPresentingSettings: $settings.isPresentingSettings)
         )
+        .onAppear {
+            self.proximity.isEnabled = true
+        }
+        .onDisappear {
+            // TODO: Why doesn't this get called after I tap the Back button?
+            self.proximity.isEnabled = false
+        }
     }
 
 }

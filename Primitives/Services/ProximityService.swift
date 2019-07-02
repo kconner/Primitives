@@ -18,18 +18,24 @@ final class ProximityService : BindableObject {
         UIDevice.current.proximityState
     }
     
-    private static var instanceCount = 0 {
+    private static var enabledObjectIdentifiers = Set<ObjectIdentifier>() {
         didSet {
-            UIDevice.current.isProximityMonitoringEnabled = 0 < instanceCount
+            UIDevice.current.isProximityMonitoringEnabled = 0 < enabledObjectIdentifiers.count
         }
     }
-
-    init() {
-        Self.instanceCount += 1
+    
+    var isEnabled = false {
+        didSet {
+            if isEnabled {
+                Self.enabledObjectIdentifiers.insert(id)
+            } else {
+                Self.enabledObjectIdentifiers.remove(id)
+            }
+        }
     }
     
     deinit {
-        Self.instanceCount -= 1
+        Self.enabledObjectIdentifiers.remove(id)
     }
     
 }
