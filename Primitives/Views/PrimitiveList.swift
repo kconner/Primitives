@@ -78,7 +78,9 @@ struct PrimitiveList : View {
             action: {
                 self.catalog.reload()
             }, label: {
-                Image(systemName: "arrow.clockwise")
+                // TODO: Why does this appear in the simulator but not on device?
+                // Image(systemName: "arrow.clockwise")
+                Text("Refresh")
             }
         )
         .disabled(catalog.value.isLoading)
