@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-final class CatalogService : LoadService<Catalog> {
+final class CatalogService : LoadedValueService<Catalog, Error> {
     
     init() {
         super.init { fulfill in
@@ -21,14 +21,14 @@ final class CatalogService : LoadService<Catalog> {
                 let data = try Data(contentsOf: url)
                 let catalog = try JSONDecoder().decode(Catalog.self, from: data)
 
-                fulfill(.loaded(catalog))
+                fulfill(.success(catalog))
             } catch {
-                fulfill(.failed(error))
+                fulfill(.failure(error))
             }
         }
     }
 
-    init(value: Load<Catalog>) {
+    init(value: Result<Catalog, Error>) {
         super.init { fulfill in
             fulfill(value)
         }

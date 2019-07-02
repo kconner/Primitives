@@ -8,26 +8,25 @@
 
 import Foundation
 
-enum Load<Value> {
-    
+enum Load<Value, Error> where Error : Swift.Error {
+
     case loading
-    case loaded(Value)
-    case failed(Error)
-    
+    case result(Result<Value, Error>)
+
     var isLoading: Bool {
         switch self {
         case .loading:
             return true
-        case .loaded, .failed:
+        case .result:
             return false
         }
     }
-    
+
     var valueIfLoaded: Value? {
         switch self {
-        case .loaded(let value):
+        case .result(.success(let value)):
             return value
-        case .loading, .failed:
+        case .loading, .result(.failure):
             return nil
         }
     }

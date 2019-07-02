@@ -1,5 +1,5 @@
 //
-//  LoadService.swift
+//  LoadedValueService.swift
 //  Primitives
 //
 //  Created by Kevin Conner on 6/23/19.
@@ -9,19 +9,19 @@
 import SwiftUI
 import Combine
 
-class LoadService<Value> : BindableObject {
+class LoadedValueService<Value, Error> : BindableObject where Error : Swift.Error {
     
     let didChange = PassthroughSubject<Void, Never>()
     
-    private(set) var value: Load<Value> {
+    private(set) var value: Load<Value, Error> {
         didSet {
             didChange.send()
         }
     }
+
+    let load: ((Result<Value, Error>) -> Void) -> Void
     
-    let load: ((Load<Value>) -> Void) -> Void
-    
-    init(load: @escaping ((Load<Value>) -> Void) -> Void) {
+    init(load: @escaping ((Result<Value, Error>) -> Void) -> Void) {
         self.load = load
         
         value = .loading
@@ -29,7 +29,7 @@ class LoadService<Value> : BindableObject {
     }
     
     func reload() {
-        guard !value.isLoading else {
+        guard case .result = value else {
             return
         }
         
@@ -43,7 +43,7 @@ class LoadService<Value> : BindableObject {
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
             self?.load { value in
                 DispatchQueue.main.async {
-                    self?.value = value
+                    self?.value = .result(value)
                 }
             }
         }
