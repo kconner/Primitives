@@ -40,7 +40,7 @@ class LoadService<Value> : BindableObject {
     // MARK: - Helpers
     
     private func performLoad() {
-        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
             self?.load { value in
                 DispatchQueue.main.async {
                     self?.value = value
