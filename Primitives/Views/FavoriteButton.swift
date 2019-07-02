@@ -13,12 +13,16 @@ struct FavoriteButton : View {
     
     let primitive: Primitive
 
+    private let feedbackGenerator = UISelectionFeedbackGenerator()
+
     var body: some View {
         Button(
             action: {
                 withAnimation(.spring()) {
                     self.favorites.toggle(self.primitive)
                 }
+                
+                self.feedbackGenerator.selectionChanged()
             },
             label: {
                 VStack {
