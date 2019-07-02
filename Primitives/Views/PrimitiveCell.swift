@@ -16,7 +16,7 @@ struct PrimitiveCell : View {
     let primitive: Primitive
     
     var body: some View {
-        NavigationButton(
+        NavigationLink(
             destination: PrimitiveView(
                 favorites: favorites,
                 settings: settings,
