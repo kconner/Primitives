@@ -23,6 +23,8 @@ struct GridPicker<Cell> : View
     
     var options: [GridPickerTag]
     var makeCell: (GridPickerTag) -> Cell
+
+    private let feedbackGenerator = UISelectionFeedbackGenerator()
     
     var body: some View {
         VStack(spacing: 16) {
@@ -53,6 +55,7 @@ struct GridPicker<Cell> : View
         Button(
             action: {
                 self.selection = tag
+                self.feedbackGenerator.selectionChanged()
             }, label: {
                 self.makeCell(tag).tag(tag)
             }
