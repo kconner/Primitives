@@ -37,6 +37,9 @@ struct PrimitiveCell : View {
                 }
             }
         }
+        .accessibilityAction(named: self.favorites[self.primitive] ? Text("Unfavorite") : Text("Favorite")) {
+            self.favorites.toggle(self.primitive)
+        }
     }
     
 }
