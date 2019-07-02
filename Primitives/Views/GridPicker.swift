@@ -60,6 +60,7 @@ struct GridPicker<Cell> : View
                 self.makeCell(tag).tag(tag)
             }
         )
+        .accessibility(addTraits: tag == selection ? [.isSelected] : [])
     }
     
 }

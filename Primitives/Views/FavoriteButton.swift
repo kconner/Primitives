@@ -28,13 +28,15 @@ struct FavoriteButton : View {
                 VStack {
                     // TODO: Why does this appear in the live canvas but not the simulator?
                     Image(systemName: favorites[primitive] ? "star.fill" : "star")
-                    Text(favorites[primitive] ? "faved" : "fave")
+                    Text("Favorite")
                 }
                 .font(.title)
                 .padding()
             }
         )
         .scaleEffect(favorites[primitive] ? 1.0 : 0.75)
+        .accessibility(label: Text("Favorite"))
+        .accessibility(addTraits: favorites[primitive] ? [.isSelected] : [])
     }
 }
 

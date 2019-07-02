@@ -33,6 +33,8 @@ struct PrimitiveSceneView : UIViewRepresentable {
         
         sceneView.scene = scene
         sceneView.allowsCameraControl = true
+        sceneView.isAccessibilityElement = true
+        sceneView.accessibilityTraits = .image
         
         Self.updateGeometry(in: primitiveNode, to: geometryType)
         Self.addRotationAnimation(to: primitiveNode)
@@ -52,6 +54,7 @@ struct PrimitiveSceneView : UIViewRepresentable {
         Self.updateBackgroundColor(in: scene, for: sceneView.traitCollection)
         Self.updateMaterial(in: primitiveNode, with: material)
         Self.updateLight(in: lightNode, forProximityState: proximity.state)
+        sceneView.accessibilityLabel = "\(material) \(geometryType)"
     }
     
     // MARK: - Helpers
