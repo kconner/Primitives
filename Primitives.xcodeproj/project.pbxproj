@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0DF0C422DA7F09005289F6 /* FavoriteButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DF0C322DA7F09005289F6 /* FavoriteButtonViewModel.swift */; };
 		2C192B1B22C1C66D0015E188 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C192B1A22C1C66D0015E188 /* Material.swift */; };
 		2C851FD622DA2D6D00710F39 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FD522DA2D6D00710F39 /* RxSwift */; };
 		2C851FDA22DA2D6D00710F39 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FD922DA2D6D00710F39 /* RxRelay */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C0DF0C322DA7F09005289F6 /* FavoriteButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonViewModel.swift; sourceTree = "<group>"; };
 		2C192B1622C183A50015E188 /* GridPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPicker.swift; sourceTree = "<group>"; };
 		2C192B1822C18D4D0015E188 /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 		2C192B1A22C1C66D0015E188 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
@@ -128,6 +130,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0DF0C522DA8125005289F6 /* Favorite Button */ = {
+			isa = PBXGroup;
+			children = (
+				2C0DF0C322DA7F09005289F6 /* FavoriteButtonViewModel.swift */,
+				2CE4CBDA22DA622000CB484E /* FavoriteButton.swift */,
+				2CA8243122DA64150031132F /* FavoriteButton.xib */,
+			);
+			path = "Favorite Button";
+			sourceTree = "<group>";
+		};
 		2CBEBDF622BFB70000C2B3B7 = {
 			isa = PBXGroup;
 			children = (
@@ -207,8 +219,7 @@
 				2CA8243522DA6BC80031132F /* MainViewController.swift */,
 				2CA8243722DA6BE20031132F /* Main.storyboard */,
 				2CA8243322DA69E40031132F /* NibBackedView.swift */,
-				2CE4CBDA22DA622000CB484E /* FavoriteButton.swift */,
-				2CA8243122DA64150031132F /* FavoriteButton.xib */,
+				2C0DF0C522DA8125005289F6 /* Favorite Button */,
 				2CE4CBD922DA620400CB484E /* SwiftUI */,
 			);
 			path = Views;
@@ -411,6 +422,7 @@
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,
 				2CC5C60622BFFA7500D55027 /* Load.swift in Sources */,
+				2C0DF0C422DA7F09005289F6 /* FavoriteButtonViewModel.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
 				2CA8243422DA69E40031132F /* NibBackedView.swift in Sources */,
 				2CE4CBDB22DA622300CB484E /* FavoriteButton.swift in Sources */,

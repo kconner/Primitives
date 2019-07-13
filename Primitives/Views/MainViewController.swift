@@ -21,7 +21,12 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        favoriteButton.configure(favorites: favorites, primitive: Primitive(id: UUID(), name: "Box", geometryType: .box))
+        favoriteButton.configure(with:
+            FavoriteButtonViewModel(
+                favorites: favorites,
+                primitive: Primitive(id: UUID(), name: "Box", geometryType: .box)
+            )
+        )
     }
     
 }

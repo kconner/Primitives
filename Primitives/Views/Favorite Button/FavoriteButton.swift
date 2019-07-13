@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 // TODO: @IBDesignable would be great, but it crashes IB in beta 3
 final class FavoriteButton : NibBackedView {
@@ -15,27 +16,28 @@ final class FavoriteButton : NibBackedView {
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var label: UILabel!
     
-    private var favorites: FavoritesService!
-    private var primitive: Primitive!
+    private var viewModel: FavoriteButtonViewModel!
+    private let disposeBag = DisposeBag()
     
     private let feedbackGenerator = UISelectionFeedbackGenerator()
     
-    func configure(favorites: FavoritesService, primitive: Primitive) {
-        self.favorites = favorites
-        self.primitive = primitive
-
+    func configure(with viewModel: FavoriteButtonViewModel) {
+        self.viewModel = viewModel
+        
         let title = NSLocalizedString("Favorite", comment: "Favorite button title")
         label.text = title
         button.accessibilityLabel = title
         
-        update()
+        viewModel.isFavorite
+            .drive(onNext: { [weak self] isFavorite in
+                self?.update(isFavorite: isFavorite)
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Helpers
 
-    private func update() {
-        let isFavorite = favorites[primitive]
-        
+    private func update(isFavorite: Bool) {
         iconImageView.image = UIImage(systemName: isFavorite ? "star.fill" : "star")
         
         let scale: CGFloat = isFavorite ? 1.0 : 0.75
@@ -52,8 +54,7 @@ final class FavoriteButton : NibBackedView {
             initialSpringVelocity: 0.0,
             options: [],
             animations: {
-                self.favorites[self.primitive].toggle()
-                self.update()
+                self.viewModel.toggle()
             },
             completion: nil
         )
@@ -65,7 +66,7 @@ final class FavoriteButton : NibBackedView {
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        configure(favorites: .init(), primitive: PreviewModels.box)
+        configure(with: FavoriteButtonViewModel(favorites: .init(), primitive: PreviewModels.box))
     }
 
 }
