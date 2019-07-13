@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 final class FavoritesService {
     
@@ -45,6 +46,16 @@ final class FavoritesService {
     
     deinit {
         didChange.dispose()
+    }
+    
+    func isFavorite(_ primitive: Primitive) -> Driver<Bool> {
+        didChange
+            .map { [weak self] _ in
+                self?[primitive] ?? false
+            }
+            .startWith(self[primitive])
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
     }
     
     subscript(_ primitive: Primitive) -> Bool {
