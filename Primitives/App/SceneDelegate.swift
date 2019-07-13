@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -21,13 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            window.rootViewController = UIHostingController(
-                rootView: MainView(
-                    catalog: .init(),
-                    favorites: .init(),
-                    settings: .init()
-                )
-            )
+            window.rootViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController()
             
             self.window = window
             window.makeKeyAndVisible()

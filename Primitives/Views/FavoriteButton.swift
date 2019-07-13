@@ -2,49 +2,70 @@
 //  FavoriteButton.swift
 //  Primitives
 //
-//  Created by Kevin Conner on 6/24/19.
+//  Created by Kevin Conner on 7/13/19.
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import SwiftUI
+import UIKit
 
-struct FavoriteButton : View {
-    @ObjectBinding var favorites: FavoritesService
+// TODO: @IBDesignable would be great, but it crashes IB in beta 3
+final class FavoriteButton : NibBackedView {
     
-    let primitive: Primitive
-
+    @IBOutlet var button: UIButton!
+    @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var label: UILabel!
+    
+    private var favorites: FavoritesService!
+    private var primitive: Primitive!
+    
     private let feedbackGenerator = UISelectionFeedbackGenerator()
+    
+    func configure(favorites: FavoritesService, primitive: Primitive) {
+        self.favorites = favorites
+        self.primitive = primitive
 
-    var body: some View {
-        Button(
-            action: {
-                withAnimation(.spring()) {
-                    self.favorites.toggle(self.primitive)
-                }
-                
-                self.feedbackGenerator.selectionChanged()
+        let title = NSLocalizedString("Favorite", comment: "Favorite button title")
+        label.text = title
+        button.accessibilityLabel = title
+        
+        update()
+    }
+    
+    // MARK: - Helpers
+
+    private func update() {
+        let isFavorite = favorites[primitive]
+        
+        iconImageView.image = UIImage(systemName: isFavorite ? "star.fill" : "star")
+        
+        let scale: CGFloat = isFavorite ? 1.0 : 0.75
+        transform = CGAffineTransform(scaleX: scale, y: scale)
+        
+        button.isSelected = isFavorite
+    }
+    
+    @IBAction private func didTap() {
+        UIView.animate(
+            withDuration: 0.333,
+            delay: 0.0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.0,
+            options: [],
+            animations: {
+                self.favorites[self.primitive].toggle()
+                self.update()
             },
-            label: {
-                VStack {
-                    // TODO: Why does this appear in the live canvas but not the simulator?
-                    Image(systemName: favorites[primitive] ? "star.fill" : "star")
-                    Text("Favorite")
-                }
-                .font(.title)
-                .padding()
-            }
+            completion: nil
         )
-        .scaleEffect(favorites[primitive] ? 1.0 : 0.75)
-        .accessibility(label: Text("Favorite"))
-        .accessibility(addTraits: favorites[primitive] ? [.isSelected] : [])
+        
+        self.feedbackGenerator.selectionChanged()
     }
-}
+    
+    // MARK: - NSObject
+    
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        configure(favorites: .init(), primitive: PreviewModels.box)
+    }
 
-#if DEBUG
-struct FavoriteButton_Previews : PreviewProvider {
-    static var previews: some View {
-        FavoriteButton(favorites: .init(), primitive: PreviewModels.box)
-            .previewLayout(.sizeThatFits)
-    }
 }
-#endif

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mMa-Fp-r4S">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="krA-9q-vA0">
+            <objects>
+                <viewController id="mMa-Fp-r4S" customClass="MainViewController" customModule="Primitives" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Rw-6p-9ga">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="PLI-Y3-4Rw" customClass="FavoriteButton" customModule="Primitives" customModuleProvider="target">
+                                <rect key="frame" x="110" y="234" width="100" height="100"/>
+                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="PLI-Y3-4Rw" firstAttribute="centerX" secondItem="tvH-Ae-daY" secondAttribute="centerX" id="b78-lb-hAE"/>
+                            <constraint firstItem="PLI-Y3-4Rw" firstAttribute="centerY" secondItem="tvH-Ae-daY" secondAttribute="centerY" id="hHB-eK-7XB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tvH-Ae-daY"/>
+                    </view>
+                    <connections>
+                        <outlet property="favoriteButton" destination="PLI-Y3-4Rw" id="zcT-sE-RGs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qxM-H5-wxP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8" y="126"/>
+        </scene>
+    </scenes>
+</document>
