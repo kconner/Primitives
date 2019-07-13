@@ -6,8 +6,6 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import Foundation
-
 struct Catalog : Codable {
     var primitives: [Primitive] = []
 }

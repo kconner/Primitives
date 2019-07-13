@@ -6,12 +6,12 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import SwiftUI
-import Combine
+import Foundation
+import RxSwift
 
-final class FavoritesService : BindableObject {
+final class FavoritesService {
     
-    let didChange = PassthroughSubject<Void, Never>()
+    let didChange = PublishSubject<Void>()
     
     private let userDefaults: UserDefaults
 
@@ -22,7 +22,7 @@ final class FavoritesService : BindableObject {
             let data = try? PropertyListEncoder().encode(favoriteIDs)
             userDefaults.set(data, forKey: Self.userDefaultsKey)
             
-            didChange.send()
+            didChange.onNext(())
         }
     }
     
@@ -41,6 +41,10 @@ final class FavoritesService : BindableObject {
         } else {
             self.favoriteIDs = []
         }
+    }
+    
+    deinit {
+        didChange.dispose()
     }
     
     subscript(_ primitive: Primitive) -> Bool {

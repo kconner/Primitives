@@ -6,16 +6,16 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import SwiftUI
-import Combine
+import Foundation
+import RxSwift
 
-class LoadedValueService<Value, Error> : BindableObject where Error : Swift.Error {
+class LoadedValueService<Value, Error> where Error : Swift.Error {
     
-    let didChange = PassthroughSubject<Void, Never>()
+    let didChange = PublishSubject<Void>()
     
     private(set) var value: Load<Value, Error> {
         didSet {
-            didChange.send()
+            didChange.onNext(())
         }
     }
 
@@ -26,6 +26,10 @@ class LoadedValueService<Value, Error> : BindableObject where Error : Swift.Erro
         
         value = .loading
         performLoad()
+    }
+    
+    deinit {
+        didChange.dispose()
     }
     
     func reload() {

@@ -6,23 +6,26 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import SwiftUI
-import Combine
+import RxSwift
 
-final class SettingsService : BindableObject {
+final class SettingsService {
     
-    let didChange = PassthroughSubject<Void, Never>()
+    let didChange = PublishSubject<Void>()
     
     var material = Material.white {
         didSet {
-            didChange.send()
+            didChange.onNext(())
         }
     }
     
     var isPresentingSettings = false {
         didSet {
-            didChange.send()
+            didChange.onNext(())
         }
+    }
+    
+    deinit {
+        didChange.dispose()
     }
     
 }

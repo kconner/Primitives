@@ -6,12 +6,12 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import SwiftUI
-import Combine
+import UIKit
+import RxCocoa
 
-final class ProximityService : BindableObject {
+final class ProximityService {
 
-    let didChange = NotificationCenter.default.publisher(for: UIDevice.proximityStateDidChangeNotification)
+    let didChange = NotificationCenter.default.rx.notification(UIDevice.proximityStateDidChangeNotification)
         .map { _ in }
     
     var state: Bool {
@@ -36,6 +36,12 @@ final class ProximityService : BindableObject {
     
     deinit {
         Self.enabledObjectIdentifiers.remove(id)
+    }
+    
+    // MARK: - Helpers
+
+    private var id: ObjectIdentifier {
+        return ObjectIdentifier(self)
     }
     
 }
