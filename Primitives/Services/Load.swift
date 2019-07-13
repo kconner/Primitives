@@ -6,8 +6,6 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import Foundation
-
 enum Load<Value, Error> where Error : Swift.Error {
 
     case loading

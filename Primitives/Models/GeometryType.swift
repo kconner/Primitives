@@ -6,8 +6,6 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import Foundation
-
 enum GeometryType : String, Codable {
     case plane
     case box

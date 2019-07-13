@@ -6,8 +6,6 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import SwiftUI
-
 enum Material : CaseIterable {
     
     case black

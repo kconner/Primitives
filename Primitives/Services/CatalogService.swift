@@ -6,8 +6,7 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
-import SwiftUI
-import Combine
+import Foundation
 
 final class CatalogService : LoadedValueService<Catalog, Error> {
     
