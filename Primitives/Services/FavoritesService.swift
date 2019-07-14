@@ -18,12 +18,12 @@ final class FavoritesService {
 
     private static let userDefaultsKey = "favoriteIDs"
 
-    private var favoriteIDs: Set<Primitive.ID> {
+    private var favoriteIDsStorage: Set<Primitive.ID> {
         didSet {
-            let data = try? PropertyListEncoder().encode(favoriteIDs)
+            let data = try? PropertyListEncoder().encode(favoriteIDsStorage)
             userDefaults.set(data, forKey: Self.userDefaultsKey)
 
-            favoriteIDsSource.onNext(favoriteIDs)
+            favoriteIDsSource.onNext(favoriteIDsStorage)
         }
     }
     
@@ -38,9 +38,9 @@ final class FavoritesService {
         if let data = data,
             let favorites = try? PropertyListDecoder().decode(Set<Primitive.ID>.self, from: data)
         {
-            self.favoriteIDs = favorites
+            self.favoriteIDsStorage = favorites
         } else {
-            self.favoriteIDs = []
+            self.favoriteIDsStorage = []
         }
     }
     
@@ -48,16 +48,20 @@ final class FavoritesService {
         favoriteIDsSource.dispose()
     }
     
-    func isFavorite(_ primitive: Primitive) -> Driver<Bool> {
+    var favoriteIDs: Driver<Set<Primitive.ID>> {
         favoriteIDsSource
+            .asDriver(onErrorJustReturn: [])
+    }
+    
+    func isFavorite(_ primitive: Primitive) -> Driver<Bool> {
+        favoriteIDs
             .map { favoriteIDs in
                 favoriteIDs.contains(primitive.id)
             }
-            .asDriver(onErrorJustReturn: false)
     }
     
     func toggle(_ primitive: Primitive) {
-        favoriteIDs.formSymmetricDifference([primitive.id])
+        favoriteIDsStorage.formSymmetricDifference([primitive.id])
     }
 
 }

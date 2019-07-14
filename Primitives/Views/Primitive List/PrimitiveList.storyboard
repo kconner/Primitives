@@ -48,7 +48,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="fRO-9Y-eav">
                             <connections>
-                                <action selector="didTapSettings" destination="ss7-xm-fSR" id="8wI-Te-ciF"/>
+                                <segue destination="PwZ-MA-LtR" kind="presentation" identifier="presentSettings" id="ty5-7B-QL2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -67,7 +67,15 @@
                 <viewControllerPlaceholder storyboardName="Primitive" id="nda-86-E2j" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oFe-AC-dfy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="-167"/>
+            <point key="canvasLocation" x="846" y="-167"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Pwz-0q-rls">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="PwZ-MA-LtR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbL-JG-9uq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="847" y="-452"/>
         </scene>
     </scenes>
     <resources>

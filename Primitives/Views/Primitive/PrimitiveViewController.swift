@@ -47,10 +47,15 @@ final class PrimitiveViewController: UIViewController {
         viewModel.willDisappear()
     }
     
-    // MARK: - Helpers
-    
-    @IBAction private func didTapSettings() {
-        viewModel.didTapSettings()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "presentSettings"?:
+            let navigationController = segue.destination as! UINavigationController
+            let settingsViewController = navigationController.topViewController as! SettingsViewController
+            settingsViewController.configure(with: viewModel.settingsViewModel)
+        default:
+            super.prepare(for: segue, sender: sender)
+        }
     }
     
 }

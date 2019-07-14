@@ -6,6 +6,7 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
+import RxSwift
 import RxCocoa
 
 struct PrimitiveListFilter {
@@ -21,7 +22,7 @@ final class PrimitiveListViewModel {
     private let favorites: FavoritesService
     private let settings: SettingsService
   
-    private var filterMode = PrimitiveListFilter.Mode.all
+    private var filterModeSource = BehaviorSubject<PrimitiveListFilter.Mode>(value: .all)
     
     init(
         catalog: CatalogService,
@@ -33,16 +34,44 @@ final class PrimitiveListViewModel {
         self.settings = settings
     }
     
-    var catalog: Driver<Load<Catalog, Error>> {
+    var settingsViewModel: SettingsViewModel {
+        SettingsViewModel(settings: settings)
+    }
+    
+    var isLoading: Driver<Bool> {
         catalogService.value
+            .map { load in
+                load.isLoading
+            }
+    }
+    
+    var filterMode: Driver<PrimitiveListFilter.Mode> {
+        filterModeSource
+            .asDriver(onErrorJustReturn: .all)
+    }
+    
+    var filteredPrimitives: Driver<[Primitive]> {
+        Driver.combineLatest(
+            catalogService.value,
+            favorites.favoriteIDs,
+            filterMode
+        )
+        .map { (load, favoriteIDs, filterMode) in
+            let primitives = load.valueIfLoaded?.primitives ?? []
+                
+            switch filterMode {
+            case .all:
+                return primitives
+            case .favorites:
+                return primitives.filter { primitive in
+                    favoriteIDs.contains(primitive.id)
+                }
+            }
+        }
     }
     
     func didTapRefresh() {
         catalogService.reload()
-    }
-
-    func didTapSettings() {
-        settings.setPresentingSettings(true)
     }
     
 }

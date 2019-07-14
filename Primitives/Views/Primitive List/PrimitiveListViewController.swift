@@ -26,13 +26,20 @@ final class PrimitiveListViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = NSLocalizedString("Primitives", comment: "Primitive list title")
+        
+        viewModel.isLoading
+            .map { !$0 }
+            .drive(refreshButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
 //        List {
 //            PrimitiveListFilter(mode: $filterMode)
-            
+        
 //            if catalog.value.isLoading {
 //                MessageCell(message: Text("Loading…"))
 //            }
-            
+        
 //            ForEach(filteredPrimitives.identified(by: \.name)) { primitive in
 //                PrimitiveCell(
 //                    favorites: self.favorites,
@@ -40,20 +47,22 @@ final class PrimitiveListViewController : UITableViewController {
 //                    primitive: primitive
 //                )
 //            }
-            
+        
 //            if !catalog.value.isLoading {
 //                countCell
 //            }
 //        }
-        
-        title = NSLocalizedString("Primitives", comment: "Primitive list title")
-        
-        viewModel.catalog
-            .map { !$0.isLoading }
-            .drive(refreshButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-//            .presentation(settings.isPresentingSettings ? settingsModal : nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "presentSettings"?:
+            let navigationController = segue.destination as! UINavigationController
+            let settingsViewController = navigationController.topViewController as! SettingsViewController
+            settingsViewController.configure(with: viewModel.settingsViewModel)
+        default:
+            super.prepare(for: segue, sender: sender)
+        }
     }
 
     // MARK: - Helpers
@@ -62,23 +71,6 @@ final class PrimitiveListViewController : UITableViewController {
         viewModel.didTapRefresh()
     }
     
-    @IBAction private func didTapSettings() {
-        viewModel.didTapSettings()
-    }
-
-//    private var filteredPrimitives: [Primitive] {
-//        let primitives = catalog.value.valueIfLoaded?.primitives ?? []
-//
-//        switch filterMode {
-//        case .all:
-//            return primitives
-//        case .favorites:
-//            return primitives.filter { primitive in
-//                favorites[primitive]
-//            }
-//        }
-//    }
-//
 //    private var countCell: MessageCell {
 //        let count = filteredPrimitives.count
 //

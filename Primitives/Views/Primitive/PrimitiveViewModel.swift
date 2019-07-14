@@ -40,16 +40,16 @@ final class PrimitiveViewModel {
         )
     }
     
+    var settingsViewModel: SettingsViewModel {
+        SettingsViewModel(settings: settings)
+    }
+    
     func willAppear() {
         proximity.isEnabled = true
     }
     
     func willDisappear() {
         proximity.isEnabled = false
-    }
-    
-    func didTapSettings() {
-        settings.setPresentingSettings(true)
     }
     
 }

@@ -12,6 +12,9 @@
 		2C2F69F222DBA095002ACF44 /* PrimitiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F69F122DBA095002ACF44 /* PrimitiveListViewController.swift */; };
 		2C2F69F422DBA104002ACF44 /* PrimitiveListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F69F322DBA104002ACF44 /* PrimitiveListViewModel.swift */; };
 		2C2F69F622DBA133002ACF44 /* PrimitiveList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C2F69F522DBA133002ACF44 /* PrimitiveList.storyboard */; };
+		2C2F69F922DBAFAB002ACF44 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C2F69F822DBAFAB002ACF44 /* Settings.storyboard */; };
+		2C2F69FB22DBAFC3002ACF44 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F69FA22DBAFC3002ACF44 /* SettingsViewController.swift */; };
+		2C2F69FD22DBB0FC002ACF44 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F69FC22DBB0FC002ACF44 /* SettingsViewModel.swift */; };
 		2C851FD622DA2D6D00710F39 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FD522DA2D6D00710F39 /* RxSwift */; };
 		2C851FDA22DA2D6D00710F39 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FD922DA2D6D00710F39 /* RxRelay */; };
 		2C851FDC22DA2D6D00710F39 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FDB22DA2D6D00710F39 /* RxCocoa */; };
@@ -74,6 +77,9 @@
 		2C2F69F122DBA095002ACF44 /* PrimitiveListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListViewController.swift; sourceTree = "<group>"; };
 		2C2F69F322DBA104002ACF44 /* PrimitiveListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListViewModel.swift; sourceTree = "<group>"; };
 		2C2F69F522DBA133002ACF44 /* PrimitiveList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PrimitiveList.storyboard; sourceTree = "<group>"; };
+		2C2F69F822DBAFAB002ACF44 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		2C2F69FA22DBAFC3002ACF44 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		2C2F69FC22DBB0FC002ACF44 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		2C91856622DAC9ED0065E5F5 /* PrimitiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveViewController.swift; sourceTree = "<group>"; };
 		2C91856822DAC9F70065E5F5 /* Primitive.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Primitive.storyboard; sourceTree = "<group>"; };
 		2C91856A22DACD770065E5F5 /* PrimitiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveViewModel.swift; sourceTree = "<group>"; };
@@ -164,6 +170,16 @@
 				2C2F69F522DBA133002ACF44 /* PrimitiveList.storyboard */,
 			);
 			path = "Primitive List";
+			sourceTree = "<group>";
+		};
+		2C2F69F722DBAF9F002ACF44 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2C2F69F822DBAFAB002ACF44 /* Settings.storyboard */,
+				2C2F69FA22DBAFC3002ACF44 /* SettingsViewController.swift */,
+				2C2F69FC22DBB0FC002ACF44 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		2C91856522DAC9C90065E5F5 /* Primitive */ = {
@@ -268,6 +284,7 @@
 				2C91856522DAC9C90065E5F5 /* Primitive */,
 				2C91856C22DAD2940065E5F5 /* Primitive Scene View */,
 				2C0DF0C522DA8125005289F6 /* Favorite Button */,
+				2C2F69F722DBAF9F002ACF44 /* Settings */,
 				2CE4CBD922DA620400CB484E /* SwiftUI */,
 			);
 			path = Views;
@@ -437,6 +454,7 @@
 				2CBEBE0922BFB70200C2B3B7 /* Assets.xcassets in Resources */,
 				2CA8243222DA64150031132F /* FavoriteButton.xib in Resources */,
 				2C2F69F622DBA133002ACF44 /* PrimitiveList.storyboard in Resources */,
+				2C2F69F922DBAFAB002ACF44 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +489,7 @@
 				2CC0219922BFE83D00A10A98 /* ProximityService.swift in Sources */,
 				2CA8243622DA6BC80031132F /* MainViewController.swift in Sources */,
 				2C91856722DAC9ED0065E5F5 /* PrimitiveViewController.swift in Sources */,
+				2C2F69FD22DBB0FC002ACF44 /* SettingsViewModel.swift in Sources */,
 				2C2F69F222DBA095002ACF44 /* PrimitiveListViewController.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,
@@ -484,6 +503,7 @@
 				2C95596B22C1D747009018DA /* SettingsService.swift in Sources */,
 				2CC0218E22BFC23B00A10A98 /* GeometryType.swift in Sources */,
 				2C91856E22DAD2A70065E5F5 /* PrimitiveSceneViewModel.swift in Sources */,
+				2C2F69FB22DBAFC3002ACF44 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
