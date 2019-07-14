@@ -9,8 +9,7 @@
 import UIKit
 import RxSwift
 
-// TODO: @IBDesignable would be great, but it crashes IB in beta 3
-final class FavoriteButton : NibBackedView {
+@IBDesignable final class FavoriteButton : NibBackedView {
     
     @IBOutlet var button: UIButton!
     @IBOutlet var iconImageView: UIImageView!

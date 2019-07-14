@@ -14,31 +14,38 @@ class NibBackedView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        loadNib()
+        loadNibIfNeeded()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        loadNibIfNeeded()
     }
     
     // MARK: - UIView
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        loadNib()
+        loadNibIfNeeded()
     }
 
     // MARK: - NSObject
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        loadNib()
+        loadNibIfNeeded()
     }
     
     // MARK: - Helpers
     
-    private func loadNib() {
-        let nib = UINib.init(nibName: String(describing: type(of: self)), bundle: nil)
+    private func loadNibIfNeeded() {
+        if containerView != nil {
+            return
+        }
+        
+        let nibName = String(describing: type(of: self))
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib.init(nibName: nibName, bundle: bundle)
         nib.instantiate(withOwner: self, options: nil)
         
         guard containerView != nil else {
