@@ -6,15 +6,9 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
+import Foundation
 import RxSwift
 import RxCocoa
-
-struct PrimitiveListFilter {
-    enum Mode {
-        case all
-        case favorites
-    }
-}
 
 final class PrimitiveListViewModel {
     
@@ -22,7 +16,7 @@ final class PrimitiveListViewModel {
     private let favorites: FavoritesService
     private let settings: SettingsService
   
-    private var filterModeSource = BehaviorSubject<PrimitiveListFilter.Mode>(value: .all)
+    private var filterModeSource = BehaviorSubject<PrimitiveListFilterMode>(value: .all)
     
     init(
         catalog: CatalogService,
@@ -45,9 +39,13 @@ final class PrimitiveListViewModel {
             }
     }
     
-    var filterMode: Driver<PrimitiveListFilter.Mode> {
+    var filterMode: Driver<PrimitiveListFilterMode> {
         filterModeSource
             .asDriver(onErrorJustReturn: .all)
+    }
+    
+    var filterModeObserver: AnyObserver<PrimitiveListFilterMode> {
+        filterModeSource.asObserver()
     }
     
     var filteredPrimitives: Driver<[Primitive]> {
@@ -56,7 +54,7 @@ final class PrimitiveListViewModel {
             favorites.favoriteIDs,
             filterMode
         )
-        .map { (load, favoriteIDs, filterMode) in
+        .map { load, favoriteIDs, filterMode in
             let primitives = load.valueIfLoaded?.primitives ?? []
                 
             switch filterMode {
@@ -70,8 +68,53 @@ final class PrimitiveListViewModel {
         }
     }
     
+    var items: Driver<[PrimitiveListItem]> {
+        Driver.combineLatest(
+            isLoading,
+            filterMode,
+            filteredPrimitives
+        )
+        .map { isLoading, filterMode, filteredPrimitives in
+            Array(
+                [
+                    [.filter(filterMode)],
+                    
+                    filteredPrimitives.map(PrimitiveListItem.primitive),
+                    
+                    [Self.messageItem(isLoading: isLoading, filterMode: filterMode, filteredPrimitiveCount: filteredPrimitives.count)]
+                ].joined()
+            )
+        }
+    }
+    
     func didTapRefresh() {
         catalogService.reload()
+    }
+    
+    // MARK: - Helpers
+    
+    private static func messageItem(isLoading: Bool, filterMode: PrimitiveListFilterMode, filteredPrimitiveCount: Int) -> PrimitiveListItem {
+        if isLoading {
+            return .message(NSLocalizedString("Loading…", comment: "Primitives list loading message"))
+        } else {
+            let countString = String(filteredPrimitiveCount)
+            
+            let unit: String
+            switch filterMode {
+            case .all:
+                unit = filteredPrimitiveCount == 1
+                    ? NSLocalizedString("Primitive", comment: "Primitive list primitive count unit, singular")
+                    : NSLocalizedString("Primitives", comment: "Primitive list primitive count unit, plural")
+            case .favorites:
+                unit = filteredPrimitiveCount == 1
+                    ? NSLocalizedString("Favorite", comment: "Primitive list favorite count unit, singular")
+                    : NSLocalizedString("Favorites", comment: "Primitive list favorite count unit, plural")
+            }
+            
+            let format = NSLocalizedString("%@ %@", comment: "Primitive list count format")
+            
+            return .message(String(format: format, countString, unit))
+        }
     }
     
 }

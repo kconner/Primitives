@@ -17,6 +17,12 @@ final class PrimitiveListViewController : UITableViewController {
     private var viewModel: PrimitiveListViewModel!
     private let disposeBag = DisposeBag()
     
+    private var items: [PrimitiveListItem] = [] {
+        didSet {
+            tableView?.reloadData()
+        }
+    }
+    
     func configure(with viewModel: PrimitiveListViewModel) {
         self.viewModel = viewModel
     }
@@ -33,25 +39,11 @@ final class PrimitiveListViewController : UITableViewController {
             .drive(refreshButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-//        List {
-//            PrimitiveListFilter(mode: $filterMode)
-        
-//            if catalog.value.isLoading {
-//                MessageCell(message: Text("Loading…"))
-//            }
-        
-//            ForEach(filteredPrimitives.identified(by: \.name)) { primitive in
-//                PrimitiveCell(
-//                    favorites: self.favorites,
-//                    settings: self.settings,
-//                    primitive: primitive
-//                )
-//            }
-        
-//            if !catalog.value.isLoading {
-//                countCell
-//            }
-//        }
+        viewModel.items
+            .drive(onNext: { [weak self] items in
+                self?.items = items
+            })
+            .disposed(by: disposeBag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,41 +63,28 @@ final class PrimitiveListViewController : UITableViewController {
         viewModel.didTapRefresh()
     }
     
-//    private var countCell: MessageCell {
-//        let count = filteredPrimitives.count
-//
-//        let unit: String
-//        switch filterMode {
-//        case .all:
-//            unit = count == 1 ? "Primitive" : "Primitives"
-//        case .favorites:
-//            unit = count == 1 ? "Favorite" : "Favorites"
-//        }
-//
-//        return MessageCell(message: Text("\(count) \(unit)"))
-//    }
-//
-//    private var refreshButton: some View {
-//        Button(
-//        }, label: {
-//            // TODO: Why does this appear in the simulator but not on device?
-//            // Image(systemName: "arrow.clockwise")
-//            Text("Refresh")
-//        }
-//        )
-//            .disabled(catalog.value.isLoading)
-//    }
-//
-//    private var settingsModal: Modal {
-//        Modal(
-//            NavigationView {
-//                SettingsView(
-//                    settings: settings
-//                )
-//            }
-//        ) {
-//            self.settings.isPresentingSettings = false
-//        }
-//    }
+    // MARK: - UITableViewDataSource
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        items.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = items[indexPath.row]
+        
+        switch item {
+        case .filter(let mode):
+            let cell = tableView.dequeueReusableCell(withIdentifier: PrimitiveListFilterCell.identifier, for: indexPath) as! PrimitiveListFilterCell
+            cell.configure(mode: mode, filterModeObserver: viewModel.filterModeObserver)
+            return cell
+        case .primitive:
+            // TODO
+            return UITableViewCell()
+        case .message(let message):
+            let cell = tableView.dequeueReusableCell(withIdentifier: PrimitiveListMessageCell.identifier, for: indexPath) as! PrimitiveListMessageCell
+            cell.configure(message: message)
+            return cell
+        }
+    }
 
 }

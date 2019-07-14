@@ -15,6 +15,10 @@
 		2C2F69F922DBAFAB002ACF44 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C2F69F822DBAFAB002ACF44 /* Settings.storyboard */; };
 		2C2F69FB22DBAFC3002ACF44 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F69FA22DBAFC3002ACF44 /* SettingsViewController.swift */; };
 		2C2F69FD22DBB0FC002ACF44 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F69FC22DBB0FC002ACF44 /* SettingsViewModel.swift */; };
+		2C2F6A0222DBB5C5002ACF44 /* PrimitiveListMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F6A0122DBB5C5002ACF44 /* PrimitiveListMessageCell.swift */; };
+		2C5D178222DBC2A7001B6241 /* PrimitiveListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D178122DBC2A7001B6241 /* PrimitiveListItem.swift */; };
+		2C5D178622DBC345001B6241 /* PrimitiveListFilterMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D178522DBC345001B6241 /* PrimitiveListFilterMode.swift */; };
+		2C5D178822DBC3AF001B6241 /* PrimitiveListFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D178722DBC3AF001B6241 /* PrimitiveListFilterCell.swift */; };
 		2C851FD622DA2D6D00710F39 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FD522DA2D6D00710F39 /* RxSwift */; };
 		2C851FDA22DA2D6D00710F39 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FD922DA2D6D00710F39 /* RxRelay */; };
 		2C851FDC22DA2D6D00710F39 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FDB22DA2D6D00710F39 /* RxCocoa */; };
@@ -80,6 +84,10 @@
 		2C2F69F822DBAFAB002ACF44 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		2C2F69FA22DBAFC3002ACF44 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2C2F69FC22DBB0FC002ACF44 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		2C2F6A0122DBB5C5002ACF44 /* PrimitiveListMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListMessageCell.swift; sourceTree = "<group>"; };
+		2C5D178122DBC2A7001B6241 /* PrimitiveListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListItem.swift; sourceTree = "<group>"; };
+		2C5D178522DBC345001B6241 /* PrimitiveListFilterMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListFilterMode.swift; sourceTree = "<group>"; };
+		2C5D178722DBC3AF001B6241 /* PrimitiveListFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListFilterCell.swift; sourceTree = "<group>"; };
 		2C91856622DAC9ED0065E5F5 /* PrimitiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveViewController.swift; sourceTree = "<group>"; };
 		2C91856822DAC9F70065E5F5 /* Primitive.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Primitive.storyboard; sourceTree = "<group>"; };
 		2C91856A22DACD770065E5F5 /* PrimitiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveViewModel.swift; sourceTree = "<group>"; };
@@ -166,8 +174,12 @@
 			isa = PBXGroup;
 			children = (
 				2C2F69F322DBA104002ACF44 /* PrimitiveListViewModel.swift */,
+				2C5D178522DBC345001B6241 /* PrimitiveListFilterMode.swift */,
+				2C5D178122DBC2A7001B6241 /* PrimitiveListItem.swift */,
 				2C2F69F122DBA095002ACF44 /* PrimitiveListViewController.swift */,
 				2C2F69F522DBA133002ACF44 /* PrimitiveList.storyboard */,
+				2C2F6A0122DBB5C5002ACF44 /* PrimitiveListMessageCell.swift */,
+				2C5D178722DBC3AF001B6241 /* PrimitiveListFilterCell.swift */,
 			);
 			path = "Primitive List";
 			sourceTree = "<group>";
@@ -480,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CC4722E22C06215009EED65 /* LoadedValueService.swift in Sources */,
+				2C5D178222DBC2A7001B6241 /* PrimitiveListItem.swift in Sources */,
 				2CBEBE0322BFB70000C2B3B7 /* AppDelegate.swift in Sources */,
 				2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */,
 				2CBEBE4222BFBE9000C2B3B7 /* Catalog.swift in Sources */,
@@ -492,10 +505,13 @@
 				2C2F69FD22DBB0FC002ACF44 /* SettingsViewModel.swift in Sources */,
 				2C2F69F222DBA095002ACF44 /* PrimitiveListViewController.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
+				2C5D178622DBC345001B6241 /* PrimitiveListFilterMode.swift in Sources */,
+				2C5D178822DBC3AF001B6241 /* PrimitiveListFilterCell.swift in Sources */,
 				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,
 				2CC5C60622BFFA7500D55027 /* Load.swift in Sources */,
 				2C0DF0C422DA7F09005289F6 /* FavoriteButtonViewModel.swift in Sources */,
 				2C2F69F422DBA104002ACF44 /* PrimitiveListViewModel.swift in Sources */,
+				2C2F6A0222DBB5C5002ACF44 /* PrimitiveListMessageCell.swift in Sources */,
 				2C91857022DAD2EA0065E5F5 /* PrimitiveSceneView.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
 				2CA8243422DA69E40031132F /* NibBackedView.swift in Sources */,
