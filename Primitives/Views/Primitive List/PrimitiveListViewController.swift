@@ -48,6 +48,17 @@ final class PrimitiveListViewController : UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
+        case "showPrimitive"?:
+            let primitiveViewController = segue.destination as! PrimitiveViewController
+            
+            guard let selectedIndexPath = tableView.indexPathForSelectedRow,
+                case .primitive(let primitive) = items[selectedIndexPath.row] else
+            {
+                assertionFailure("Expected a primitive cell to be selected")
+                return
+            }
+            
+            primitiveViewController.configure(with: viewModel.primitiveViewModel(for: primitive))
         case "presentSettings"?:
             let navigationController = segue.destination as! UINavigationController
             let settingsViewController = navigationController.topViewController as! SettingsViewController
@@ -75,14 +86,24 @@ final class PrimitiveListViewController : UITableViewController {
         switch item {
         case .filter(let mode):
             let cell = tableView.dequeueReusableCell(withIdentifier: PrimitiveListFilterCell.identifier, for: indexPath) as! PrimitiveListFilterCell
-            cell.configure(mode: mode, filterModeObserver: viewModel.filterModeObserver)
+            
+            cell.configure(
+                mode: mode,
+                filterModeObserver: viewModel.filterModeObserver
+            )
+            
             return cell
-        case .primitive:
-            // TODO
-            return UITableViewCell()
+        case .primitive(let primitive):
+            let cell = tableView.dequeueReusableCell(withIdentifier: PrimitiveListPrimitiveCell.identifier, for: indexPath) as! PrimitiveListPrimitiveCell
+            
+            cell.configure(primitive: primitive, isFavorite: viewModel.isFavorite(primitive))
+            
+            return cell
         case .message(let message):
             let cell = tableView.dequeueReusableCell(withIdentifier: PrimitiveListMessageCell.identifier, for: indexPath) as! PrimitiveListMessageCell
+            
             cell.configure(message: message)
+            
             return cell
         }
     }

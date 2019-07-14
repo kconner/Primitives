@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C0DF0C422DA7F09005289F6 /* FavoriteButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DF0C322DA7F09005289F6 /* FavoriteButtonViewModel.swift */; };
+		2C11DC2B22DBCAC400588D5E /* PrimitiveListPrimitiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C11DC2A22DBCAC400588D5E /* PrimitiveListPrimitiveCell.swift */; };
 		2C192B1B22C1C66D0015E188 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C192B1A22C1C66D0015E188 /* Material.swift */; };
 		2C2F69F222DBA095002ACF44 /* PrimitiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F69F122DBA095002ACF44 /* PrimitiveListViewController.swift */; };
 		2C2F69F422DBA104002ACF44 /* PrimitiveListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F69F322DBA104002ACF44 /* PrimitiveListViewModel.swift */; };
@@ -72,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		2C0DF0C322DA7F09005289F6 /* FavoriteButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonViewModel.swift; sourceTree = "<group>"; };
+		2C11DC2A22DBCAC400588D5E /* PrimitiveListPrimitiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveListPrimitiveCell.swift; sourceTree = "<group>"; };
 		2C192B1622C183A50015E188 /* GridPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPicker.swift; sourceTree = "<group>"; };
 		2C192B1822C18D4D0015E188 /* MaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 		2C192B1A22C1C66D0015E188 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
@@ -178,8 +180,9 @@
 				2C5D178122DBC2A7001B6241 /* PrimitiveListItem.swift */,
 				2C2F69F122DBA095002ACF44 /* PrimitiveListViewController.swift */,
 				2C2F69F522DBA133002ACF44 /* PrimitiveList.storyboard */,
-				2C2F6A0122DBB5C5002ACF44 /* PrimitiveListMessageCell.swift */,
 				2C5D178722DBC3AF001B6241 /* PrimitiveListFilterCell.swift */,
+				2C11DC2A22DBCAC400588D5E /* PrimitiveListPrimitiveCell.swift */,
+				2C2F6A0122DBB5C5002ACF44 /* PrimitiveListMessageCell.swift */,
 			);
 			path = "Primitive List";
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				2CA8243622DA6BC80031132F /* MainViewController.swift in Sources */,
 				2C91856722DAC9ED0065E5F5 /* PrimitiveViewController.swift in Sources */,
 				2C2F69FD22DBB0FC002ACF44 /* SettingsViewModel.swift in Sources */,
+				2C11DC2B22DBCAC400588D5E /* PrimitiveListPrimitiveCell.swift in Sources */,
 				2C2F69F222DBA095002ACF44 /* PrimitiveListViewController.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2C5D178622DBC345001B6241 /* PrimitiveListFilterMode.swift in Sources */,

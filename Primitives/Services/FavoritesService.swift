@@ -18,7 +18,7 @@ final class FavoritesService {
 
     private static let userDefaultsKey = "favoriteIDs"
 
-    private var favoriteIDsStorage: Set<Primitive.ID> {
+    private var favoriteIDsStorage: Set<Primitive.ID> = [] {
         didSet {
             let data = try? PropertyListEncoder().encode(favoriteIDsStorage)
             userDefaults.set(data, forKey: Self.userDefaultsKey)
@@ -39,8 +39,7 @@ final class FavoritesService {
             let favorites = try? PropertyListDecoder().decode(Set<Primitive.ID>.self, from: data)
         {
             self.favoriteIDsStorage = favorites
-        } else {
-            self.favoriteIDsStorage = []
+            favoriteIDsSource.onNext(favoriteIDsStorage)
         }
     }
     

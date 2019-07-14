@@ -28,6 +28,14 @@ final class PrimitiveListViewModel {
         self.settings = settings
     }
     
+    func primitiveViewModel(for primitive: Primitive) -> PrimitiveViewModel {
+        PrimitiveViewModel(
+            favorites: favorites,
+            settings: settings,
+            primitive: primitive
+        )
+    }
+    
     var settingsViewModel: SettingsViewModel {
         SettingsViewModel(settings: settings)
     }
@@ -85,6 +93,10 @@ final class PrimitiveListViewModel {
                 ].joined()
             )
         }
+    }
+    
+    func isFavorite(_ primitive: Primitive) -> Driver<Bool> {
+        favorites.isFavorite(primitive)
     }
     
     func didTapRefresh() {

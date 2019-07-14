@@ -44,6 +44,8 @@ final class PrimitiveListFilterCell : UITableViewCell {
     // MARK: - UITableViewCell
     
     override func prepareForReuse() {
+        super.prepareForReuse()
+        
         disposeBag = DisposeBag()
     }
     

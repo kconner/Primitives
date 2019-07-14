@@ -41,14 +41,38 @@
                                     <outlet property="segmentedControl" destination="rr4-rz-x6W" id="1yX-cG-YgL"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="primitiveCell" id="1ph-1p-sXN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="primitiveCell" id="1ph-1p-sXN" customClass="PrimitiveListPrimitiveCell" customModule="Primitives" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="71.5" width="320" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1ph-1p-sXN" id="GPH-kA-RUE">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="7ad-dh-Cxn">
+                                            <rect key="frame" x="16" y="11.5" width="288" height="20.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n11-wV-h7x">
+                                                    <rect key="frame" x="0.0" y="0.0" width="43.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nyq-vu-hGE">
+                                                    <rect key="frame" x="268" y="0.5" width="20" height="19.5"/>
+                                                    <color key="tintColor" cocoaTouchSystemColor="secondaryLabelColor"/>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7ad-dh-Cxn" firstAttribute="leading" secondItem="GPH-kA-RUE" secondAttribute="leadingMargin" id="GBX-Dp-G4a"/>
+                                        <constraint firstItem="7ad-dh-Cxn" firstAttribute="centerY" secondItem="GPH-kA-RUE" secondAttribute="centerY" id="Mgd-VS-NIn"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="7ad-dh-Cxn" secondAttribute="trailing" id="xOY-36-ULH"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="favoriteImageView" destination="nyq-vu-hGE" id="Ieu-tl-aYd"/>
+                                    <outlet property="nameLabel" destination="n11-wV-h7x" id="mYc-Fe-EoY"/>
                                     <segue destination="nda-86-E2j" kind="show" identifier="showPrimitive" id="rCM-y4-iKO"/>
                                 </connections>
                             </tableViewCell>
@@ -59,8 +83,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okh-fR-XRR">
-                                            <rect key="frame" x="139" y="12" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okh-fR-XRR">
+                                            <rect key="frame" x="139" y="12" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="secondaryLabelColor"/>
                                             <nil key="highlightedColor"/>
@@ -121,6 +145,7 @@
     </scenes>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
+        <image name="circle" catalog="system" width="64" height="62"/>
         <image name="gear" catalog="system" width="64" height="60"/>
     </resources>
 </document>
