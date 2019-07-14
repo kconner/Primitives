@@ -12,7 +12,7 @@ import RxCocoa
 
 final class FavoritesService {
     
-    let didChange = PublishSubject<Void>()
+    private let favoriteIDsSource = BehaviorSubject<Set<Primitive.ID>>(value: [])
     
     private let userDefaults: UserDefaults
 
@@ -22,8 +22,8 @@ final class FavoritesService {
         didSet {
             let data = try? PropertyListEncoder().encode(favoriteIDs)
             userDefaults.set(data, forKey: Self.userDefaultsKey)
-            
-            didChange.onNext(())
+
+            favoriteIDsSource.onNext(favoriteIDs)
         }
     }
     
@@ -45,30 +45,15 @@ final class FavoritesService {
     }
     
     deinit {
-        didChange.dispose()
+        favoriteIDsSource.dispose()
     }
     
     func isFavorite(_ primitive: Primitive) -> Driver<Bool> {
-        didChange
-            .map { [weak self] _ in
-                self?[primitive] ?? false
+        favoriteIDsSource
+            .map { favoriteIDs in
+                favoriteIDs.contains(primitive.id)
             }
-            .startWith(self[primitive])
-            .distinctUntilChanged()
             .asDriver(onErrorJustReturn: false)
-    }
-    
-    subscript(_ primitive: Primitive) -> Bool {
-        get {
-            favoriteIDs.contains(primitive.id)
-        }
-        set {
-            if newValue {
-                favoriteIDs.insert(primitive.id)
-            } else {
-                favoriteIDs.remove(primitive.id)
-            }
-        }
     }
     
     func toggle(_ primitive: Primitive) {

@@ -7,25 +7,34 @@
 //
 
 import RxSwift
+import RxCocoa
 
 final class SettingsService {
     
-    let didChange = PublishSubject<Void>()
-    
-    var material = Material.white {
-        didSet {
-            didChange.onNext(())
-        }
-    }
-    
-    var isPresentingSettings = false {
-        didSet {
-            didChange.onNext(())
-        }
-    }
+    private let materialSource = BehaviorSubject<Material>(value: .white)
+    private let isPresentingSettingsSource = BehaviorSubject<Bool>(value: false)
     
     deinit {
-        didChange.dispose()
+        materialSource.dispose()
+        isPresentingSettingsSource.dispose()
+    }
+
+    var material: Driver<Material> {
+        materialSource
+            .asDriver(onErrorJustReturn: .white)
+    }
+    
+    func setMaterial(_ material: Material) {
+        materialSource.onNext(material)
+    }
+    
+    var isPresentingSettings: Driver<Bool> {
+        isPresentingSettingsSource
+            .asDriver(onErrorJustReturn: false)
+    }
+    
+    func setPresentingSettings(_ isPresentingSettings: Bool) {
+        isPresentingSettingsSource.onNext(isPresentingSettings)
     }
     
 }

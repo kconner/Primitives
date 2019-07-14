@@ -7,16 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 import RxCocoa
 
 final class ProximityService {
 
-    let didChange = NotificationCenter.default.rx.notification(UIDevice.proximityStateDidChangeNotification)
+    let proximityStateDidChange = NotificationCenter.default.rx.notification(UIDevice.proximityStateDidChangeNotification)
         .map { _ in }
-    
-    var state: Bool {
-        UIDevice.current.proximityState
-    }
     
     private static var enabledObjectIdentifiers = Set<ObjectIdentifier>() {
         didSet {
@@ -36,6 +33,16 @@ final class ProximityService {
     
     deinit {
         Self.enabledObjectIdentifiers.remove(id)
+    }
+    
+    var state: Driver<Bool> {
+        proximityStateDidChange
+            .startWith(())
+            .map { _ in
+                UIDevice.current.proximityState
+            }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
     }
     
     // MARK: - Helpers

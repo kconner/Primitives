@@ -12,6 +12,11 @@
 		2C851FD622DA2D6D00710F39 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FD522DA2D6D00710F39 /* RxSwift */; };
 		2C851FDA22DA2D6D00710F39 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FD922DA2D6D00710F39 /* RxRelay */; };
 		2C851FDC22DA2D6D00710F39 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2C851FDB22DA2D6D00710F39 /* RxCocoa */; };
+		2C91856722DAC9ED0065E5F5 /* PrimitiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C91856622DAC9ED0065E5F5 /* PrimitiveViewController.swift */; };
+		2C91856922DAC9F70065E5F5 /* Primitive.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C91856822DAC9F70065E5F5 /* Primitive.storyboard */; };
+		2C91856B22DACD770065E5F5 /* PrimitiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C91856A22DACD770065E5F5 /* PrimitiveViewModel.swift */; };
+		2C91856E22DAD2A70065E5F5 /* PrimitiveSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C91856D22DAD2A70065E5F5 /* PrimitiveSceneViewModel.swift */; };
+		2C91857022DAD2EA0065E5F5 /* PrimitiveSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C91856F22DAD2EA0065E5F5 /* PrimitiveSceneView.swift */; };
 		2C950D5822C01512002E77A7 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C950D5722C01512002E77A7 /* FavoritesService.swift */; };
 		2C95596B22C1D747009018DA /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C95596A22C1D747009018DA /* SettingsService.swift */; };
 		2CA8243222DA64150031132F /* FavoriteButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA8243122DA64150031132F /* FavoriteButton.xib */; };
@@ -63,6 +68,11 @@
 		2C19A7E922C07983000A4DB7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2C19A7EB22C07BFA000A4DB7 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		2C19A7ED22C08589000A4DB7 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		2C91856622DAC9ED0065E5F5 /* PrimitiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveViewController.swift; sourceTree = "<group>"; };
+		2C91856822DAC9F70065E5F5 /* Primitive.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Primitive.storyboard; sourceTree = "<group>"; };
+		2C91856A22DACD770065E5F5 /* PrimitiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveViewModel.swift; sourceTree = "<group>"; };
+		2C91856D22DAD2A70065E5F5 /* PrimitiveSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveSceneViewModel.swift; sourceTree = "<group>"; };
+		2C91856F22DAD2EA0065E5F5 /* PrimitiveSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveSceneView.swift; sourceTree = "<group>"; };
 		2C950D5722C01512002E77A7 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		2C95596A22C1D747009018DA /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		2CA8243122DA64150031132F /* FavoriteButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteButton.xib; sourceTree = "<group>"; };
@@ -138,6 +148,25 @@
 				2CA8243122DA64150031132F /* FavoriteButton.xib */,
 			);
 			path = "Favorite Button";
+			sourceTree = "<group>";
+		};
+		2C91856522DAC9C90065E5F5 /* Primitive */ = {
+			isa = PBXGroup;
+			children = (
+				2C91856A22DACD770065E5F5 /* PrimitiveViewModel.swift */,
+				2C91856622DAC9ED0065E5F5 /* PrimitiveViewController.swift */,
+				2C91856822DAC9F70065E5F5 /* Primitive.storyboard */,
+			);
+			path = Primitive;
+			sourceTree = "<group>";
+		};
+		2C91856C22DAD2940065E5F5 /* Primitive Scene View */ = {
+			isa = PBXGroup;
+			children = (
+				2C91856D22DAD2A70065E5F5 /* PrimitiveSceneViewModel.swift */,
+				2C91856F22DAD2EA0065E5F5 /* PrimitiveSceneView.swift */,
+			);
+			path = "Primitive Scene View";
 			sourceTree = "<group>";
 		};
 		2CBEBDF622BFB70000C2B3B7 = {
@@ -219,6 +248,8 @@
 				2CA8243522DA6BC80031132F /* MainViewController.swift */,
 				2CA8243722DA6BE20031132F /* Main.storyboard */,
 				2CA8243322DA69E40031132F /* NibBackedView.swift */,
+				2C91856522DAC9C90065E5F5 /* Primitive */,
+				2C91856C22DAD2940065E5F5 /* Primitive Scene View */,
 				2C0DF0C522DA8125005289F6 /* Favorite Button */,
 				2CE4CBD922DA620400CB484E /* SwiftUI */,
 			);
@@ -384,6 +415,7 @@
 				2CC0219622BFCAF400A10A98 /* primitive.scn in Resources */,
 				2CBEBE0F22BFB70200C2B3B7 /* LaunchScreen.storyboard in Resources */,
 				2CBEBE0C22BFB70200C2B3B7 /* Preview Assets.xcassets in Resources */,
+				2C91856922DAC9F70065E5F5 /* Primitive.storyboard in Resources */,
 				2CC0219B22BFF19000A10A98 /* catalog.json in Resources */,
 				2CBEBE0922BFB70200C2B3B7 /* Assets.xcassets in Resources */,
 				2CA8243222DA64150031132F /* FavoriteButton.xib in Resources */,
@@ -416,18 +448,22 @@
 				2CBEBE0522BFB70000C2B3B7 /* SceneDelegate.swift in Sources */,
 				2CBEBE4222BFBE9000C2B3B7 /* Catalog.swift in Sources */,
 				2C192B1B22C1C66D0015E188 /* Material.swift in Sources */,
+				2C91856B22DACD770065E5F5 /* PrimitiveViewModel.swift in Sources */,
 				2C950D5822C01512002E77A7 /* FavoritesService.swift in Sources */,
 				2CC0219922BFE83D00A10A98 /* ProximityService.swift in Sources */,
 				2CA8243622DA6BC80031132F /* MainViewController.swift in Sources */,
+				2C91856722DAC9ED0065E5F5 /* PrimitiveViewController.swift in Sources */,
 				2CBEBE4022BFBE5500C2B3B7 /* Primitive.swift in Sources */,
 				2CC0219D22BFF2DD00A10A98 /* CatalogService.swift in Sources */,
 				2CC5C60622BFFA7500D55027 /* Load.swift in Sources */,
 				2C0DF0C422DA7F09005289F6 /* FavoriteButtonViewModel.swift in Sources */,
+				2C91857022DAD2EA0065E5F5 /* PrimitiveSceneView.swift in Sources */,
 				2CBEBE4422BFBF2900C2B3B7 /* PreviewModels.swift in Sources */,
 				2CA8243422DA69E40031132F /* NibBackedView.swift in Sources */,
 				2CE4CBDB22DA622300CB484E /* FavoriteButton.swift in Sources */,
 				2C95596B22C1D747009018DA /* SettingsService.swift in Sources */,
 				2CC0218E22BFC23B00A10A98 /* GeometryType.swift in Sources */,
+				2C91856E22DAD2A70065E5F5 /* PrimitiveSceneViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

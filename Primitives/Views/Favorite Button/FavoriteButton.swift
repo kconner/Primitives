@@ -29,14 +29,14 @@ import RxSwift
         
         viewModel.isFavorite
             .drive(onNext: { [weak self] isFavorite in
-                self?.update(isFavorite: isFavorite)
+                self?.updateFavorite(to: isFavorite)
             })
             .disposed(by: disposeBag)
     }
     
     // MARK: - Helpers
 
-    private func update(isFavorite: Bool) {
+    private func updateFavorite(to isFavorite: Bool) {
         iconImageView.image = UIImage(systemName: isFavorite ? "star.fill" : "star")
         
         let scale: CGFloat = isFavorite ? 1.0 : 0.75

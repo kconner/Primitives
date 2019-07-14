@@ -23,7 +23,7 @@ final class FavoriteButtonViewModel {
     }
     
     func toggle() {
-        favorites[primitive].toggle()
+        favorites.toggle(primitive)
     }
 
 }

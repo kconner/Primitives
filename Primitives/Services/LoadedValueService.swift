@@ -8,37 +8,48 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class LoadedValueService<Value, Error> where Error : Swift.Error {
     
-    let didChange = PublishSubject<Void>()
+    private let valueSource = PublishSubject<Load<Value, Error>>()
     
-    private(set) var value: Load<Value, Error> {
+    private(set) var valueStorage: Load<Value, Error> {
         didSet {
-            didChange.onNext(())
+            valueSource.onNext(valueStorage)
         }
     }
 
-    let load: ((Result<Value, Error>) -> Void) -> Void
+    private let load: ((Result<Value, Error>) -> Void) -> Void
     
     init(load: @escaping ((Result<Value, Error>) -> Void) -> Void) {
         self.load = load
         
-        value = .loading
+        valueStorage = .loading
         performLoad()
     }
     
     deinit {
-        didChange.dispose()
+        valueSource.dispose()
     }
     
     func reload() {
-        guard case .result = value else {
+        guard case .result = valueStorage else {
             return
         }
         
-        value = .loading
+        valueStorage = .loading
         performLoad()
+    }
+    
+    var value: Driver<Load<Value, Error>> {
+        Observable.concat(
+            .deferred { [weak self] in
+                .just(self?.valueStorage ?? .loading)
+            },
+            valueSource
+        )
+        .asDriver(onErrorJustReturn: .loading)
     }
     
     // MARK: - Helpers
@@ -47,7 +58,7 @@ class LoadedValueService<Value, Error> where Error : Swift.Error {
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
             self?.load { value in
                 DispatchQueue.main.async {
-                    self?.value = .result(value)
+                    self?.valueStorage = .result(value)
                 }
             }
         }
