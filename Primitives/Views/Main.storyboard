@@ -3,46 +3,18 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
-        <scene sceneID="krA-9q-vA0">
+        <!--PrimitiveList-->
+        <scene sceneID="5qa-pm-Ocg">
             <objects>
-                <viewController id="mMa-Fp-r4S" customClass="MainViewController" customModule="Primitives" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Rw-6p-9ga">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyQ-Tb-AsE">
-                                <rect key="frame" x="137" y="291" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="sWg-8o-Rsf" kind="show" identifier="showPrimitive" id="iEV-dj-rK2"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="hyQ-Tb-AsE" firstAttribute="centerY" secondItem="tvH-Ae-daY" secondAttribute="centerY" id="0Q9-JN-eTY"/>
-                            <constraint firstItem="hyQ-Tb-AsE" firstAttribute="centerX" secondItem="tvH-Ae-daY" secondAttribute="centerX" id="WaS-4T-3iI"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="tvH-Ae-daY"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="OGE-wl-DDt"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qxM-H5-wxP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="PrimitiveList" id="qEn-kE-fC0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="GST-4s-96n"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LU1-7R-ur0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="199" y="285"/>
-        </scene>
-        <!--Primitive-->
-        <scene sceneID="4CG-dy-fDc">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Primitive" id="sWg-8o-Rsf" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sw7-tT-bbs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="860" y="284"/>
+            <point key="canvasLocation" x="-19" y="285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XvW-W0-6JF">
@@ -53,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="mMa-Fp-r4S" kind="relationship" relationship="rootViewController" id="25C-x9-ksh"/>
+                        <segue destination="qEn-kE-fC0" kind="relationship" relationship="rootViewController" id="ATP-E7-v6l"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jan-jo-h4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

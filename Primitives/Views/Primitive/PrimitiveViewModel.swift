@@ -48,7 +48,7 @@ final class PrimitiveViewModel {
         proximity.isEnabled = false
     }
     
-    func presentSettings() {
+    func didTapSettings() {
         settings.setPresentingSettings(true)
     }
     

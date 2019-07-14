@@ -50,7 +50,7 @@ final class PrimitiveViewController: UIViewController {
     // MARK: - Helpers
     
     @IBAction private func didTapSettings() {
-        viewModel.presentSettings()
+        viewModel.didTapSettings()
     }
     
 }

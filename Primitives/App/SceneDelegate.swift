@@ -20,7 +20,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            window.rootViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController()
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+            
+            let primitiveListViewController = navigationController.topViewController as! PrimitiveListViewController
+            primitiveListViewController.configure(
+                with: PrimitiveListViewModel(
+                    catalog: .init(),
+                    favorites: .init(),
+                    settings: .init()
+                )
+            )
+            
+            window.rootViewController = navigationController
             
             self.window = window
             window.makeKeyAndVisible()
