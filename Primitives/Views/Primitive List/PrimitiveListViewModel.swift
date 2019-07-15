@@ -99,8 +99,8 @@ final class PrimitiveListViewModel {
         favorites.isFavorite(primitive)
     }
     
-    func didTapRefresh() {
-        catalogService.reload()
+    var reloadObserver: AnyObserver<Void> {
+        catalogService.reloadObserver
     }
     
     // MARK: - Helpers

@@ -19,6 +19,9 @@ class LoadedValueService<Value, Error> where Error : Swift.Error {
             valueSource.onNext(valueStorage)
         }
     }
+    
+    private let reloadSource = PublishSubject<Void>()
+    private let disposeBag = DisposeBag()
 
     private let load: ((Result<Value, Error>) -> Void) -> Void
     
@@ -27,19 +30,16 @@ class LoadedValueService<Value, Error> where Error : Swift.Error {
         
         valueStorage = .loading
         performLoad()
+        
+        reloadSource
+            .subscribe(onNext: { [weak self] _ in
+                self?.reload()
+            })
+            .disposed(by: disposeBag)
     }
     
     deinit {
         valueSource.dispose()
-    }
-    
-    func reload() {
-        guard case .result = valueStorage else {
-            return
-        }
-        
-        valueStorage = .loading
-        performLoad()
     }
     
     var value: Driver<Load<Value, Error>> {
@@ -52,7 +52,20 @@ class LoadedValueService<Value, Error> where Error : Swift.Error {
         .asDriver(onErrorJustReturn: .loading)
     }
     
+    var reloadObserver: AnyObserver<Void> {
+        reloadSource.asObserver()
+    }
+    
     // MARK: - Helpers
+    
+    private func reload() {
+        guard case .result = valueStorage else {
+            return
+        }
+        
+        valueStorage = .loading
+        performLoad()
+    }
     
     private func performLoad() {
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in

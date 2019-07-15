@@ -12,7 +12,7 @@ import RxCocoa
 
 final class PrimitiveListViewController : UITableViewController {
     
-    @IBOutlet private var refreshButton: UIBarButtonItem!
+    @IBOutlet private var reloadButton: UIBarButtonItem!
     
     private var viewModel: PrimitiveListViewModel!
     private let disposeBag = DisposeBag()
@@ -34,9 +34,13 @@ final class PrimitiveListViewController : UITableViewController {
         
         title = NSLocalizedString("Primitives", comment: "Primitive list title")
         
+        reloadButton.rx.tap
+            .bind(to: viewModel.reloadObserver)
+            .disposed(by: disposeBag)
+        
         viewModel.isLoading
             .map { !$0 }
-            .drive(refreshButton.rx.isEnabled)
+            .drive(reloadButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         viewModel.items
@@ -68,12 +72,6 @@ final class PrimitiveListViewController : UITableViewController {
         }
     }
 
-    // MARK: - Helpers
-    
-    @IBAction private func didTapRefresh() {
-        viewModel.didTapRefresh()
-    }
-    
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,7 +94,10 @@ final class PrimitiveListViewController : UITableViewController {
         case .primitive(let primitive):
             let cell = tableView.dequeueReusableCell(withIdentifier: PrimitiveListPrimitiveCell.identifier, for: indexPath) as! PrimitiveListPrimitiveCell
             
-            cell.configure(primitive: primitive, isFavorite: viewModel.isFavorite(primitive))
+            cell.configure(
+                primitive: primitive,
+                isFavorite: viewModel.isFavorite(primitive)
+            )
             
             return cell
         case .message(let message):

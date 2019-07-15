@@ -15,28 +15,26 @@ final class PrimitiveListFilterCell : UITableViewCell {
     static let identifier = "filterCell"
     
     @IBOutlet private var segmentedControl: UISegmentedControl!
-    private var selectionDidChange: Observable<PrimitiveListFilterMode>!
+    
     private var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let segmentedControl = self.segmentedControl!
-        
         for mode in PrimitiveListFilterMode.allCases {
             segmentedControl.setTitle(mode.title, forSegmentAt: mode.rawValue)
         }
-        
-        selectionDidChange = segmentedControl.rx.controlEvent(.valueChanged)
-            .map { _ in
-                PrimitiveListFilterMode(rawValue: segmentedControl.selectedSegmentIndex) ?? .all
-            }
     }
     
     func configure(mode: PrimitiveListFilterMode, filterModeObserver: AnyObserver<PrimitiveListFilterMode>) {
+        let segmentedControl = self.segmentedControl!
+
         segmentedControl.selectedSegmentIndex = mode.rawValue
         
-        selectionDidChange
+        segmentedControl.rx.controlEvent(.valueChanged)
+            .map { _ in
+                PrimitiveListFilterMode(rawValue: segmentedControl.selectedSegmentIndex) ?? .all
+            }
             .bind(to: filterModeObserver)
             .disposed(by: disposeBag)
     }

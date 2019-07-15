@@ -106,11 +106,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="e9f-5h-R1h">
-                        <barButtonItem key="leftBarButtonItem" image="arrow.clockwise" catalog="system" id="Ekx-yX-DPs">
-                            <connections>
-                                <action selector="didTapRefresh" destination="ss7-xm-fSR" id="L5e-6d-2vF"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" image="arrow.clockwise" catalog="system" id="Ekx-yX-DPs"/>
                         <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="fRO-9Y-eav">
                             <connections>
                                 <segue destination="PwZ-MA-LtR" kind="presentation" identifier="presentSettings" id="ty5-7B-QL2"/>
@@ -119,7 +115,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="refreshButton" destination="Ekx-yX-DPs" id="hGU-67-zfS"/>
+                        <outlet property="reloadButton" destination="Ekx-yX-DPs" id="g3p-T3-b3r"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2JG-NI-xWs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
