@@ -12,17 +12,18 @@ import RxCocoa
 
 final class FavoritesService {
     
-    private let favoriteIDsSubject = BehaviorSubject<Set<Primitive.ID>>(value: [])
-
     private static let userDefaultsKey = "favoriteIDs"
 
+    private let favoriteIDsSubject = BehaviorSubject<Set<Primitive.ID>>(value: [])
     private let disposeBag = DisposeBag()
-    
+
     init(userDefaults: UserDefaults = .standard) {
+        // Register initial values of user defaults.
         userDefaults.register(defaults: [
             Self.userDefaultsKey: try! PropertyListEncoder().encode(Set<Primitive.ID>())
         ])
 
+        // Try to load from user defaults.
         let data = userDefaults.data(forKey: Self.userDefaultsKey)
         if let data = data,
             let favoriteIDs = try? PropertyListDecoder().decode(Set<Primitive.ID>.self, from: data)
@@ -30,6 +31,7 @@ final class FavoritesService {
             favoriteIDsSubject.onNext(favoriteIDs)
         }
         
+        // When we emit a new copy of favorites, persist it to user defaults.
         favoriteIDsSubject
             .subscribe(onNext: { (favoriteIDs) in
                 let data = try? PropertyListEncoder().encode(favoriteIDs)
@@ -51,6 +53,8 @@ final class FavoritesService {
     }
     
     func toggleFavorite(_ primitive: Primitive) -> AnyObserver<Void> {
+        // Sending an event to this observer toggles the primitive's favorite state
+        // and emits a new complete value of the favorites set
         favoriteIDsSubject
             .mapObserver { [weak self] _ in
                 ((try? self?.favoriteIDsSubject.value()) ?? []).symmetricDifference([primitive.id])

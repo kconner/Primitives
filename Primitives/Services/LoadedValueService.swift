@@ -12,69 +12,41 @@ import RxCocoa
 
 class LoadedValueService<Value, Error> where Error : Swift.Error {
     
-    private let valueSource = PublishSubject<Load<Value, Error>>()
-    
-    private(set) var valueStorage: Load<Value, Error> {
-        didSet {
-            valueSource.onNext(valueStorage)
-        }
-    }
-    
-    private let reloadSource = PublishSubject<Void>()
+    private let valueSubject = BehaviorSubject<Load<Value, Error>>(value: .loading)
     private let disposeBag = DisposeBag()
 
-    private let load: ((Result<Value, Error>) -> Void) -> Void
-    
     init(load: @escaping ((Result<Value, Error>) -> Void) -> Void) {
-        self.load = load
+        let valueSubject = self.valueSubject
         
-        valueStorage = .loading
-        performLoad()
-        
-        reloadSource
-            .subscribe(onNext: { [weak self] _ in
-                self?.reload()
+        // When the load value changes to loading, begin loading.
+        valueSubject
+            .map { load in load.isLoading }
+            .distinctUntilChanged()
+            .filter { isLoading in isLoading }
+            .subscribe(onNext: { _ in
+                // Include an artifical delay during loading.
+                DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) {
+                    load { value in
+                        DispatchQueue.main.async {
+                            // After loading, emit the result value.
+                            valueSubject.onNext(.result(value))
+                        }
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }
     
-    deinit {
-        valueSource.dispose()
-    }
-    
     var value: Driver<Load<Value, Error>> {
-        Observable.concat(
-            .deferred { [weak self] in
-                .just(self?.valueStorage ?? .loading)
-            },
-            valueSource
-        )
-        .asDriver(onErrorJustReturn: .loading)
+        valueSubject
+            .asDriver(onErrorJustReturn: .loading)
     }
     
     var reloadObserver: AnyObserver<Void> {
-        reloadSource.asObserver()
-    }
-    
-    // MARK: - Helpers
-    
-    private func reload() {
-        guard case .result = valueStorage else {
-            return
-        }
-        
-        valueStorage = .loading
-        performLoad()
-    }
-    
-    private func performLoad() {
-        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-            self?.load { value in
-                DispatchQueue.main.async {
-                    self?.valueStorage = .result(value)
-                }
-            }
-        }
+        // Sending an event to this observer stores a load value of .loading,
+        // which triggers a load if we were not already loading.
+        valueSubject
+            .mapObserver { _ in .loading }
     }
     
 }
