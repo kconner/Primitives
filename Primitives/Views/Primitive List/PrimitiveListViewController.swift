@@ -35,7 +35,7 @@ final class PrimitiveListViewController : UITableViewController {
         title = NSLocalizedString("Primitives", comment: "Primitive list title")
         
         reloadButton.rx.tap
-            .bind(to: viewModel.reloadObserver)
+            .bind(to: viewModel.reload)
             .disposed(by: disposeBag)
         
         viewModel.isLoading

@@ -23,8 +23,8 @@ final class FavoriteButtonViewModel {
         favorites.isFavorite(primitive)
     }
     
-    var toggleObserver: AnyObserver<Void> {
-        favorites.toggleObserver(primitive)
+    var toggleFavorite: AnyObserver<Void> {
+        favorites.toggleFavorite(primitive)
     }
 
 }

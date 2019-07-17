@@ -29,7 +29,7 @@ import RxCocoa
         button.accessibilityLabel = title
         
         button.rx.tap
-            .bind(to: viewModel.toggleObserver)
+            .bind(to: viewModel.toggleFavorite)
             .disposed(by: disposeBag)
         
         viewModel.isFavorite

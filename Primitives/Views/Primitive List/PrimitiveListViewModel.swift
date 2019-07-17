@@ -99,7 +99,7 @@ final class PrimitiveListViewModel {
         favorites.isFavorite(primitive)
     }
     
-    var reloadObserver: AnyObserver<Void> {
+    var reload: AnyObserver<Void> {
         catalogService.reloadObserver
     }
     

@@ -12,52 +12,34 @@ import RxCocoa
 
 final class FavoritesService {
     
-    private let favoriteIDsSource = BehaviorSubject<Set<Primitive.ID>>(value: [])
-    
-    private let userDefaults: UserDefaults
+    private let favoriteIDsSubject = BehaviorSubject<Set<Primitive.ID>>(value: [])
 
     private static let userDefaultsKey = "favoriteIDs"
 
-    private var favoriteIDsStorage: Set<Primitive.ID> = [] {
-        didSet {
-            let data = try? PropertyListEncoder().encode(favoriteIDsStorage)
-            userDefaults.set(data, forKey: Self.userDefaultsKey)
-
-            favoriteIDsSource.onNext(favoriteIDsStorage)
-        }
-    }
-    
-    private let toggleSource = PublishSubject<Primitive.ID>()
     private let disposeBag = DisposeBag()
     
     init(userDefaults: UserDefaults = .standard) {
-        self.userDefaults = userDefaults
-        
         userDefaults.register(defaults: [
             Self.userDefaultsKey: try! PropertyListEncoder().encode(Set<Primitive.ID>())
         ])
 
         let data = userDefaults.data(forKey: Self.userDefaultsKey)
         if let data = data,
-            let favorites = try? PropertyListDecoder().decode(Set<Primitive.ID>.self, from: data)
+            let favoriteIDs = try? PropertyListDecoder().decode(Set<Primitive.ID>.self, from: data)
         {
-            self.favoriteIDsStorage = favorites
-            favoriteIDsSource.onNext(favoriteIDsStorage)
+            favoriteIDsSubject.onNext(favoriteIDs)
         }
         
-        toggleSource
-            .subscribe(onNext: { [weak self] primitiveID in
-                self?.favoriteIDsStorage.formSymmetricDifference([primitiveID])
+        favoriteIDsSubject
+            .subscribe(onNext: { (favoriteIDs) in
+                let data = try? PropertyListEncoder().encode(favoriteIDs)
+                userDefaults.set(data, forKey: Self.userDefaultsKey)
             })
             .disposed(by: disposeBag)
     }
     
-    deinit {
-        favoriteIDsSource.dispose()
-    }
-    
     var favoriteIDs: Driver<Set<Primitive.ID>> {
-        favoriteIDsSource
+        favoriteIDsSubject
             .asDriver(onErrorJustReturn: [])
     }
     
@@ -68,10 +50,10 @@ final class FavoritesService {
             }
     }
     
-    func toggleObserver(_ primitive: Primitive) -> AnyObserver<Void> {
-        toggleSource
-            .mapObserver { _ in
-                primitive.id
+    func toggleFavorite(_ primitive: Primitive) -> AnyObserver<Void> {
+        favoriteIDsSubject
+            .mapObserver { [weak self] _ in
+                ((try? self?.favoriteIDsSubject.value()) ?? []).symmetricDifference([primitive.id])
             }
     }
 
