@@ -87,7 +87,7 @@ final class PrimitiveListViewController : UITableViewController {
             
             cell.configure(
                 mode: mode,
-                filterModeObserver: viewModel.filterModeObserver
+                setMode: viewModel.setFilterMode
             )
             
             return cell

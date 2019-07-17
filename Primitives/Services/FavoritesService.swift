@@ -8,13 +8,12 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
 
 final class FavoritesService {
     
     private static let userDefaultsKey = "favoriteIDs"
 
-    private let favoriteIDsSubject = BehaviorSubject<Set<Primitive.ID>>(value: [])
+    let favoriteIDs = BehaviorSubject<Set<Primitive.ID>>(value: [])
     private let disposeBag = DisposeBag()
 
     init(userDefaults: UserDefaults = .standard) {
@@ -26,13 +25,13 @@ final class FavoritesService {
         // Try to load from user defaults.
         let data = userDefaults.data(forKey: Self.userDefaultsKey)
         if let data = data,
-            let favoriteIDs = try? PropertyListDecoder().decode(Set<Primitive.ID>.self, from: data)
+            let ids = try? PropertyListDecoder().decode(Set<Primitive.ID>.self, from: data)
         {
-            favoriteIDsSubject.onNext(favoriteIDs)
+            favoriteIDs.onNext(ids)
         }
         
         // When we emit a new copy of favorites, persist it to user defaults.
-        favoriteIDsSubject
+        favoriteIDs
             .subscribe(onNext: { (favoriteIDs) in
                 let data = try? PropertyListEncoder().encode(favoriteIDs)
                 userDefaults.set(data, forKey: Self.userDefaultsKey)
@@ -40,12 +39,7 @@ final class FavoritesService {
             .disposed(by: disposeBag)
     }
     
-    var favoriteIDs: Driver<Set<Primitive.ID>> {
-        favoriteIDsSubject
-            .asDriver(onErrorJustReturn: [])
-    }
-    
-    func isFavorite(_ primitive: Primitive) -> Driver<Bool> {
+    func isFavorite(_ primitive: Primitive) -> Observable<Bool> {
         favoriteIDs
             .map { favoriteIDs in
                 favoriteIDs.contains(primitive.id)
@@ -53,11 +47,11 @@ final class FavoritesService {
     }
     
     func toggleFavorite(_ primitive: Primitive) -> AnyObserver<Void> {
-        // Sending an event to this observer toggles the primitive's favorite state
-        // and emits a new complete value of the favorites set
-        favoriteIDsSubject
+        // Sending an item to this observer toggles the primitive's favorite state
+        // and emits a new complete value of the favorites set.
+        favoriteIDs
             .mapObserver { [weak self] _ in
-                ((try? self?.favoriteIDsSubject.value()) ?? []).symmetricDifference([primitive.id])
+                ((try? self?.favoriteIDs.value()) ?? []).symmetricDifference([primitive.id])
             }
     }
 

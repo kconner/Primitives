@@ -15,7 +15,7 @@ final class PrimitiveSceneViewModel {
     private let proximity: ProximityService
     let geometryType: GeometryType
     let material: Driver<Material>
-    private let traitCollectionSource = PublishSubject<UITraitCollection>()
+    private let traitCollectionSubject = PublishSubject<UITraitCollection>()
 
     init(
         proximity: ProximityService,
@@ -27,22 +27,19 @@ final class PrimitiveSceneViewModel {
         self.material = material
     }
 
-    deinit {
-        traitCollectionSource.dispose()
-    }
-    
     var proximityState: Driver<Bool> {
         proximity.state
+            .asDriver(onErrorJustReturn: false)
     }
     
     func traits(startingWith traits: UITraitCollection) -> Driver<UITraitCollection> {
-        traitCollectionSource
+        traitCollectionSubject
             .startWith(traits)
             .asDriver(onErrorJustReturn: traits)
     }
     
     func traitCollectionDidChange(to traits: UITraitCollection) {
-        traitCollectionSource.onNext(traits)
+        traitCollectionSubject.onNext(traits)
     }
     
 }

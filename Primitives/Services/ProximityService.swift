@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 final class ProximityService {
 
@@ -35,14 +34,13 @@ final class ProximityService {
         Self.enabledObjectIdentifiers.remove(id)
     }
     
-    var state: Driver<Bool> {
+    var state: Observable<Bool> {
         proximityStateDidChange
             .startWith(())
             .map { _ in
                 UIDevice.current.proximityState
             }
             .distinctUntilChanged()
-            .asDriver(onErrorJustReturn: false)
     }
     
     // MARK: - Helpers

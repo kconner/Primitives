@@ -7,23 +7,9 @@
 //
 
 import RxSwift
-import RxCocoa
 
 final class SettingsService {
     
-    private let materialSource = BehaviorSubject<Material>(value: .white)
+    let material = BehaviorSubject<Material>(value: .white)
     
-    deinit {
-        materialSource.dispose()
-    }
-
-    var material: Driver<Material> {
-        materialSource
-            .asDriver(onErrorJustReturn: .white)
-    }
-    
-    func setMaterial(_ material: Material) {
-        materialSource.onNext(material)
-    }
-
 }

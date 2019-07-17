@@ -29,12 +29,10 @@ final class SettingsViewController : UIViewController {
             .map { $0.name }
             .drive(button.rx.title())
             .disposed(by: disposeBag)
-    }
-    
-    // MARK: - Helpers
-    
-    @IBAction private func didTapCyan() {
-        viewModel.setMaterial(.cyan)
+        
+        button.rx.tap
+            .bind(to: viewModel.setMaterial(.cyan))
+            .disposed(by: disposeBag)
     }
     
 }

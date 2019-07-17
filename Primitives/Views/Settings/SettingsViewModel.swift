@@ -6,6 +6,7 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
+import RxSwift
 import RxCocoa
 
 final class SettingsViewModel {
@@ -18,10 +19,13 @@ final class SettingsViewModel {
     
     var material: Driver<Material> {
         settings.material
+            .asDriver(onErrorJustReturn: .white)
     }
     
-    func setMaterial(_ material: Material) {
-        settings.setMaterial(material)
+    func setMaterial(_ material: Material) -> AnyObserver<Void> {
+        settings.material
+            .mapObserver { _ in material }
     }
+
     
 }

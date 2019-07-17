@@ -13,10 +13,10 @@ import RxCocoa
 final class PrimitiveListViewModel {
     
     private let catalogService: CatalogService
-    private let favorites: FavoritesService
-    private let settings: SettingsService
+    private let favoritesService: FavoritesService
+    private let settingsService: SettingsService
   
-    private var filterModeSource = BehaviorSubject<PrimitiveListFilterMode>(value: .all)
+    private var filterModeSubject = BehaviorSubject<PrimitiveListFilterMode>(value: .all)
     
     init(
         catalog: CatalogService,
@@ -24,56 +24,40 @@ final class PrimitiveListViewModel {
         settings: SettingsService
     ) {
         self.catalogService = catalog
-        self.favorites = favorites
-        self.settings = settings
+        self.favoritesService = favorites
+        self.settingsService = settings
     }
     
     func primitiveViewModel(for primitive: Primitive) -> PrimitiveViewModel {
         PrimitiveViewModel(
-            favorites: favorites,
-            settings: settings,
+            favorites: favoritesService,
+            settings: settingsService,
             primitive: primitive
         )
     }
     
     var settingsViewModel: SettingsViewModel {
-        SettingsViewModel(settings: settings)
+        SettingsViewModel(settings: settingsService)
     }
     
     var isLoading: Driver<Bool> {
-        catalogService.value
+        catalog
             .map { load in
                 load.isLoading
             }
     }
     
+    var reload: AnyObserver<Void> {
+        catalogService.reload
+    }
+    
     var filterMode: Driver<PrimitiveListFilterMode> {
-        filterModeSource
+        filterModeSubject
             .asDriver(onErrorJustReturn: .all)
     }
     
-    var filterModeObserver: AnyObserver<PrimitiveListFilterMode> {
-        filterModeSource.asObserver()
-    }
-    
-    var filteredPrimitives: Driver<[Primitive]> {
-        Driver.combineLatest(
-            catalogService.value,
-            favorites.favoriteIDs,
-            filterMode
-        )
-        .map { load, favoriteIDs, filterMode in
-            let primitives = load.valueIfLoaded?.primitives ?? []
-                
-            switch filterMode {
-            case .all:
-                return primitives
-            case .favorites:
-                return primitives.filter { primitive in
-                    favoriteIDs.contains(primitive.id)
-                }
-            }
-        }
+    var setFilterMode: AnyObserver<PrimitiveListFilterMode> {
+        filterModeSubject.asObserver()
     }
     
     var items: Driver<[PrimitiveListItem]> {
@@ -96,14 +80,41 @@ final class PrimitiveListViewModel {
     }
     
     func isFavorite(_ primitive: Primitive) -> Driver<Bool> {
-        favorites.isFavorite(primitive)
-    }
-    
-    var reload: AnyObserver<Void> {
-        catalogService.reloadObserver
+        favoritesService.isFavorite(primitive)
+            .asDriver(onErrorJustReturn: false)
     }
     
     // MARK: - Helpers
+    
+    private var catalog: Driver<Load<Catalog, Error>> {
+        catalogService.value
+            .asDriver(onErrorJustReturn: .loading)
+    }
+    
+    private var favoriteIDs: Driver<Set<Primitive.ID>> {
+        favoritesService.favoriteIDs
+            .asDriver(onErrorJustReturn: [])
+    }
+    
+    private var filteredPrimitives: Driver<[Primitive]> {
+        Driver.combineLatest(
+            catalog,
+            favoriteIDs,
+            filterMode
+        )
+        .map { load, favoriteIDs, filterMode in
+            let primitives = load.valueIfLoaded?.primitives ?? []
+
+            switch filterMode {
+            case .all:
+                return primitives
+            case .favorites:
+                return primitives.filter { primitive in
+                    favoriteIDs.contains(primitive.id)
+                }
+            }
+        }
+    }
     
     private static func messageItem(isLoading: Bool, filterMode: PrimitiveListFilterMode, filteredPrimitiveCount: Int) -> PrimitiveListItem {
         if isLoading {

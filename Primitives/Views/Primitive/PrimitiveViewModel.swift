@@ -6,6 +6,8 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
+import RxCocoa
+
 final class PrimitiveViewModel {
     
     private let favorites: FavoritesService
@@ -29,7 +31,7 @@ final class PrimitiveViewModel {
         PrimitiveSceneViewModel(
             proximity: proximity,
             geometryType: primitive.geometryType,
-            material: settings.material
+            material: materialDriver
         )
     }
     
@@ -50,6 +52,13 @@ final class PrimitiveViewModel {
     
     func willDisappear() {
         proximity.isEnabled = false
+    }
+    
+    // MARK: - Helpers
+    
+    private var materialDriver: Driver<Material> {
+        settings.material
+            .asDriver(onErrorJustReturn: .white)
     }
     
 }

@@ -21,6 +21,7 @@ final class FavoriteButtonViewModel {
     
     var isFavorite: Driver<Bool> {
         favorites.isFavorite(primitive)
+            .asDriver(onErrorJustReturn: false)
     }
     
     var toggleFavorite: AnyObserver<Void> {

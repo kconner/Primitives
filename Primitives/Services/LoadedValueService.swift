@@ -8,15 +8,15 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
 
 class LoadedValueService<Value, Error> where Error : Swift.Error {
     
-    private let valueSubject = BehaviorSubject<Load<Value, Error>>(value: .loading)
+    let value = BehaviorSubject<Load<Value, Error>>(value: .loading)
+    
     private let disposeBag = DisposeBag()
 
     init(load: @escaping ((Result<Value, Error>) -> Void) -> Void) {
-        let valueSubject = self.valueSubject
+        let valueSubject = self.value
         
         // When the load value changes to loading, begin loading.
         valueSubject
@@ -37,16 +37,10 @@ class LoadedValueService<Value, Error> where Error : Swift.Error {
             .disposed(by: disposeBag)
     }
     
-    var value: Driver<Load<Value, Error>> {
-        valueSubject
-            .asDriver(onErrorJustReturn: .loading)
-    }
-    
-    var reloadObserver: AnyObserver<Void> {
-        // Sending an event to this observer stores a load value of .loading,
+    var reload: AnyObserver<Void> {
+        // Sending an item to this observer stores a load value of .loading,
         // which triggers a load if we were not already loading.
-        valueSubject
-            .mapObserver { _ in .loading }
+        value.mapObserver { _ in .loading }
     }
     
 }

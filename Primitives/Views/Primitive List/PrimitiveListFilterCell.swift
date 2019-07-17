@@ -26,7 +26,7 @@ final class PrimitiveListFilterCell : UITableViewCell {
         }
     }
     
-    func configure(mode: PrimitiveListFilterMode, filterModeObserver: AnyObserver<PrimitiveListFilterMode>) {
+    func configure(mode: PrimitiveListFilterMode, setMode: AnyObserver<PrimitiveListFilterMode>) {
         let segmentedControl = self.segmentedControl!
 
         segmentedControl.selectedSegmentIndex = mode.rawValue
@@ -35,7 +35,7 @@ final class PrimitiveListFilterCell : UITableViewCell {
             .map { _ in
                 PrimitiveListFilterMode(rawValue: segmentedControl.selectedSegmentIndex) ?? .all
             }
-            .bind(to: filterModeObserver)
+            .bind(to: setMode)
             .disposed(by: disposeBag)
     }
     
