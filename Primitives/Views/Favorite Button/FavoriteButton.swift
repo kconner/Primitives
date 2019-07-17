@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 @IBDesignable final class FavoriteButton : NibBackedView {
     
@@ -27,6 +28,10 @@ import RxSwift
         label.text = title
         button.accessibilityLabel = title
         
+        button.rx.tap
+            .bind(to: viewModel.toggleObserver)
+            .disposed(by: disposeBag)
+        
         viewModel.isFavorite
             .drive(onNext: { [weak self] isFavorite in
                 self?.updateFavorite(to: isFavorite)
@@ -39,13 +44,8 @@ import RxSwift
     private func updateFavorite(to isFavorite: Bool) {
         iconImageView.image = UIImage(systemName: isFavorite ? "star.fill" : "star")
         
-        let scale: CGFloat = isFavorite ? 1.0 : 0.75
-        transform = CGAffineTransform(scaleX: scale, y: scale)
-        
         button.isSelected = isFavorite
-    }
-    
-    @IBAction private func didTap() {
+        
         UIView.animate(
             withDuration: 0.333,
             delay: 0.0,
@@ -53,11 +53,14 @@ import RxSwift
             initialSpringVelocity: 0.0,
             options: [],
             animations: {
-                self.viewModel.toggle()
+                let scale: CGFloat = isFavorite ? 1.0 : 0.75
+                self.transform = CGAffineTransform(scaleX: scale, y: scale)
             },
             completion: nil
         )
-        
+    }
+    
+    @IBAction private func didTap() {
         self.feedbackGenerator.selectionChanged()
     }
     

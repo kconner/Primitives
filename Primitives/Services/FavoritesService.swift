@@ -27,6 +27,9 @@ final class FavoritesService {
         }
     }
     
+    private let toggleSource = PublishSubject<Primitive.ID>()
+    private let disposeBag = DisposeBag()
+    
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         
@@ -41,6 +44,12 @@ final class FavoritesService {
             self.favoriteIDsStorage = favorites
             favoriteIDsSource.onNext(favoriteIDsStorage)
         }
+        
+        toggleSource
+            .subscribe(onNext: { [weak self] primitiveID in
+                self?.favoriteIDsStorage.formSymmetricDifference([primitiveID])
+            })
+            .disposed(by: disposeBag)
     }
     
     deinit {
@@ -59,8 +68,11 @@ final class FavoritesService {
             }
     }
     
-    func toggle(_ primitive: Primitive) {
-        favoriteIDsStorage.formSymmetricDifference([primitive.id])
+    func toggleObserver(_ primitive: Primitive) -> AnyObserver<Void> {
+        toggleSource
+            .mapObserver { _ in
+                primitive.id
+            }
     }
 
 }

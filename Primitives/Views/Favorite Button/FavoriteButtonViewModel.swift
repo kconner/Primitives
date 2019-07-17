@@ -6,6 +6,7 @@
 //  Copyright © 2019 Kevin Conner. All rights reserved.
 //
 
+import RxSwift
 import RxCocoa
 
 final class FavoriteButtonViewModel {
@@ -22,8 +23,8 @@ final class FavoriteButtonViewModel {
         favorites.isFavorite(primitive)
     }
     
-    func toggle() {
-        favorites.toggle(primitive)
+    var toggleObserver: AnyObserver<Void> {
+        favorites.toggleObserver(primitive)
     }
 
 }
