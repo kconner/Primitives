@@ -24,7 +24,7 @@ struct PrimitiveList : View {
                 MessageCell(message: Text("Loading…"))
             }
 
-            ForEach(filteredPrimitives.identified(by: \.name)) { primitive in
+            ForEach(filteredPrimitives, id: \.name) { primitive in
                 PrimitiveCell(
                     favorites: self.favorites,
                     settings: self.settings,
@@ -41,7 +41,14 @@ struct PrimitiveList : View {
             leading: refreshButton,
             trailing: SettingsButton(isPresentingSettings: $settings.isPresentingSettings)
         )
-        .presentation(settings.isPresentingSettings ? settingsModal : nil)
+        .sheet(
+            isPresented: $settings.isPresentingSettings,
+            onDismiss: {
+                self.settings.isPresentingSettings = false
+            }
+        ) {
+            self.settingsSheet
+        }
     }
     
     // MARK: - Helpers
@@ -78,23 +85,18 @@ struct PrimitiveList : View {
             action: {
                 self.catalog.reload()
             }, label: {
-                // TODO: Why does this appear in the simulator but not on device?
-                // Image(systemName: "arrow.clockwise")
-                Text("Refresh")
+                Image(systemName: "arrow.clockwise")
+                    .imageScale(.large)
             }
         )
         .disabled(catalog.value.isLoading)
     }
     
-    private var settingsModal: Modal {
-        Modal(
-            NavigationView {
-                SettingsView(
-                    settings: settings
-                )
-            }
-        ) {
-            self.settings.isPresentingSettings = false
+    private var settingsSheet: some View {
+        NavigationView {
+            SettingsView(
+                settings: settings
+            )
         }
     }
 

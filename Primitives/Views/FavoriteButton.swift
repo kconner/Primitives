@@ -26,10 +26,10 @@ struct FavoriteButton : View {
             },
             label: {
                 VStack {
-                    // TODO: Why does this appear in the live canvas but not the simulator?
                     Image(systemName: favorites[primitive] ? "star.fill" : "star")
                     Text("Favorite")
                 }
+                .foregroundColor(.accentColor)
                 .font(.title)
                 .padding()
             }

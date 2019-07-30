@@ -16,7 +16,7 @@ struct MessageCell : View {
             Spacer()
             
             message
-                .color(.secondary)
+                .foregroundColor(.secondary)
             
             Spacer()
         }

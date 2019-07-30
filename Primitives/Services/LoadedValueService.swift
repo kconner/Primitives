@@ -11,11 +11,11 @@ import Combine
 
 class LoadedValueService<Value, Error> : BindableObject where Error : Swift.Error {
     
-    let didChange = PassthroughSubject<Void, Never>()
+    let willChange = PassthroughSubject<Void, Never>()
     
     private(set) var value: Load<Value, Error> {
         didSet {
-            didChange.send()
+            willChange.send()
         }
     }
 

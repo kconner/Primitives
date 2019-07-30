@@ -17,9 +17,8 @@ struct SettingsButton : View {
                 self.isPresentingSettings = true
             },
             label: {
-                // TODO: Why does this not have a reasonable size hitbox?
-                // Image(systemName: "gear")
-                Text("Settings")
+                Image(systemName: "gear")
+                    .imageScale(.large)
             }
         )
     }

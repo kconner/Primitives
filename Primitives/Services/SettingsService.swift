@@ -11,17 +11,17 @@ import Combine
 
 final class SettingsService : BindableObject {
     
-    let didChange = PassthroughSubject<Void, Never>()
+    let willChange = PassthroughSubject<Void, Never>()
     
     var material = Material.white {
         didSet {
-            didChange.send()
+            willChange.send()
         }
     }
     
     var isPresentingSettings = false {
         didSet {
-            didChange.send()
+            willChange.send()
         }
     }
     

@@ -11,7 +11,7 @@ import Combine
 
 final class FavoritesService : BindableObject {
     
-    let didChange = PassthroughSubject<Void, Never>()
+    let willChange = PassthroughSubject<Void, Never>()
     
     private let userDefaults: UserDefaults
 
@@ -22,7 +22,7 @@ final class FavoritesService : BindableObject {
             let data = try? PropertyListEncoder().encode(favoriteIDs)
             userDefaults.set(data, forKey: Self.userDefaultsKey)
             
-            didChange.send()
+            willChange.send()
         }
     }
     

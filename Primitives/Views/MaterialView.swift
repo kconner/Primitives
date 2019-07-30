@@ -56,7 +56,7 @@ struct MaterialView : View {
     
     private var caption: some View {
         Text(material.name)
-            .color(.secondary)
+            .foregroundColor(.secondary)
             .font(.callout)
     }
     

@@ -30,7 +30,6 @@ struct PrimitiveCell : View {
                 Spacer()
                 
                 if favorites[primitive] {
-                    // TODO: Why does this appear in the live canvas but not the simulator?
                     Image(systemName: "star.fill")
                         .foregroundColor(.secondary)
                         .accessibility(label: Text("Favorite"))
